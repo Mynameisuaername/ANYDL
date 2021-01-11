@@ -16,7 +16,7 @@ An Open Source ALL-In-One Telegram RoBot, that can do lot of things.
 
 #### The Easy Way
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Mynameisuaername/ANYDL/tree/master)
 
 #### The Hard Way
 
