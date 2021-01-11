@@ -321,7 +321,7 @@ async def youtube_dl_call_back(bot, update):
             media_album_p = []
             if images is not None:
                 i = 0
-                caption = "Join To This channel : <a href="https://t.me/TGBotsCollection"> BOT Collection </a>"
+                caption = "Join To This channel : @TGBotsCollection"
                 if is_w_f:
                     caption = "Upgrade plan is only for admins"
                 for image in images:
