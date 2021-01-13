@@ -8,3 +8,4 @@ https://is.gd/ZEGGLm
 requests
 tgcrypto
 youtube-dl
+olefile
