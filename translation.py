@@ -1,19 +1,28 @@
 class Translation(object):
-    START_TEXT = """Hii I am Multi purpose bot like ANYDLbot"""
+    START_TEXT = """Hello,
+This is a Telegram URL Upload Bot Which is निर्भर on YTDL For his Services.
+
+<i><b>Please send me any direct download URL Link, i can upload to telegram as File/Video</b></i>
+
+/help for more details..
+
+Support Group : https://t.me/TGBotsCollection
+"""
     RENAME_403_ERR = "Sorry. You are not permitted to rename this file."
     ABS_TEXT = " Please don't be selfish."
-    UPGRADE_TEXT = "This is Multi purpose bot. No plans present to updrade"
+    UPGRADE_TEXT = "<b>No preminum plans available in this bot </b>  /help for Details"
     FORMAT_SELECTION = "Select the desired format: <a href='{}'>File size might be approximate</a> \nIf you want to set custom thumbnail, send photo before or quickly after tapping on any of the below buttons.\nYou can use /deletethumbnail to delete the auto-generated thumbnail."
     SET_CUSTOM_USERNAME_PASSWORD = """If you want to download premium videos, provide in the following format:
 URL | filename | username | password"""
     NOYES_URL = "@robot URL detected. Please use https://shrtz.me/PtsVnf6 and get me a fast URL so that I can upload to Telegram, without me slowing down for other users."
-    DOWNLOAD_START = "Downloading 📥, wait untill Download Completed. No progress will be shown."
-    UPLOAD_START = "Uploading 📤"
+    DOWNLOAD_START = " 📥Downloading📥
+Wait untill it completed."
+    UPLOAD_START = " 📤Uploading📤 "
     RCHD_BOT_API_LIMIT = "size greater than maximum allowed size (50MB). Neverthless, trying to upload."
     RCHD_TG_API_LIMIT = "Downloaded in {} seconds.\nDetected File Size: {}\nSorry. But, I cannot upload files greater than 1.5GB due to Telegram API limitations."
-    AFTER_SUCCESSFUL_UPLOAD_MSG = "Successfully uploaded"
-    AFTER_SUCCESSFUL_UPLOAD_MSG_WITH_TS = "Downloaded in {} seconds. \nPlease rate me if you find me useful. https://t.me/tlgrmcbot?start=anydl_bot-bot \nUploaded in {} seconds."
-    NOT_AUTH_USER_TEXT = "Please /upgrade yo"
+    AFTER_SUCCESSFUL_UPLOAD_MSG = " Join : https://t.me/TGBotsCollection"
+    AFTER_SUCCESSFUL_UPLOAD_MSG_WITH_TS = "Downloaded in {} seconds. \nJoin : https://t.me/TGBotsCollection \nUploaded in {} seconds."
+    NOT_AUTH_USER_TEXT = "Please /upgrade your subscription."
     NOT_AUTH_USER_TEXT_FILE_SIZE = "Detected File Size: {}. Free Users can only upload: {}\nPlease /upgrade your subscription.\nIf you think this is a bug, please contact <a href='https://telegram.dog/ThankTelegram'>@SpEcHlDe</a>"
     SAVED_CUSTOM_THUMB_NAIL = "Custom video / file thumbnail saved. This image will be used in the video / file."
     DEL_ETED_CUSTOM_THUMB_NAIL = "✅ Custom thumbnail cleared succesfully."
@@ -21,25 +30,23 @@ URL | filename | username | password"""
     SAVED_RECVD_DOC_FILE = "Document Downloaded Successfully."
     CUSTOM_CAPTION_UL_FILE = " "
     NO_CUSTOM_THUMB_NAIL_FOUND = "No Custom ThumbNail found."
-    NO_VOID_FORMAT_FOUND = "no-one gonna help you\n<b>YouTubeDL</b> said: {}"
+    NO_VOID_FORMAT_FOUND = "ERROR...\n<b>YouTubeDL</b> said: {}"
     USER_ADDED_TO_DB = "User <a href='tg://user?id={}'>{}</a> added to {} till {}."
     CURENT_PLAN_DETAILS = """Current plan details
 --------
 Telegram ID: <code>{}</code>
-Plan name: FREE
-Expires on: Untill Dyno hours remaining"""
-    HELP_USER = """There are multiple things I can do:
-i.    All Supported Video / File Formats, with custom file name and custom thumbnail support
-ii.   Upload as file from any HTTP link, with custom thumbnail support
-iii.  Convert To Streamable Video, any Telegram file
-iv.   Convert To Telegram Audio, the media sent as Telegram Documents
-v.    ReName Telegram files, with custom thumbnail support
-vi.   Generate Custom Thumbnail by sending two photos in a Media Album
-vii.  Trim large videos, and Take Screenshots of Telegram media files.
-viii. Extract compressed Telegram media
-ix.   Get a Telegram sticker as a Telegram downloadable media
---------
-Send /me to know current plan details"""
+"""
+    HELP_USER = """Hii am URL Uploader bot and i am निर्भर on YTDL For My Services
+    
+1. Send url (Link|New Name with Extension).
+2. Send Custom Thumbnail (Optional).
+3. Select the button.
+   SVideo - Give File as video with Screenshots
+   DFile  - Give File with Screenshots
+   Video  - Give File as video without Screenshots
+   DFile  - Give File without Screenshots
+
+Support Group : https://t.me/TGBotsCollection"""
     REPLY_TO_DOC_GET_LINK = "Reply to a Telegram media to get High Speed Direct Download Link"
     REPLY_TO_DOC_FOR_C2V = "Reply to a Telegram media to convert"
     REPLY_TO_DOC_FOR_SCSS = "Reply to a Telegram media to get screenshots"
@@ -55,11 +62,11 @@ Send /me to know current plan details"""
     ERR_ONLY_TWO_MEDIA_IN_ALBUM = "Media Album should contain only two photos. Please re-send the media album, and then try again, or send only two photos in an album."
     INVALID_UPLOAD_BOT_URL_FORMAT = "URL format is incorrect. make sure your url starts with either http:// or https://. You can set custom file name using the format link | file_name.extension"
     ABUSIVE_USERS = "You are not allowed to use this bot. If you think this is a mistake, please check /me to remove this restriction."
-    FF_MPEG_RO_BOT_AD_VER_TISE_MENT = "https://t.me/TGBotsCollection"
+    FF_MPEG_RO_BOT_AD_VER_TISE_MENT = "https://telegram.dog/FFMpegRoBot"
     EXTRACT_ZIP_INTRO_ONE = "Send a compressed file first, Then reply /unzip command to the file."
     EXTRACT_ZIP_INTRO_THREE = "Analyzing received file. ⚠️ This might take some time. Please be patient. "
     UNZIP_SUPPORTED_EXTENSIONS = ("zip", "rar")
-    EXTRACT_ZIP_ERRS_OCCURED = "Sorry. Errors occurred while processing compressed file. Please check everything again twice"
+    EXTRACT_ZIP_ERRS_OCCURED = "Sorry. Errors occurred while processing compressed file. Please check everything again twice, and if the issue persists, report this to <a href='https://telegram.dog/ThankTelegram'>@SpEcHlDe</a>"
     EXTRACT_ZIP_STEP_TWO = """Select file_name to upload from the below options.
 You can use /rename command after receiving file to rename it with custom thumbnail support."""
     CANCEL_STR = "Process Cancelled"
