@@ -46,7 +46,7 @@ Telegram ID: <code>{}</code>
    Video  - Give File as video without Screenshots
    DFile  - Give File without Screenshots
 
-Support Group : https://t.me/TGBotsCollection"""
+JOIN : https://t.me/TGBotsCollection"""
     REPLY_TO_DOC_GET_LINK = "Reply to a Telegram media to get High Speed Direct Download Link"
     REPLY_TO_DOC_FOR_C2V = "Reply to a Telegram media to convert"
     REPLY_TO_DOC_FOR_SCSS = "Reply to a Telegram media to get screenshots"
