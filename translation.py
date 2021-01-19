@@ -6,7 +6,7 @@ This is a Telegram URL Upload Bot Which is निर्भर on YTDL For his Se
 
 /help for more details..
 
-Support Group : https://t.me/TGBotsCollection
+JOIN : https://t.me/TGBotsCollection
 """
     RENAME_403_ERR = "Sorry. You are not permitted to rename this file."
     ABS_TEXT = " Please don't be selfish."
@@ -15,7 +15,7 @@ Support Group : https://t.me/TGBotsCollection
     SET_CUSTOM_USERNAME_PASSWORD = """If you want to download premium videos, provide in the following format:
 URL | filename | username | password"""
     NOYES_URL = "@robot URL detected. Please use https://shrtz.me/PtsVnf6 and get me a fast URL so that I can upload to Telegram, without me slowing down for other users."
-    DOWNLOAD_START = " 📥Downloading📥
+    DOWNLOAD_START = " 📥Downloading📥 "
 Wait untill it completed."
     UPLOAD_START = " 📤Uploading📤 "
     RCHD_BOT_API_LIMIT = "size greater than maximum allowed size (50MB). Neverthless, trying to upload."
