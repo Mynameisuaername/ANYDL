@@ -32,7 +32,7 @@ from hachoir.parser import createParser
 from PIL import Image
 
 
-@pyrogram.Client.on_message(pyrogram.Filters.command(["converttoaudio"]))
+@pyrogram.Client.on_message(pyrogram.Filters.command(["c2f"]))
 async def convert_to_audio(bot, update):
     if update.from_user.id not in Config.AUTH_USERS:
         await bot.delete_messages(
