@@ -5,8 +5,7 @@ This is a Telegram URL Upload Bot Which is निर्भर on YTDL For his Se
 <i><b>Please send me any direct download URL Link, i can upload to telegram as File/Video</b></i>
 
 /help for more details..
-
-JOIN : https://t.me/TGBotsCollection
+JOIN : https://t.me/TGBotsCollection \n For the List of Telegram
 """
     RENAME_403_ERR = "Sorry. You are not permitted to rename this file."
     ABS_TEXT = " Please don't be selfish."
@@ -15,11 +14,11 @@ JOIN : https://t.me/TGBotsCollection
     SET_CUSTOM_USERNAME_PASSWORD = """If you want to download premium videos, provide in the following format:
 URL | filename | username | password"""
     NOYES_URL = "@robot URL detected. Please use https://shrtz.me/PtsVnf6 and get me a fast URL so that I can upload to Telegram, without me slowing down for other users."
-    DOWNLOAD_START = " 📥DownloadinG📥 \n\n Wait untill it completed. \n"
+    DOWNLOAD_START = " 📥DownloadinG📥 \n\n Wait untill it completed."
     UPLOAD_START = " 📤UploadinG📤 "
     RCHD_BOT_API_LIMIT = "size greater than maximum allowed size (50MB). Neverthless, trying to upload."
     RCHD_TG_API_LIMIT = "Downloaded in {} seconds.\nDetected File Size: {}\nSorry. But, I cannot upload files greater than 1.95GB due to Telegram API limitations."
-    AFTER_SUCCESSFUL_UPLOAD_MSG = " Join : https://t.me/TGBotsCollection"
+    AFTER_SUCCESSFUL_UPLOAD_MSG = " Join : https://t.me/TGBotsCollection \n For the List of Telegram Bots"
     AFTER_SUCCESSFUL_UPLOAD_MSG_WITH_TS = "Downloaded in {} seconds. \nJoin : https://t.me/TGBotsCollection \nUploaded in {} seconds."
     NOT_AUTH_USER_TEXT = "Please /upgrade your subscription."
     NOT_AUTH_USER_TEXT_FILE_SIZE = "Detected File Size: {}. Free Users can only upload: {}\nPlease /upgrade your subscription.\nIf you think this is a bug, please contact <a href='https://telegram.dog/ThankTelegram'>@SpEcHlDe</a>"
@@ -45,7 +44,7 @@ Telegram ID: <code>{}</code>
    Video  - Give File as video without Screenshots
    DFile  - Give File without Screenshots
 
-JOIN : https://t.me/TGBotsCollection"""
+JOIN : https://t.me/TGBotsCollection \n For the List of Telegram Bots"""
     REPLY_TO_DOC_GET_LINK = "Reply to a Telegram media to get High Speed Direct Download Link"
     REPLY_TO_DOC_FOR_C2V = "Reply to a Telegram media to convert"
     REPLY_TO_DOC_FOR_SCSS = "Reply to a Telegram media to get screenshots"
