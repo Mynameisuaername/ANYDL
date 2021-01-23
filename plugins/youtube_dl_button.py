@@ -323,9 +323,9 @@ async def youtube_dl_call_back(bot, update):
             media_album_p = []
             if images is not None:
                 i = 0
-                caption = "© @TGBotsZ"
+                caption = "JOIN : https://t.me/TGBotsCollection \n For the List of Telegram Bots"
                 if is_w_f:
-                    caption = "/upgrade to Plan D to remove the watermark\n© @AnyDLBot"
+                    caption = "/upgrade to Plan D to remove the watermark\nJOIN : https://t.me/TGBotsCollection \n For the List of Telegram Bots"
                 for image in images:
                     if os.path.exists(image):
                         if i == 0:
