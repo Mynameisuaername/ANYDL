@@ -32,7 +32,7 @@ from hachoir.parser import createParser
 from PIL import Image
 
 
-@pyrogram.Client.on_message(pyrogram.Filters.command(["converttovideo"]))
+@pyrogram.Client.on_message(pyrogram.Filters.command(["convert2video"]))
 async def convert_to_video(bot, update):
     if update.from_user.id not in Config.AUTH_USERS:
         await bot.delete_messages(
@@ -47,7 +47,7 @@ async def convert_to_video(bot, update):
         download_location = Config.DOWNLOAD_LOCATION + "/"
         a = await bot.send_message(
             chat_id=update.chat.id,
-            text=Translation.DOWNLOAD_START,
+            text=Translation.DOWNLOAD_FILE,
             reply_to_message_id=update.message_id
         )
         c_time = time.time()
@@ -56,7 +56,7 @@ async def convert_to_video(bot, update):
             file_name=download_location,
             progress=progress_for_pyrogram,
             progress_args=(
-                Translation.DOWNLOAD_START,
+                Translation.DOWNLOAD_FILE,
                 a,
                 c_time
             )
