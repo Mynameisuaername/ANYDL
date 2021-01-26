@@ -47,7 +47,7 @@ async def get_link(bot, update):
         start = datetime.now()
         a = await bot.send_message(
             chat_id=update.chat.id,
-            text=<b>Downloading</b> File,
+            text=Translation.DOWNLOAD_START,
             reply_to_message_id=update.message_id
         )
         c_time = time.time()
