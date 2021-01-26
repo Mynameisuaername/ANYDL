@@ -43,7 +43,7 @@ async def generate_screen_shot(bot, update):
         download_location = Config.DOWNLOAD_LOCATION + "/"
         a = await bot.send_message(
             chat_id=update.chat.id,
-            text=Translation.DOWNLOAD_START,
+            text=Translation.DOWNLOAD_FILE,
             reply_to_message_id=update.message_id
         )
         c_time = time.time()
@@ -52,7 +52,7 @@ async def generate_screen_shot(bot, update):
             file_name=download_location,
             progress=progress_for_pyrogram,
             progress_args=(
-                Translation.DOWNLOAD_START,
+                Translation.DOWNLOAD_FILE,
                 a,
                 c_time
             )
@@ -83,7 +83,7 @@ async def generate_screen_shot(bot, update):
             media_album_p = []
             if images is not None:
                 i = 0
-                caption = "Join : @TGBotsCollection \n For the list of Telegram Bots"
+                caption = "Join : @TGBotsCollection \nFor the list of Telegram Bots"
                 for image in images:
                     if os.path.exists(image):
                         if i == 0:
