@@ -14,6 +14,7 @@ JOIN : https://t.me/TGBotsCollection \n For the List of Telegram
     SET_CUSTOM_USERNAME_PASSWORD = """If you want to download premium videos, provide in the following format:
 URL | filename | username | password"""
     NOYES_URL = "@robot URL detected. Please use https://shrtz.me/PtsVnf6 and get me a fast URL so that I can upload to Telegram, without me slowing down for other users."
+    DOWNLOAD_FILE = " 📥DownloadinG📥 "
     DOWNLOAD_START = " 📥DownloadinG📥 \n\nWait untill it completed."
     UPLOAD_START = " 📤UploadinG📤 "
     RCHD_BOT_API_LIMIT = "size greater than maximum allowed size (50MB). Neverthless, trying to upload."
