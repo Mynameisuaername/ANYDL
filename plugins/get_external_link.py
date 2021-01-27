@@ -78,7 +78,7 @@ async def get_link(bot, update):
             url
         ]
         await bot.edit_message_text(
-            text=Translation.UPLOAD_START,
+            text=Translation.UPLOAD_FILE,
             chat_id=update.chat.id,
             message_id=a.message_id
         )
