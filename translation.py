@@ -1,12 +1,19 @@
 class Translation(object):
-    START_TEXT = """Hello,
+    START_TEXT = """Hello {m.from_user.mention},
 This is a Telegram URL Upload Bot Which is निर्भर on YTDL For his Services.
 
 <i><b>Please send me any direct download URL Link, i can upload to telegram as File/Video</b></i>
 /help for more details..
-
-JOIN : https://t.me/TGBotsCollection \n For the List of Telegram
-"""
+""",
+    quote=True,
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        "JOIN", url="https://t.me/TGBotsCollection"
+                    ),
+                ]
+    IFLONG_FILE_NAME = " Only 64 characters can be named . "
     RENAME_403_ERR = "Sorry. You are not permitted to rename this file."
     ABS_TEXT = " Please don't be selfish."
     UPGRADE_TEXT = "<b>No preminum plans available in this bot </b>  /help for Details"
@@ -50,7 +57,7 @@ JOIN : https://t.me/TGBotsCollection \n For the List of Telegram Bots"""
     REPLY_TO_DOC_GET_LINK = "Reply to a Telegram media to get High Speed Direct Download Link"
     REPLY_TO_DOC_FOR_C2V = "Reply to a Telegram media to convert"
     REPLY_TO_DOC_FOR_SCSS = "Reply to a Telegram media to get screenshots"
-    REPLY_TO_DOC_FOR_RENAME_FILE = "Reply to a Telegram media to /rename with custom thumbnail support"
+    REPLY_TO_DOC_FOR_RENAME_FILE = "Reply to a Telegram media to /ren with custom thumbnail support"
     AFTER_GET_DL_LINK = "Direct Link <a href='{}'>Generated</a> valid for {} days.\n Join : @TGBotsCollection \n For the list of Telegram bots. "
     FF_MPEG_RO_BOT_RE_SURRECT_ED = """Syntax: /trim HH:MM:SS [HH:MM:SS]"""
     FF_MPEG_RO_BOT_STEP_TWO_TO_ONE = "First send /downloadmedia to any media so that it can be downloaded to my local. \nSend /storageinfo to know the media, that is currently downloaded."
