@@ -1,5 +1,5 @@
 class Translation(object):
-    START_TEXT = """Hello {update.chat.first_name},
+    START_TEXT = """Hello <b>{message.from_user.first_name}</b>,
 This is a Telegram Multipurpose Bot Which can do many functions.
 
 /help for more details..
