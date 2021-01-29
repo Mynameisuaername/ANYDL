@@ -48,9 +48,7 @@ async def help_user(bot, update):
 async def get_me_info(bot, update):
     # logger.info(update)
     TRChatBase(update.from_user.id, update.text, "/me")
-    await update.reply(f" Telegram Name : <b>{update.chat.first_name}</b> \nTelegram ID : <code>{update.from_user.id}</code>,
-        reply_to_message_id=update.message_id
-    )
+    await update.reply(f"Telegram Name : <b>{update.chat.first_name}</b> \nTelegram ID : <code>{update.from_user.id}</code>)
 
 
 @pyrogram.Client.on_message(pyrogram.Filters.command(["start"]))
