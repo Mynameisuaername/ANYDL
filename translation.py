@@ -1,8 +1,7 @@
 class Translation(object):
-    START_TEXT = """Hello {m.from_user.mention},
-This is a Telegram URL Upload Bot Which is निर्भर on YTDL For his Services.
+    START_TEXT = """Hello {update.chat.first_name},
+This is a Telegram Multipurpose Bot Which can do many functions.
 
-<i><b>Please send me any direct download URL Link, i can upload to telegram as File/Video</b></i>
 /help for more details..
 
 JOIN : https://t.me/TGBotsCollection \nFor the List of Telegram Bots
