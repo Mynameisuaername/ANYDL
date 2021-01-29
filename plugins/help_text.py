@@ -48,13 +48,7 @@ async def help_user(bot, update):
 async def get_me_info(bot, update):
     # logger.info(update)
     TRChatBase(update.from_user.id, update.text, "/me")
-    chat_id = str(update.from_user.id)
-    chat_id, plan_type, expires_at = GetExpiryDate(chat_id)
-    await bot.send_message(
-        chat_id=update.chat.id,
-        text=Translation.CURENT_PLAN_DETAILS.format(chat_id, plan_type, expires_at),
-        parse_mode="html",
-        disable_web_page_preview=True,
+    await update.reply(f" Telegram Name : <b>{update.chat.first_name}</b> \nTelegram ID : <code>{update.from_user.id}</code>,
         reply_to_message_id=update.message_id
     )
 
@@ -63,7 +57,7 @@ async def get_me_info(bot, update):
 async def start(bot, update):
     # logger.info(update)
     TRChatBase(update.from_user.id, update.text, "/start")
-    await update.reply(f"<b>Hi {update.chat.first_name}!</b>")
+    await update.reply(f"<b>Hi {update.chat.first_name}!</b> \nThis is a Telegram Multipurpose Bot Which can do many functions. /help for more details...  \n\nJOIN : https://t.me/TGBotsCollection \nFor the List of Telegram Bots")
       
 
 @pyrogram.Client.on_message(pyrogram.Filters.command(["upgrade"]))
