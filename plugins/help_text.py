@@ -63,12 +63,10 @@ async def get_me_info(bot, update):
 async def start(bot, update):
     # logger.info(update)
     TRChatBase(update.from_user.id, update.text, "/start")
-    await bot.send_message(
-        chat_id=update.chat.id,
+    await update.reply(f"<b>Hi {update.chat.first_name}!</b>"
         text=Translation.START_TEXT,
-        reply_to_message_id=update.message_id
+        reply_to_message_id=update.message_id  
     )
-
 
 @pyrogram.Client.on_message(pyrogram.Filters.command(["upgrade"]))
 async def upgrade(bot, update):
