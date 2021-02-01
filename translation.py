@@ -34,7 +34,6 @@ URL | filename | username | password"""
     USER_ADDED_TO_DB = "User <a href='tg://user?id={}'>{}</a> added to {} till {}."
     CURENT_PLAN_DETAILS = """About you...
 --------
-Telegram Name : {update.chat.first_name}
 Telegram ID : <code>{}</code>
 """
     HELP_USER = """Hii am URL Uploader bot and i am निर्भर on YTDL For My Services
