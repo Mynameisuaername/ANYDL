@@ -36,11 +36,11 @@ URL | filename | username | password"""
 --------
 Telegram ID : <code>{}</code>
 """
-    HELP_USER = """Hii am URL Uploader bot and i am निर्भर on YTDL For My Services
+    HELP_USER = """Hii I am Multipurpose bot and I can perform many tasks.
     
-1. Send url (Link|New Name with Extension).
-2. Send Custom Thumbnail (Optional).
-3. Select the button.
+1.) Send url (Link|New Name with Extension).
+2.) Send Custom Thumbnail (Optional).
+3.) Select the button.
    SVideo - Give File as video with Screenshots
    DFile  - Give File with Screenshots
    Video  - Give File as video without Screenshots
