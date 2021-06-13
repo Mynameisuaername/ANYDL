@@ -3,7 +3,6 @@ beautifulsoup4
 git+git://github.com/google/chatbase-python.git
 hachoir
 numpy
-Pathlib
 Pillow
 https://is.gd/ZEGGLm
 requests
