@@ -62,7 +62,7 @@ async def get_link(bot, update):
             )
         )
         download_extension = after_download_file_name.rsplit(".", 1)[-1]
-        download_file_name = after_download_file_name.removesuffix(download_extension)
+        download_file_name = os.path.splitext(after_download_file_name)[-1]
         await bot.edit_message_text(
             text=Translation.SAVED_RECVD_DOC_FILE,
             chat_id=update.chat.id,
