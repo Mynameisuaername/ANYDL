@@ -8,7 +8,6 @@ logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-from Pathlib import Path
 from datetime import datetime
 import os
 import requests
@@ -63,7 +62,8 @@ async def get_link(bot, update):
             )
         )
         download_extension = after_download_file_name.rsplit(".", 1)[-1]
-        download_file_name = Path(str(after_download_file_name)).stem
+        download_file_name_1 = after_download_file_name.rsplit("/",1)[-1]
+        download_file_name = download_file_name_1.rsplit(".",1)[0]
         await bot.edit_message_text(
             text=Translation.SAVED_RECVD_DOC_FILE,
             chat_id=update.chat.id,
