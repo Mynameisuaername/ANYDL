@@ -62,13 +62,15 @@ async def get_link(bot, update):
             )
         )
         download_extension = after_download_file_name.rsplit(".", 1)[-1]
+        download_file_name_1 = after_download_file_name.rsplit("/",1)[-1]
+        download_file_name = download_file_name_1.rsplit(".",1)[0]
         await bot.edit_message_text(
             text=Translation.SAVED_RECVD_DOC_FILE,
             chat_id=update.chat.id,
             message_id=a.message_id
         )
         end_one = datetime.now()
-        url = "https://transfer.sh/{}.{}".format(str(update.from_user.id), str(download_extension))
+        url = "https://transfer.sh/{}.{}".format(str(download_file_name), str(download_extension))
         max_days = "14"
         command_to_exec = [
             "curl",
