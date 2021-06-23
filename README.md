@@ -28,8 +28,25 @@ cp sample_config.py config.py
 --- EDIT config.py values appropriately ---
 python bot.py
 ```
+## Bot Commands
 
-- For FeedBack and Suggestions, please feel free to say in [@SpEcHlDe](https://telegram.dog/ThankTelegram)
+- start - Check the bot is online or not.
+- help - 🆘Need help
+- me - 🕵️‍♂️Your details
+- ytdl - Not matter use or not.
+- ren - Rename files 📂📁
+- sshot - Screenshots 📸
+- converttovideo - 📂 to📽
+- c2f - 📽 to 📂
+- trim - Trim video 🎞
+- getlink - ⚡Get an external download link of telegram file.
+- storageinfo - 💾Use this command to check saved file.
+- generatecustomthumbnail - !Not Working
+- downloadmedia - 🔽Reply with the file you want to upload to the bot server.
+- clearffmpegmedia - 🗑️Use this command to delete saved media in the bot.
+- deletethumbnail - Use this command to delete thumbnails.
+
+For FeedBack and Suggestions, please feel free to say in [@SpEcHlDe](https://telegram.dog/ThankTelegram)
 
 #### LICENSE
 - GPLv3
