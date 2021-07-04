@@ -1,11 +1,7 @@
 from pyrogram import Client, Filters, StopPropagation, InlineKeyboardButton, InlineKeyboardMarkup
 import time
-''' import time
 
-bot_start_time = time.time()
-bot_uptime = time.strftime("%Hh %Mm %Ss", time.gmtime(time.time() - bot_start_time)) '''
-
-def get_readable_time(seconds: int) -> str:
+''' def get_readable_time(seconds: int) -> str:
     result = ''
     (days, remainder) = divmod(seconds, 86400)
     days = int(days)
@@ -21,14 +17,15 @@ def get_readable_time(seconds: int) -> str:
         result += f'{minutes}m'
     seconds = int(seconds)
     result += f'{seconds}s'
-    return result
+    return result '''
 
 bot_start_time = time.time()
 bot_uptime = get_readable_time(time.time() - bot_start_time)
 
 @Client.on_message(Filters.command(["start"]), group=-2)
 async def start(client, message):
-    # return
+    bot_start_time = time.time()
+    bot_uptime = time.strftime("%Hh %Mm %Ss", time.gmtime(time.time() - bot_start_time)) 
     joinButton = InlineKeyboardMarkup([
         [InlineKeyboardButton("JOIN", url="https://t.me/TGBotsCollection")],
         [InlineKeyboardButton(
