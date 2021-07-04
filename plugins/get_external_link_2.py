@@ -98,7 +98,7 @@ async def get_link(bot, update):
             t_response_ray = re.findall("(?P<url>https?://[^\s]+)", t_response_array)
         await bot.edit_message_text(
             chat_id=update.chat.id,
-            text=Translation.AFTER_GET_DL_LINK.format(t_response_ray[0], t_response_ray[1]),
+            text=Translation.AFTER_GET_DL_LINK.format(t_response_ray[0]),
             parse_mode="html",
             message_id=a.message_id,
             disable_web_page_preview=True
