@@ -1,5 +1,6 @@
 from pyrogram import Client, Filters, StopPropagation, InlineKeyboardButton, InlineKeyboardMarkup
 import time
+bot_start_time = time.time()
 
 ''' def get_readable_time(seconds: int) -> str:
     result = ''
@@ -21,7 +22,6 @@ import time
 
 @Client.on_message(Filters.command(["start"]), group=-2)
 async def start(client, message):
-    bot_start_time = time.time()
     bot_uptime = time.strftime("%Hh %Mm %Ss", time.gmtime(time.time() - bot_start_time)) 
     joinButton = InlineKeyboardMarkup([
         [InlineKeyboardButton("JOIN", url="https://t.me/TGBotsCollection")],
