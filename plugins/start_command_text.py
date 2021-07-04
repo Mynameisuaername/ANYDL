@@ -1,5 +1,9 @@
 from pyrogram import Client, Filters, StopPropagation, InlineKeyboardButton, InlineKeyboardMarkup
 import time
+''' import time
+
+bot_start_time = time.time()
+bot_uptime = time.strftime("%Hh %Mm %Ss", time.gmtime(time.time() - bot_start_time)) '''
 
 def get_readable_time(seconds: int) -> str:
     result = ''
