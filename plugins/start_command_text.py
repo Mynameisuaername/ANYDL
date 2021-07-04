@@ -19,9 +19,6 @@ import time
     result += f'{seconds}s'
     return result '''
 
-bot_start_time = time.time()
-bot_uptime = get_readable_time(time.time() - bot_start_time)
-
 @Client.on_message(Filters.command(["start"]), group=-2)
 async def start(client, message):
     bot_start_time = time.time()
