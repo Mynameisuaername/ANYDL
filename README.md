@@ -39,7 +39,9 @@ python bot.py
 - converttovideo - 📂 to📽
 - c2f - 📽 to 📂
 - trim - Trim video 🎞
-- getlink - ⚡Get an external download link of telegram file.
+- getlink - ⚡Get transfer.sh link of telegram file.
+- getlink1 - ⚡Get anonfiles.com link of telegram file.
+- getlink2 - ⚡Get bayfiles.com link of telegram file.
 - storageinfo - 💾Use this command to check saved file.
 - generatecustomthumbnail - !Not Working
 - downloadmedia - 🔽Reply with the file you want to upload to the bot server.
