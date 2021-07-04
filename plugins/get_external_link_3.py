@@ -93,10 +93,12 @@ async def get_link(bot, update):
             return False
         else:
             logger.info(t_response)
-            t_response_arry = t_response.decode("UTF-8").split("\n")[-1].strip()
+            t_response_array = t_response.decode("UTF-8").split("\n")[-1].strip()
+            #t_response_ray = re.findall("(?P<url>https?://[^\s]+)", t_response_array)
+            t_response_ray = t_response_array.rsplit('"')
         await bot.edit_message_text(
             chat_id=update.chat.id,
-            text=Translation.AFTER_GET_DL_LINK.format(t_response_arry),
+            text=Translation.AFTER_GET_DL_LINK.format(t_response_ray[11], t_response_ray[15], t_response_ray[-2]),
             parse_mode="html",
             message_id=a.message_id,
             disable_web_page_preview=True
