@@ -3,6 +3,7 @@
 # (c) Shrimadhav U K
 
 # the logging things
+'''
 import logging
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -114,3 +115,4 @@ async def get_link(bot, update):
             text=Translation.REPLY_TO_DOC_GET_LINK,
             reply_to_message_id=update.message_id
         )
+'''
