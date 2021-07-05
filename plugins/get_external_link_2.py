@@ -30,6 +30,7 @@ logging.getLogger("pyrogram").setLevel(logging.WARNING)
 from helper_funcs.chat_base import TRChatBase
 from helper_funcs.display_progress import progress_for_pyrogram
 
+from pyrogram import InlineKeyboardButton, InlineKeyboardMarkup
 
 @pyrogram.Client.on_message(pyrogram.Filters.command(["getlink1"]))
 async def get_link(bot, update):
@@ -97,9 +98,12 @@ async def get_link(bot, update):
             t_response_array = t_response.decode("UTF-8").split("\n")[-1].strip()
             #t_response_ray = re.findall("(?P<url>https?://[^\s]+)", t_response_array)
             t_response_ray = t_response_array.rsplit('"')
+            DO_LINK = InlineKeyboardMarkup([
+        [InlineKeyboardButton("Download Link", url=t_respone_ray[15])],
+    ])
         await bot.edit_message_text(
             chat_id=update.chat.id,
-            text=Translation.AFTER_GET_DL_LINK.format(t_response_ray[25], t_response_ray[-2], t_response_ray[11]),
+            text=(Translation.AFTER_GET_DL_LINK.format(t_response_ray[25], t_response_ray[-2], t_response_ray[11]), reply_markup=DO_LINK)
             parse_mode="html",
             message_id=a.message_id,
             disable_web_page_preview=True
