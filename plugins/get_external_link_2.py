@@ -99,7 +99,7 @@ async def get_link(bot, update):
             #t_response_ray = re.findall("(?P<url>https?://[^\s]+)", t_response_array)
             t_response_ray = t_response_array.rsplit('"')
             DO_LINK = InlineKeyboardMarkup([
-        [InlineKeyboardButton("Download Link", url=t_response_ray[15])],
+        [InlineKeyboardButton("Download Link", url=t_response_ray[11])],
     ])
         await bot.edit_message_text(
             chat_id=update.chat.id,
