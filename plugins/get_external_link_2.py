@@ -111,8 +111,7 @@ async def get_link(bot, update):
             message_id=a.message_id,
             InlineKeyboardMarkup([
         [InlineKeyboardButton("Download Link", url=t_respone_ray[15])],
-    ])
-        )
+    ]))
         try:
             os.remove(after_download_file_name)
         except:
