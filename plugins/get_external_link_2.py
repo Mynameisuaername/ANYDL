@@ -106,12 +106,12 @@ async def get_link(bot, update):
             message_id=a.message_id,
             disable_web_page_preview=True
         )
-        await bot.edit_message_reply_markup(
+        '''await bot.edit_message_reply_markup(
             chat_id=update.chat.id,
             message_id=a.message_id,
             InlineKeyboardMarkup([
         [InlineKeyboardButton("Download Link", url=t_respone_ray[15])],
-    ]))
+    ]))'''
         try:
             os.remove(after_download_file_name)
         except:
