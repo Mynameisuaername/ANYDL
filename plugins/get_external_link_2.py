@@ -98,15 +98,20 @@ async def get_link(bot, update):
             t_response_array = t_response.decode("UTF-8").split("\n")[-1].strip()
             #t_response_ray = re.findall("(?P<url>https?://[^\s]+)", t_response_array)
             t_response_ray = t_response_array.rsplit('"')
-            DO_LINK = InlineKeyboardMarkup([
-        [InlineKeyboardButton("Download Link", url=t_respone_ray[15])],
-    ])
+            DO_LINK = 
         await bot.edit_message_text(
             chat_id=update.chat.id,
-            text=(Translation.AFTER_GET_DL_LINK.format(t_response_ray[25], t_response_ray[-2], t_response_ray[11]), reply_markup=DO_LINK)
+            text=Translation.AFTER_GET_DL_LINK.format(t_response_ray[25], t_response_ray[-2], t_response_ray[11]), 
             parse_mode="html",
             message_id=a.message_id,
             disable_web_page_preview=True
+        )
+        await bot.edit_message_reply_markup(
+            chat_id=update.chat.id,
+            message_id=a.message_id,
+            InlineKeyboardMarkup([
+        [InlineKeyboardButton("Download Link", url=t_respone_ray[15])],
+    ])
         )
         try:
             os.remove(after_download_file_name)
