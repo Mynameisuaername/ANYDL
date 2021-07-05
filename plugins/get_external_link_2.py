@@ -2,6 +2,12 @@
 # -*- coding: utf-8 -*-
 # (c) Shrimadhav U K
 
+'''await bot.edit_message_reply_markup(
+            chat_id=update.chat.id,
+            message_id=a.message_id,
+            InlineKeyboardMarkup([
+        [InlineKeyboardButton("Download Link", url=t_respone_ray[15])],
+    ]))'''
 # the logging things
 import logging
 logging.basicConfig(level=logging.DEBUG,
@@ -30,7 +36,6 @@ logging.getLogger("pyrogram").setLevel(logging.WARNING)
 from helper_funcs.chat_base import TRChatBase
 from helper_funcs.display_progress import progress_for_pyrogram
 
-from pyrogram import InlineKeyboardButton, InlineKeyboardMarkup
 
 @pyrogram.Client.on_message(pyrogram.Filters.command(["getlink1"]))
 async def get_link(bot, update):
@@ -98,20 +103,13 @@ async def get_link(bot, update):
             t_response_array = t_response.decode("UTF-8").split("\n")[-1].strip()
             #t_response_ray = re.findall("(?P<url>https?://[^\s]+)", t_response_array)
             t_response_ray = t_response_array.rsplit('"')
-            
         await bot.edit_message_text(
             chat_id=update.chat.id,
-            text=Translation.AFTER_GET_DL_LINK.format(download_file_name_1, t_response_ray[-2], t_response_ray[11]), 
+            text=Translation.AFTER_GET_DL_LINK.format(t_response_ray[25], t_response_ray[-2], t_response_ray[11]),
             parse_mode="html",
             message_id=a.message_id,
             disable_web_page_preview=True
         )
-        '''await bot.edit_message_reply_markup(
-            chat_id=update.chat.id,
-            message_id=a.message_id,
-            InlineKeyboardMarkup([
-        [InlineKeyboardButton("Download Link", url=t_respone_ray[15])],
-    ]))'''
         try:
             os.remove(after_download_file_name)
         except:
