@@ -104,7 +104,7 @@ async def get_link(bot, update):
         await bot.edit_message_text(
             chat_id=update.chat.id,
             
-            text=Translation.AFTER_GET_DL_LINK.format(t_response_ray[25], t_response_ray[-2], t_response_ray[11]),
+            text=Translation.AFTER_GET_DL_LINK.format(t_response_ray[25], t_response_ray[-2], t_response_ray[15]),
             parse_mode="html",
             reply_markup=DO_LINK,
             message_id=a.message_id,
@@ -114,7 +114,7 @@ async def get_link(bot, update):
             chat_id=update.chat.id,
             message_id=a.message_id,
             InlineKeyboardMarkup([
-        [InlineKeyboardButton("Download Link", url=t_respone_ray[15])],
+        [InlineKeyboardButton("Download Link", url=t_respone_ray[11])],
     ]))'''
         try:
             os.remove(after_download_file_name)
