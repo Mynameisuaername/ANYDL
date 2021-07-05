@@ -31,7 +31,7 @@ from helper_funcs.chat_base import TRChatBase
 from helper_funcs.display_progress import progress_for_pyrogram
 
 
-@pyrogram.Client.on_message(pyrogram.Filters.command(["getlink1"]))
+@pyrogram.Client.on_message(pyrogram.Filters.command(["getlink3"]))
 async def get_link(bot, update):
     if update.from_user.id not in Config.AUTH_USERS:
         await bot.delete_messages(
@@ -65,7 +65,7 @@ async def get_link(bot, update):
         download_extension = after_download_file_name.rsplit(".", 1)[-1]
         download_file_name_1 = after_download_file_name.rsplit("/",1)[-1]
         download_file_name = download_file_name_1.rsplit(".",1)[0]
-        url = " https://store9.gofile.io/uploadFile"
+        url = " https://srv-store4.gofile.io/uploadFile"
         await bot.edit_message_text(
             text=Translation.SAVED_RECVD_DOC_FILE,
             chat_id=update.chat.id,
