@@ -3,7 +3,7 @@
 # (c) Shrimadhav U K
 
 # the logging things
-'''
+
 import logging
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -66,7 +66,7 @@ async def get_link(bot, update):
         download_extension = after_download_file_name.rsplit(".", 1)[-1]
         download_file_name_1 = after_download_file_name.rsplit("/",1)[-1]
         download_file_name = download_file_name_1.rsplit(".",1)[0]
-        url = " https://srv-store4.gofile.io/uploadFile"
+        url = " https://store9.gofile.io/uploadFile"
         await bot.edit_message_text(
             text=Translation.SAVED_RECVD_DOC_FILE,
             chat_id=update.chat.id,
@@ -75,7 +75,7 @@ async def get_link(bot, update):
         end_one = datetime.now()
         command_to_exec = [
         "curl",
-        "-F", f"filesUploaded=@{after_download_file_name}", url
+        "-F", "email=cgeevhkr@hi2.in", "-F", f"file=@{after_download_file_name}", url
         ]
         await bot.edit_message_text(
             text=Translation.ANNO_UPLOAD,
@@ -115,4 +115,4 @@ async def get_link(bot, update):
             text=Translation.REPLY_TO_DOC_GET_LINK,
             reply_to_message_id=update.message_id
         )
-'''
+
