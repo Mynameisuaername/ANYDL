@@ -3,7 +3,7 @@
 # (c) Shrimadhav U K
 
 # the logging things
-'''
+
 import logging
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -66,7 +66,6 @@ async def get_link(bot, update):
         download_extension = after_download_file_name.rsplit(".", 1)[-1]
         download_file_name_1 = after_download_file_name.rsplit("/",1)[-1]
         download_file_name = download_file_name_1.rsplit(".",1)[0]
-        url = " https://store9.gofile.io/uploadFile"
         await bot.edit_message_text(
             text=Translation.SAVED_RECVD_DOC_FILE,
             chat_id=update.chat.id,
@@ -74,11 +73,23 @@ async def get_link(bot, update):
         )
         end_one = datetime.now()
         command_to_exec = [
+        "curl", "https://api.gofile.io/getServer"
+        ]
+        try:
+            logger.info(command_to_exec)
+            t_response = subprocess.check_output(command_to_exec, stderr=subprocess.STDOUT)
+        except subprocess.CalledProcessError as exc:
+            logger.info("Status : FAIL", exc.returncode, exc.output)
+            server= t_response.split('"')[6]
+            url = f"https://{server}.gofile.io/uploadFile"
+        
+        end_one = datetime.now()
+        command_to_exec = [
         "curl",
         "-F", f"file=@{after_download_file_name}", url
         ]
         await bot.edit_message_text(
-            text=Translation.ANNO_UPLOAD,
+            text=f"Uploading\n\ntoGofile.io",
             chat_id=update.chat.id,
             message_id=a.message_id
         )
@@ -115,4 +126,4 @@ async def get_link(bot, update):
             text=Translation.REPLY_TO_DOC_GET_LINK,
             reply_to_message_id=update.message_id
         )
-'''
+
