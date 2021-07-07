@@ -66,12 +66,13 @@ async def get_link(bot, update):
         download_extension = after_download_file_name.rsplit(".", 1)[-1]
         download_file_name_1 = after_download_file_name.rsplit("/",1)[-1]
         download_file_name = download_file_name_1.rsplit(".",1)[0]
+        url= 'https://srv-store5.gofile.io/uploadFile'
         await bot.edit_message_text(
             text=Translation.SAVED_RECVD_DOC_FILE,
             chat_id=update.chat.id,
             message_id=a.message_id
         )
-        end_one = datetime.now()
+        '''end_one = datetime.now()
         command_to_exec = [
         "curl", "https://api.gofile.io/getServer"
         ]
@@ -82,7 +83,7 @@ async def get_link(bot, update):
             logger.info("Status : FAIL", exc.returncode, exc.output)
             server= t_response.split('"')[6]
             url = f"https://{server}.gofile.io/uploadFile"
-        
+        '''
         end_one = datetime.now()
         command_to_exec = [
         "curl",
