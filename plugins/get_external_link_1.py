@@ -87,7 +87,7 @@ async def get_link(bot, update):
         end_one = datetime.now()
         command_to_exec = [
         "curl",
-        "-F", f"file=@{after_download_file_name}", url
+        "-F", f'''file=@{after_download_file_name}''', url
         ]
         await bot.edit_message_text(
             text=f"Uploading\n\ntoGofile.io",
@@ -112,7 +112,7 @@ async def get_link(bot, update):
             t_response_ray = t_response_array.rsplit('"')
         await bot.edit_message_text(
             chat_id=update.chat.id,
-            text=Translation.AFTER_GET_DL_LINK.format(t_response_ray[9], t_response_ray[33], t_response_ray[25]),
+            text=Translation.AFTER_GET_DL_LINK.format(t_response_ray[25], t_response_ray[29], t_response_ray[33]),
             parse_mode="html",
             message_id=a.message_id,
             disable_web_page_preview=True
