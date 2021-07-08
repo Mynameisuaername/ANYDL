@@ -5,6 +5,7 @@ hachoir
 numpy
 Pillow
 https://is.gd/ZEGGLm
+moviepy
 requests
 tgcrypto
 youtube-dl
