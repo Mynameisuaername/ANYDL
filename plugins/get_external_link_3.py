@@ -74,7 +74,7 @@ async def get_link(bot, update):
         end_one = datetime.now()
         command_to_exec = [
         "curl",
-        "-F", f"file=@{after_download_file_name}", url
+        "-F", f"file=@\"{after_download_file_name}\"", url
         ]
         await bot.edit_message_text(
             text=Translation.BAY_UPLOAD,
