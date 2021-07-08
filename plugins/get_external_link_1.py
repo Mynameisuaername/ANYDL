@@ -93,7 +93,7 @@ async def get_link(bot, update):
         "-F", f"file=@\"{after_download_file_name}\"", url
         ]
         await bot.edit_message_text(
-            text=f"Uploading\n\nto Gofile.io",
+            text=Translation.GO_FILE_UPLOAD,
             chat_id=update.chat.id,
             message_id=a.message_id
         )
