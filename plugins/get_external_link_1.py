@@ -87,10 +87,10 @@ async def get_link(bot, update):
         end_one = datetime.now()
         command_to_exec = [
         "curl",
-        "-F", f'''file=@{after_download_file_name}''', url
+        "-F", f"file=@\"{after_download_file_name}\"", url
         ]
         await bot.edit_message_text(
-            text=f"Uploading\n\ntoGofile.io",
+            text=f"Uploading\n\nto Gofile.io",
             chat_id=update.chat.id,
             message_id=a.message_id
         )
@@ -112,8 +112,11 @@ async def get_link(bot, update):
             t_response_ray = t_response_array.rsplit('"')
         await bot.edit_message_text(
             chat_id=update.chat.id,
-            text=Translation.AFTER_GET_DL_LINK.format(t_response_ray[25], t_response_ray[29], t_response_ray[9]),
+            text=Translation.AFTER_GET_GOFILE_LINK.format(t_response_ray[25], t_response_ray[29], t_response_ray[9]),
             parse_mode="html",
+            reply_markup=InlineKeyboardMarkup([
+        [InlineKeyboardButton("Download Link", url=t_response_ray[33])],
+    ]),
             message_id=a.message_id,
             disable_web_page_preview=True
         )
