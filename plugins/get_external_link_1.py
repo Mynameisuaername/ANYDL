@@ -28,7 +28,6 @@ from translation import Translation
 import pyrogram
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
-from helper_funcs.chat_base import TRChatBase
 from helper_funcs.display_progress import progress_for_pyrogram, humanbytes
 
 from pyrogram import InlineKeyboardButton, InlineKeyboardMarkup
@@ -42,7 +41,7 @@ async def get_link(bot, update):
             revoke=True
         )
         return
-    TRChatBase(update.from_user.id, update.text, "getlink")
+
     logger.info(update.from_user)
     if update.reply_to_message is not None:
         reply_message = update.reply_to_message
@@ -115,10 +114,10 @@ async def get_link(bot, update):
             t_response_ray = t_response_array.rsplit('"')
         await bot.edit_message_text(
             chat_id=update.chat.id,
-            text=Translation.AFTER_GET_GOFILE_LINK.format(t_response_ray[25], humanbytes(s0ze), t_response_ray[29], t_response_ray[9]),
+            text=Translation.AFTER_GET_GOFILE_LINK.format(t_response_ray[29], humanbytes(s0ze), t_response_ray[33], t_response_ray[13]),
             parse_mode="html",
             reply_markup=InlineKeyboardMarkup([
-        [InlineKeyboardButton("Download Link", url=t_response_ray[33])],
+        [InlineKeyboardButton("Download Link", url=t_response_ray[37])],
     ]),
             message_id=a.message_id,
             disable_web_page_preview=True
