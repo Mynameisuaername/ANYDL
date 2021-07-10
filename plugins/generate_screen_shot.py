@@ -24,7 +24,6 @@ from translation import Translation
 import pyrogram
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
-from helper_funcs.chat_base import TRChatBase
 from helper_funcs.help_Nekmo_ffmpeg import generate_screen_shots
 from helper_funcs.display_progress import progress_for_pyrogram
 
@@ -38,7 +37,6 @@ async def generate_screen_shot(bot, update):
             revoke=True
         )
         return
-    TRChatBase(update.from_user.id, update.text, "generatescss")
     if update.reply_to_message is not None:
         download_location = Config.DOWNLOAD_LOCATION + "/"
         a = await bot.send_message(
