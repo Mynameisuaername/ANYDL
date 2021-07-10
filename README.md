@@ -36,7 +36,7 @@ python bot.py
 - ytdl - Not matter use or not.
 - ren - Rename files 📂📁
 - sshot - Screenshots 📸
-- converttovideo - 📂 to📽
+- convert2video - 📂 to📽
 - c2f - 📽 to 📂
 - c2a - Convert telegram video file into audio
 - trim - Trim video 🎞
