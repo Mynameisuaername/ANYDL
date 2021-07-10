@@ -25,7 +25,6 @@ from translation import Translation
 import pyrogram
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
-from helper_funcs.chat_base import TRChatBase
 from helper_funcs.display_progress import progress_for_pyrogram, humanbytes
 
 
@@ -38,7 +37,6 @@ async def unzip(bot, update):
             revoke=True
         )
         return
-    TRChatBase(update.from_user.id, update.text, "unzip")
     saved_file_path = Config.DOWNLOAD_LOCATION + \
         "/" + str(update.from_user.id) + ".unzip.zip"
     if os.path.exists(saved_file_path):
