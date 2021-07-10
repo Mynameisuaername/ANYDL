@@ -23,7 +23,6 @@ from translation import Translation
 import pyrogram
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
-from helper_funcs.chat_base import TRChatBase
 from helper_funcs.display_progress import progress_for_pyrogram
 
 
@@ -36,7 +35,6 @@ async def DownloadStickersBot(bot, update):
             revoke=True
         )
         return
-    TRChatBase(update.from_user.id, update.text, "DownloadStickersBot")
     logger.info(update.from_user)
     download_location = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + "_DownloadStickersBot_" + str(update.from_user.id) + ".png"
     a = await bot.send_message(
