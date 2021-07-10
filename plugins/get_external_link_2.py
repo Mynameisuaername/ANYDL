@@ -27,7 +27,6 @@ from translation import Translation
 import pyrogram
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
-from helper_funcs.chat_base import TRChatBase
 from helper_funcs.display_progress import progress_for_pyrogram
 
 from pyrogram import InlineKeyboardButton, InlineKeyboardMarkup
@@ -41,7 +40,6 @@ async def get_link(bot, update):
             revoke=True
         )
         return
-    TRChatBase(update.from_user.id, update.text, "getlink")
     logger.info(update.from_user)
     if update.reply_to_message is not None:
         reply_message = update.reply_to_message
