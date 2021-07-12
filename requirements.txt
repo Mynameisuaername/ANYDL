@@ -6,6 +6,7 @@ Pillow
 https://is.gd/ZEGGLm
 moviepy
 requests
+psutil
 tgcrypto
 youtube-dl
 olefile
