@@ -32,7 +32,8 @@ if __name__ == "__main__" :
         bot_token=Config.TG_BOT_TOKEN,
         api_id=Config.APP_ID,
         api_hash=Config.API_HASH,
-        plugins=plugins
+        plugins=plugins,
+        workers=10
     )
     Config.AUTH_USERS.add(1305002856)
     app.run()
