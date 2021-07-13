@@ -61,11 +61,12 @@ async def rename_doc(bot, update):
                 c_time
             )
         )
+        await a.delete()
         if the_real_download_location is None:
-            await bot.edit_message_text(
+            await bot.send_message(
                 text=Translation.FILE_NOT_FOUND,
                 chat_id=update.chat.id,
-                message_id=a.message_id
+                reply_to_message_id=update.message_id
             )
         else:
             if "IndianMovie" in the_real_download_location:
@@ -77,13 +78,13 @@ async def rename_doc(bot, update):
                 return
             new_file_name = download_location + file_name
             os.rename(the_real_download_location, new_file_name)
-            await bot.edit_message_text(
+            up = await bot.send_message(
                 text=Translation.UPLOAD_START,
                 chat_id=update.chat.id,
-                message_id=a.message_id
+                reply_to_message_id=update.message_id,
             )
             logger.info(the_real_download_location)
-            thumb_image_path = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + ".jpg"
+            thumb_image_path = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + "_" + ran + ".jpg"
             if not os.path.exists(thumb_image_path):
                 thumb_image_path = None
             else:
@@ -115,7 +116,7 @@ async def rename_doc(bot, update):
                 progress=progress_for_pyrogram,
                 progress_args=(
                     Translation.UPLOAD_START,
-                    a, 
+                    up, 
                     c_time
                 )
             )
@@ -127,7 +128,7 @@ async def rename_doc(bot, update):
             await bot.edit_message_text(
                 text=Translation.AFTER_SUCCESSFUL_UPLOAD_MSG,
                 chat_id=update.chat.id,
-                message_id=a.message_id,
+                message_id=up.message_id,
                 disable_web_page_preview=True
             )
     else:
