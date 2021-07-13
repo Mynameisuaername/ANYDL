@@ -1,4 +1,4 @@
-from pyrogram import Client, Filters, StopPropagation
+from pyrogram import Client, filters, StopPropagation
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 import time
 bot_start_time = time.time()
@@ -21,7 +21,7 @@ bot_start_time = time.time()
     result += f'{seconds}s'
     return result '''
 
-@Client.on_message(Filters.command(["start"]), group=-2)
+@Client.on_message(filters.command(["start"]), group=-2)
 async def start(client, message):
     bot_uptime = time.strftime("%Hh %Mm %Ss", time.gmtime(time.time() - bot_start_time)) 
     joinButton = InlineKeyboardMarkup([
