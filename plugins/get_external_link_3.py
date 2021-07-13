@@ -27,6 +27,7 @@ import pyrogram
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
 from helper_funcs.display_progress import progress_for_pyrogram
+from helper_funcs.ran_text import ran
 
 from pyrogram import InlineKeyboardButton, InlineKeyboardMarkup
 
@@ -42,7 +43,7 @@ async def get_link(bot, update):
     logger.info(update.from_user)
     if update.reply_to_message is not None:
         reply_message = update.reply_to_message
-        download_location = Config.DOWNLOAD_LOCATION + "/"
+        download_location = Config.DOWNLOAD_LOCATION + "/" + ran + "/"
         start = datetime.now()
         a = await bot.send_message(
             chat_id=update.chat.id,
@@ -64,20 +65,20 @@ async def get_link(bot, update):
         download_file_name_1 = after_download_file_name.rsplit("/",1)[-1]
         download_file_name = download_file_name_1.rsplit(".",1)[0]
         url = "https://api.bayfiles.com/upload"
-        await bot.edit_message_text(
-            text=Translation.SAVED_RECVD_DOC_FILE,
+        await bot.send_message(
+            text=Translation.FILE_NOT_FOUND,
             chat_id=update.chat.id,
-            message_id=a.message_id
+            reply_to_message_id=update.message_id
         )
         end_one = datetime.now()
         command_to_exec = [
         "curl",
         "-F", f"file=@\"{after_download_file_name}\"", url
         ]
-        await bot.edit_message_text(
+        up = await bot.send_message(
             text=Translation.BAY_UPLOAD,
             chat_id=update.chat.id,
-            message_id=a.message_id
+            reply_to_message_id=update.message_id
         )
         try:
             logger.info(command_to_exec)
@@ -87,7 +88,7 @@ async def get_link(bot, update):
             await bot.edit_message_text(
                 chat_id=update.chat.id,
                 text=exc.output.decode("UTF-8"),
-                message_id=a.message_id
+                message_id=up.message_id
             )
             return False
         else:
@@ -96,15 +97,16 @@ async def get_link(bot, update):
             #t_response_ray = re.findall("(?P<url>https?://[^\s]+)", t_response_array)
             t_response_ray = t_response_array.rsplit('"') 
             DO_LINK = InlineKeyboardMarkup([ [InlineKeyboardButton("Download Link", url=t_response_ray[11])], ]) 
-        await bot.edit_message_text(
+        await bot.send_message(
                chat_id=update.chat.id, 
 
                text=Translation.AFTER_GET_DL_LINK.format(t_response_ray[25], t_response_ray[-2], t_response_ray[15]), 
                parse_mode="html", 
                reply_markup=DO_LINK, 
-               message_id=a.message_id,
+               reply_to_message_id=update.message_id,
                disable_web_page_preview=True
         )
+        await up.delete()
         try:
             os.remove(after_download_file_name)
         except:
