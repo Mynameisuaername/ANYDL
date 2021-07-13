@@ -3,6 +3,18 @@
 # (c) Shrimadhav U K
 
 # the logging things
+'''end_one = datetime.now()
+        command_to_exec = [
+        "curl", "https://api.gofile.io/getServer"
+        ]
+        try:
+            logger.info(command_to_exec)
+            t_response = subprocess.check_output(command_to_exec, stderr=subprocess.STDOUT)
+        except subprocess.CalledProcessError as exc:
+            logger.info("Status : FAIL", exc.returncode, exc.output)
+            server= t_response.split('"')[6]
+            url = f"https://{server}.gofile.io/uploadFile"
+'''
 
 import logging
 logging.basicConfig(level=logging.DEBUG,
@@ -77,18 +89,6 @@ async def get_link(bot, update):
                 reply_to_message_id=update.message_id
         )
         else:
-        '''end_one = datetime.now()
-        command_to_exec = [
-        "curl", "https://api.gofile.io/getServer"
-        ]
-        try:
-            logger.info(command_to_exec)
-            t_response = subprocess.check_output(command_to_exec, stderr=subprocess.STDOUT)
-        except subprocess.CalledProcessError as exc:
-            logger.info("Status : FAIL", exc.returncode, exc.output)
-            server= t_response.split('"')[6]
-            url = f"https://{server}.gofile.io/uploadFile"
-        '''
             end_one = datetime.now()
             command_to_exec = [
             "curl",
