@@ -88,7 +88,7 @@ async def rename_doc(bot, update):
             if not os.path.exists(thumb_image_path):
                 try:
                     thumb_image_path = await take_screen_shot(new_file_name, os.path.dirname(new_file_name), random.randint(0, duration - 1))
-               except:
+                except:
                     thumb_image_path = None
             else:
                 width = 0
