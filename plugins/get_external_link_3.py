@@ -77,6 +77,7 @@ async def get_link(bot, update):
             "curl",
             "-F", f"file=@\"{after_download_file_name}\"", url
         ]
+        await a.delete()
         up = await bot.send_message(
             text=Translation.BAY_UPLOAD,
             chat_id=update.chat.id,
