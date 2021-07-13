@@ -122,7 +122,7 @@ async def get_link(bot, update):
             reply_markup=InlineKeyboardMarkup([
         [InlineKeyboardButton("Download Link", url=t_response_ray[37])],
     ]),
-            message_id=update.message_id,
+            reply_to_message_id=update.message_id,
             disable_web_page_preview=True
         )
         await up.delete()
