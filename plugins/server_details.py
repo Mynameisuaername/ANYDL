@@ -1,4 +1,4 @@
-from pyrogram import Client, Filters, StopPropagation
+from pyrogram import Client, filters, StopPropagation
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 import psutil
 import time
