@@ -65,7 +65,7 @@ async def get_link(bot, update):
         download_file_name_1 = after_download_file_name.rsplit("/",1)[-1]
         download_file_name = download_file_name_1.rsplit(".",1)[0]
         url = "https://api.anonfiles.com/upload"
-        if the_real_download_location is None:
+        if after_download_file_name is None:
             await bot.send_message(
                 text=Translation.FILE_NOT_FOUND,
                 chat_id=update.chat.id,
