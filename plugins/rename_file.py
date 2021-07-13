@@ -33,7 +33,7 @@ from hachoir.parser import createParser
 from PIL import Image
 
 
-@pyrogram.Client.on_message(pyrogram.Filters.command(["ren"]))
+@pyrogram.Client.on_message(pyrogram.filters.command(["ren"]))
 async def rename_doc(bot, update):
     if update.from_user.id not in Config.AUTH_USERS:
         await bot.delete_messages(
