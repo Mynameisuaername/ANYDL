@@ -22,7 +22,7 @@ bot_start_time = time.time()
     result += f'{seconds}s'
     return result '''
 
-@Client.on_message(Filters.command(["server"]), group=-2)
+@Client.on_message(filters.command(["server"]), group=-2)
 async def start(client, message):
     bot_uptime = time.strftime("%Hh %Mm %Ss", time.gmtime(time.time() - bot_start_time)) 
     joinButton = InlineKeyboardMarkup([
