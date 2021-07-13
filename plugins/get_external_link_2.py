@@ -29,9 +29,9 @@ logging.getLogger("pyrogram").setLevel(logging.WARNING)
 from helper_funcs.display_progress import progress_for_pyrogram
 from helper_funcs.ran_text import ran
 
-from pyrogram import InlineKeyboardButton, InlineKeyboardMarkup
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
-@pyrogram.Client.on_message(pyrogram.Filters.command(["getlink1"]))
+@pyrogram.Client.on_message(pyrogram.filters.command(["getlink1"]))
 async def get_link(bot, update):
     if update.from_user.id not in Config.AUTH_USERS:
         await bot.delete_messages(
