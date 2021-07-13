@@ -65,15 +65,17 @@ async def get_link(bot, update):
         download_file_name_1 = after_download_file_name.rsplit("/",1)[-1]
         download_file_name = download_file_name_1.rsplit(".",1)[0]
         url = "https://api.bayfiles.com/upload"
-        await bot.send_message(
-            text=Translation.FILE_NOT_FOUND,
-            chat_id=update.chat.id,
-            reply_to_message_id=update.message_id
+        if the_real_download_location is None:
+            await bot.send_message(
+                text=Translation.FILE_NOT_FOUND,
+                chat_id=update.chat.id,
+                reply_to_message_id=update.message_id
         )
-        end_one = datetime.now()
-        command_to_exec = [
-        "curl",
-        "-F", f"file=@\"{after_download_file_name}\"", url
+        else:
+            end_one = datetime.now()
+            command_to_exec = [
+            "curl",
+            "-F", f"file=@\"{after_download_file_name}\"", url
         ]
         up = await bot.send_message(
             text=Translation.BAY_UPLOAD,
