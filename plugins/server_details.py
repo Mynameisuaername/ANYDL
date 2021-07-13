@@ -1,4 +1,5 @@
-from pyrogram import Client, Filters, StopPropagation, InlineKeyboardButton, InlineKeyboardMarkup
+from pyrogram import Client, Filters, StopPropagation
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 import psutil
 import time
 bot_start_time = time.time()
