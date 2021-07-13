@@ -3,7 +3,7 @@ beautifulsoup4
 hachoir
 numpy
 Pillow
-https://is.gd/ZEGGLm
+Pyrogram
 moviepy
 requests
 psutil
