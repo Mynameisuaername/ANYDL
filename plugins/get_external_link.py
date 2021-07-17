@@ -63,6 +63,7 @@ async def get_link(bot, update):
         download_extension = after_download_file_name.rsplit(".", 1)[-1]
         download_file_name_1 = after_download_file_name.rsplit("/",1)[-1]
         download_file_name = download_file_name_1.rsplit(".",1)[0]
+        s0ze = os.path.getsize(after_download_file_name)
         await bot.edit_message_text(
             text=Translation.SAVED_RECVD_DOC_FILE,
             chat_id=update.chat.id,
@@ -105,7 +106,7 @@ async def get_link(bot, update):
         await bot.edit_message_text(
             chat_id=update.chat.id,
             
-            text=Translation.AFTER_GET_LINK.format(download_file_name_1, t_response_array),
+            text=Translation.AFTER_GET_LINK.format(download_file_name_1, s0ze, t_response_array),
             parse_mode="html",
             reply_markup=DO_LINK,
             message_id=a.message_id,
