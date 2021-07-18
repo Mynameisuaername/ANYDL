@@ -76,17 +76,16 @@ async def get_link(bot, update):
             )
         )
   
-        await a.delete()
         download_extension = after_download_file_name.rsplit(".", 1)[-1]
         download_file_name_1 = after_download_file_name.rsplit("/",1)[-1]
         download_file_name = download_file_name_1.rsplit(".",1)[0]
         url= 'https://srv-store5.gofile.io/uploadFile'
         s0ze = os.path.getsize(after_download_file_name)
         if after_download_file_name is None:
-            await bot.send_message(
+            await bot.edit_message_text(
                 text=Translation.FILE_NOT_FOUND,
                 chat_id=update.chat.id,
-                reply_to_message_id=update.message_id
+                message_id=a.message_id
         )
         else:
             end_one = datetime.now()
@@ -94,10 +93,10 @@ async def get_link(bot, update):
             "curl",
             "-F", f"file=@\"{after_download_file_name}\"", url
         ]
-        up = await bot.send_message(
+        await bot.edit_message_text(
             text=Translation.GO_FILE_UPLOAD,
             chat_id=update.chat.id,
-            reply_to_message_id=update.message_id
+            message_id=a.message_id
         )
         try:
             logger.info(command_to_exec)
@@ -125,15 +124,14 @@ async def get_link(bot, update):
             reply_to_message_id=update.message_id,
             disable_web_page_preview=True
         )
-        await up.delete()
         try:
             os.remove(after_download_file_name)
         except:
             pass
     else:
-        await bot.send_message(
+        await bot.edit_message_text(
             chat_id=update.chat.id,
             text=Translation.REPLY_TO_DOC_GET_LINK,
-            reply_to_message_id=update.message_id
+            message_id=a.message_id
         )
 
