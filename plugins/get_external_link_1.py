@@ -114,14 +114,14 @@ async def get_link(bot, update):
             t_response_array = t_response.decode("UTF-8").split("\n")[-1].strip()
             #t_response_ray = re.findall("(?P<url>https?://[^\s]+)", t_response_array)
             t_response_ray = t_response_array.rsplit('"')
-        await bot.send_message(
+        await bot.edit_message_text(
             chat_id=update.chat.id,
             text=Translation.AFTER_GET_GOFILE_LINK.format(t_response_ray[29], humanbytes(s0ze), t_response_ray[33], t_response_ray[13]),
             parse_mode="html",
             reply_markup=InlineKeyboardMarkup([
         [InlineKeyboardButton("Download Link", url=t_response_ray[37])],
     ]),
-            reply_to_message_id=update.message_id,
+            message_id=a.message_id,
             disable_web_page_preview=True
         )
         try:
