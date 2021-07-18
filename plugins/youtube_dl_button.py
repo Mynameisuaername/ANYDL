@@ -29,6 +29,7 @@ import pyrogram
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
 from helper_funcs.display_progress import progress_for_pyrogram, humanbytes
+from helper_funcs.ran_text import ran
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
 # https://stackoverflow.com/a/37631799/4723940
@@ -43,7 +44,7 @@ async def youtube_dl_call_back(bot, update):
     thumb_image_path = Config.DOWNLOAD_LOCATION + \
         "/" + str(update.from_user.id) + ".jpg"
     save_ytdl_json_path = Config.DOWNLOAD_LOCATION + \
-        "/" + str(update.from_user.id) + ".json"
+        "/" + ran + '/' + str(update.from_user.id) + ".json"
     try:
         with open(save_ytdl_json_path, "r", encoding="utf8") as f:
             response_json = json.load(f)
@@ -105,7 +106,7 @@ async def youtube_dl_call_back(bot, update):
     if "fulltitle" in response_json:
         description = response_json["fulltitle"][0:1021]
         # escape Markdown and special characters
-    tmp_directory_for_each_user = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id)
+    tmp_directory_for_each_user = Config.DOWNLOAD_LOCATION + "/" + ran + '/' + str(update.from_user.id)
     if not os.path.isdir(tmp_directory_for_each_user):
         os.makedirs(tmp_directory_for_each_user)
     download_directory = tmp_directory_for_each_user + "/" + custom_file_name
@@ -172,7 +173,6 @@ async def youtube_dl_call_back(bot, update):
         return False
     if t_response:
         # logger.info(t_response)
-        os.remove(save_ytdl_json_path)
         end_one = datetime.now()
         time_taken_for_download = (end_one -start).seconds
         file_size = Config.TG_MAX_FILE_SIZE + 1
@@ -352,6 +352,7 @@ async def youtube_dl_call_back(bot, update):
             try:
                 shutil.rmtree(tmp_directory_for_each_user)
                 os.remove(thumb_image_path)
+                os.remove(save_ytdl_json_path)
             except:
                 pass
             await bot.edit_message_text(
