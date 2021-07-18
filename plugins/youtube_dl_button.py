@@ -42,9 +42,9 @@ async def youtube_dl_call_back(bot, update):
     # youtube_dl extractors
     tg_send_type, youtube_dl_format, youtube_dl_ext = cb_data.split("|")
     thumb_image_path = Config.DOWNLOAD_LOCATION + \
-        "/" + str(update.from_user.id) + ".jpg"
+        "/" + ran + "/" + str(update.from_user.id) + ".jpg"
     save_ytdl_json_path = Config.DOWNLOAD_LOCATION + \
-        "/" + ran + '/' + str(update.from_user.id) + ".json"
+        "/" + ran + "/" + str(update.from_user.id) + ".json"
     try:
         with open(save_ytdl_json_path, "r", encoding="utf8") as f:
             response_json = json.load(f)
@@ -107,7 +107,7 @@ async def youtube_dl_call_back(bot, update):
         description = response_json["fulltitle"][0:1021]
         # escape Markdown and special characters
     tmp_directory_for_each_user = Config.DOWNLOAD_LOCATION + "/" + ran + '/' + str(update.from_user.id)
-    if not os.path.isdir(tmp_directory_for_each_user):
+    try:
         os.makedirs(tmp_directory_for_each_user)
     download_directory = tmp_directory_for_each_user + "/" + custom_file_name
     command_to_exec = []
