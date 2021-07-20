@@ -106,7 +106,7 @@ async def get_link(bot, update):
         await bot.edit_message_text(
             chat_id=update.chat.id,
             
-            text=Translation.AFTER_GET_LINK.format(download_file_name_1, s0ze, t_response_array),
+            text=Translation.AFTER_GET_DL_LINK.format(download_file_name_1, s0ze, t_response_array),
             parse_mode="html",
             reply_markup=DO_LINK,
             message_id=a.message_id,
