@@ -26,7 +26,7 @@ from translation import Translation
 import pyrogram
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
-from helper_funcs.display_progress import progress_for_pyrogram
+from helper_funcs.display_progress import progress_for_pyrogram, humanbytes
 
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
@@ -63,7 +63,7 @@ async def get_link(bot, update):
         download_extension = after_download_file_name.rsplit(".", 1)[-1]
         download_file_name_1 = after_download_file_name.rsplit("/",1)[-1]
         download_file_name = download_file_name_1.rsplit(".",1)[0]
-        s0ze = os.path.getsize(after_download_file_name)
+        s0ze = humanbytes(os.path.getsize(after_download_file_name))
         await bot.edit_message_text(
             text=Translation.SAVED_RECVD_DOC_FILE,
             chat_id=update.chat.id,
