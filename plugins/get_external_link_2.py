@@ -103,7 +103,7 @@ async def get_link(bot, update):
         await bot.send_message(
                chat_id=update.chat.id, 
 
-               text=Translation.AFTER_GET_DL_LINK.format(t_response_ray[25], t_response_ray[-2], t_response_ray[15]), 
+               text=Translation.AFTER_GET_LINK.format(t_response_ray[25], t_response_ray[-2], t_response_ray[15]), 
                parse_mode="html", 
                reply_markup=DO_LINK, 
                reply_to_message_id=update.message_id,
