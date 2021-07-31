@@ -55,9 +55,15 @@ async def generate_screen_shot(bot, update):
                 c_time
             )
         )
-        if the_real_download_location is not None:
+        if the_real_download_location is None:
             await bot.edit_message_text(
                 text=Translation.SAVED_RECVD_DOC_FILE,
+                chat_id=update.chat.id,
+                message_id=a.message_id
+            )
+        else:
+            await bot.edit_message_text(
+                text=f"Video Downloaded Successfully.\n Now Generating Screenshots.",
                 chat_id=update.chat.id,
                 message_id=a.message_id
             )
