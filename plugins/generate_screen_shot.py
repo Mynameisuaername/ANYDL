@@ -63,7 +63,7 @@ async def generate_screen_shot(bot, update):
             )
         else:
             await bot.edit_message_text(
-                text=f"Video Downloaded Successfully.\n Now Generating Screenshots.",
+                text=f"Video Downloaded Successfully.\n Now Generating Screenshots📸.",
                 chat_id=update.chat.id,
                 message_id=a.message_id
             )
