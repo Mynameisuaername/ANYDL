@@ -86,7 +86,7 @@ async def get_link(bot, update):
             t_response = subprocess.check_output(command_to_exec, stderr=subprocess.STDOUT)
         except subprocess.CalledProcessError as exc:
             logger.info("Status : FAIL", exc.returncode, exc.output)
-            url = f"https://{t_response.split('"')[6]}.gofile.io/uploadFile"
+            url = f'''"https://"+{t_response.split('"')[6]}".gofile.io/uploadFile"'''
             end_one = datetime.now()
             command_to_exec = [
             "curl",
