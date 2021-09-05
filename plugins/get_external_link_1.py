@@ -67,30 +67,38 @@ async def get_link(bot, update):
         download_extension = after_download_file_name.rsplit(".", 1)[-1]
         download_file_name_1 = after_download_file_name.rsplit("/",1)[-1]
         download_file_name = download_file_name_1.rsplit(".",1)[0]
-        url= 'https://srv-store5.gofile.io/uploadFile'
         s0ze = os.path.getsize(after_download_file_name)
-        if after_download_file_name is None:
-            await bot.edit_message_text(
-                text=Translation.FILE_NOT_FOUND,
-                chat_id=update.chat.id,
-                message_id=a.message_id
+        await bot.edit_message_text(
+            text=Translation.SAVED_RECVD_DOC_FILE,
+            chat_id=update.chat.id,
+            message_id=a.message_id
         )
-        
-        else:
-            end_one = datetime.now()
-            command_to_exec = [
-            "curl", "https://api.gofile.io/getServer"
+
+        end_one = datetime.now()
+        command_to_exec = [
+        "curl", "https://api.gofile.io/getServer"
         ]
         try:
             logger.info(command_to_exec)
             t_response = subprocess.check_output(command_to_exec, stderr=subprocess.STDOUT)
         except subprocess.CalledProcessError as exc:
             logger.info("Status : FAIL", exc.returncode, exc.output)
-            url = f'''"https://"+{t_response.split('"')[9]}".gofile.io/uploadFile"'''
-            end_one = datetime.now()
-            command_to_exec = [
-            "curl",
-            "-F", f"file=@\"{after_download_file_name}\"", url
+            await bot.edit_message_text(
+                chat_id=update.chat.id,
+                text=exc.output.decode("UTF-8"),
+                message_id=a.message_id
+            )
+            return False
+        else:
+            logger.info(t_response)
+            t_response_array = t_response.decode("UTF-8").split("\n")[-1].strip()
+            #t_response_ray = t_response_array.rsplit()
+            url= f'''"https://"+{t_response_array.split('"')[9]}+".gofile.io/uploadFile"'''
+        
+        end_one = datetime.now()
+        command_to_exec = [
+        "curl",
+        "-F", f"file=@\"{after_download_file_name}\"", url
         ]
         await bot.edit_message_text(
             text=Translation.GO_FILE_UPLOAD,
@@ -105,7 +113,7 @@ async def get_link(bot, update):
             await bot.edit_message_text(
                 chat_id=update.chat.id,
                 text=exc.output.decode("UTF-8"),
-                message_id=up.message_id
+                message_id=a.message_id
             )
             return False
         else:
@@ -128,9 +136,8 @@ async def get_link(bot, update):
         except:
             pass
     else:
-        await bot.edit_message_text(
+        await bot.send_message(
             chat_id=update.chat.id,
             text=Translation.REPLY_TO_DOC_GET_LINK,
-            message_id=a.message_id
+            reply_to_message_id=update.message_id
         )
-
