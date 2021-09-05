@@ -92,8 +92,8 @@ async def get_link(bot, update):
         else:
             logger.info(t_response)
             t_response_array = t_response.decode("UTF-8").split("\n")[-1].strip()
-            #t_response_ray = t_response_array.rsplit()
-            url= f'''"https://"+{t_response_array.split('"')[9]}+".gofile.io/uploadFile"'''
+            t_response_ray = t_response_array.split('"')[9]
+            url= f'''https://{t_response_ray}.gofile.io/uploadFile'''
         
         end_one = datetime.now()
         command_to_exec = [
