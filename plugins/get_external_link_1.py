@@ -68,11 +68,12 @@ async def get_link(bot, update):
         download_file_name_1 = after_download_file_name.rsplit("/",1)[-1]
         download_file_name = download_file_name_1.rsplit(".",1)[0]
         s0ze = os.path.getsize(after_download_file_name)
-        await bot.edit_message_text(
+        '''await bot.edit_message_text(
             text=Translation.SAVED_RECVD_DOC_FILE,
             chat_id=update.chat.id,
             message_id=a.message_id
-        )
+        )'''
+        stick = await bot.send_sticker(chat_id = update.chat.id, reply_to_message_id = a.message_id, "CAACAgIAAxkBAAELnYFhNIkkeemUQ-gAAd56JPvwIHkOu78AAiQLAAIvD_AGcmqdwLNkEucgBA")
 
         end_one = datetime.now()
         command_to_exec = [
@@ -121,6 +122,7 @@ async def get_link(bot, update):
             t_response_array = t_response.decode("UTF-8").split("\n")[-1].strip()
             #t_response_ray = re.findall("(?P<url>https?://[^\s]+)", t_response_array)
             t_response_ray = t_response_array.rsplit('"')
+        await stick.delete()
         await bot.edit_message_text(
             chat_id=update.chat.id,
             text=Translation.AFTER_GET_GOFILE_LINK.format(t_response_ray[29], humanbytes(s0ze), t_response_ray[33], t_response_ray[13]),
