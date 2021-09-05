@@ -24,6 +24,7 @@ import pyrogram
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
 from helper_funcs.display_progress import progress_for_pyrogram
+from helper_funcs.ran_text import ran
 
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
@@ -41,7 +42,7 @@ async def convert_to_audio(bot, update):
         )
         return
     if (update.reply_to_message is not None) and (update.reply_to_message.media is not None) :
-        download_location = Config.DOWNLOAD_LOCATION + "/"
+        download_location = Config.DOWNLOAD_LOCATION + "/" + ran + "/"
         a = await bot.send_message(
             chat_id=update.chat.id,
             text=Translation.DOWNLOAD_FILE,
@@ -58,19 +59,20 @@ async def convert_to_audio(bot, update):
                 c_time
             )
         )
-        if the_real_download_location is not None:
+        if the_real_download_location is None:
             await bot.edit_message_text(
-                text=Translation.SAVED_RECVD_DOC_FILE,
+                text=f"Error, File not found.",
                 chat_id=update.chat.id,
                 message_id=a.message_id
             )
             # don't care about the extension
             # convert video to audio format
             audio_file_location_path = the_real_download_location
-            await bot.edit_message_text(
-                text=Translation.UPLOAD_START,
-                chat_id=update.chat.id,
-                message_id=a.message_id
+            await a.delete()
+            up = await bot.send_message(
+            chat_id=update.chat.id,
+            text=Translation.UPLOAD_START,
+            reply_to_message_id=update.message_id
             )
             logger.info(the_real_download_location)
             # get the correct width, height, and duration for videos greater than 10MB
@@ -115,7 +117,7 @@ async def convert_to_audio(bot, update):
                 progress=progress_for_pyrogram,
                 progress_args=(
                     Translation.UPLOAD_START,
-                    a, 
+                    up, 
                     c_time
                 )
             )
@@ -128,7 +130,7 @@ async def convert_to_audio(bot, update):
             await bot.edit_message_text(
                 text=Translation.AFTER_SUCCESSFUL_UPLOAD_MSG,
                 chat_id=update.chat.id,
-                message_id=a.message_id,
+                message_id=up.message_id,
                 disable_web_page_preview=True
             )
     else:
