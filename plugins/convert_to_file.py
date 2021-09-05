@@ -59,9 +59,9 @@ async def convert_to_audio(bot, update):
                 c_time
             )
         )
-        if the_real_download_location is None:
+        if the_real_download_location is not None:
             await bot.edit_message_text(
-                text=f"Error, File not found.",
+                text=Translation.SAVED_RECVD_DOC_FILE,
                 chat_id=update.chat.id,
                 message_id=a.message_id
             )
