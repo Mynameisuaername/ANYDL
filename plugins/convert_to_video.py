@@ -59,15 +59,9 @@ async def convert_to_video(bot, update):
                 c_time
             )
         )
-        if the_real_download_location is None:
-            await bot.edit_message_text(
-                text=f"Error Occured, File is missing.",
-                chat_id=update.chat.id,
-                message_id=a.message_id
-            )
-            # don't care about the extension
-            await a.delete()
-            up = await bot.send_message(
+        # don't care about the extension
+        await a.delete()
+        up = await bot.send_message(
             chat_id=update.chat.id,
             text=Translation.UPLOAD_START,
             reply_to_message_id=update.message_id
@@ -138,3 +132,5 @@ async def convert_to_video(bot, update):
             text=Translation.REPLY_TO_DOC_FOR_C2V,
             reply_to_message_id=update.message_id
         )
+    
+            
