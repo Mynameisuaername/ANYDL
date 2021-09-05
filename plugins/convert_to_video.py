@@ -60,8 +60,14 @@ async def convert_to_video(bot, update):
             )
         )
         # don't care about the extension
-        await a.delete()
-        up = await bot.send_message(
+        if the_real_download_location is not None:
+            await bot.edit_message_text(
+                text=Translation.SAVED_RECVD_DOC_FILE,
+                chat_id=update.chat.id,
+                message_id=a.message_id
+            )
+            await a.delete()
+            up = await bot.send_message(
             chat_id=update.chat.id,
             text=Translation.UPLOAD_START,
             reply_to_message_id=update.message_id
