@@ -10,3 +10,4 @@ psutil
 tgcrypto
 youtube-dl
 olefile
+yt-dlp
