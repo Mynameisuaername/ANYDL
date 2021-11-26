@@ -38,6 +38,7 @@ from helper_funcs.help_Nekmo_ffmpeg import generate_screen_shots
 
 async def youtube_dl_call_back(bot, update):
     cb_data = update.data
+    logger.info(cb_data)
     # youtube_dl extractors
     tg_send_type, youtube_dl_format, youtube_dl_ext = cb_data.split("|")
     thumb_image_path = Config.DOWNLOAD_LOCATION + \
@@ -171,8 +172,12 @@ async def youtube_dl_call_back(bot, update):
         )
         return False
     if t_response:
-        # logger.info(t_response)
-        os.remove(save_ytdl_json_path)
+        logger.info(t_response)
+        try:
+            os.remove(save_ytdl_json_path)
+        except FileNotFoundError as exc:
+            pass
+        
         end_one = datetime.now()
         time_taken_for_download = (end_one -start).seconds
         file_size = Config.TG_MAX_FILE_SIZE + 1
@@ -190,7 +195,7 @@ async def youtube_dl_call_back(bot, update):
             )
         else:
             is_w_f = False
-            images = await generate_screen_shots(
+            '''images = await generate_screen_shots(
                 download_directory,
                 tmp_directory_for_each_user,
                 is_w_f,
@@ -198,7 +203,7 @@ async def youtube_dl_call_back(bot, update):
                 300,
                 9
             )
-            logger.info(images)
+            logger.info(images)'''
             await bot.edit_message_text(
                 text=Translation.UPLOAD_START,
                 chat_id=update.message.chat.id,
