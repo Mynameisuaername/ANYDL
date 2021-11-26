@@ -34,17 +34,18 @@ from hachoir.parser import createParser
 # https://stackoverflow.com/a/37631799/4723940
 from PIL import Image
 from helper_funcs.help_Nekmo_ffmpeg import generate_screen_shots
+from helper_funcs.ran_text import ran
 
 
 async def youtube_dl_call_back(bot, update):
     cb_data = update.data
-    logger.info(cb_data)
+    print(cb_data)
     # youtube_dl extractors
     tg_send_type, youtube_dl_format, youtube_dl_ext = cb_data.split("|")
     thumb_image_path = Config.DOWNLOAD_LOCATION + \
-        "/" + str(update.from_user.id) + ".jpg"
+        "/" + str(update.from_user.id) + f'{ran}' + ".jpg"
     save_ytdl_json_path = Config.DOWNLOAD_LOCATION + \
-        "/" + str(update.from_user.id) + ".json"
+        "/" + str(update.from_user.id) + f'{ran}' + ".json"
     try:
         with open(save_ytdl_json_path, "r", encoding="utf8") as f:
             response_json = json.load(f)
@@ -324,7 +325,7 @@ async def youtube_dl_call_back(bot, update):
             end_two = datetime.now()
             time_taken_for_upload = (end_two - end_one).seconds
             #
-            media_album_p = []
+            '''media_album_p = []
             if images is not None:
                 i = 0
                 caption = "JOIN : https://t.me/TGBotsCollection \n For the List of Telegram Bots"
@@ -346,7 +347,7 @@ async def youtube_dl_call_back(bot, update):
                                     media=image
                                 )
                             )
-                        i = i + 1
+                        i = i + 1'''
             await bot.send_media_group(
                 chat_id=update.message.chat.id,
                 disable_notification=True,
