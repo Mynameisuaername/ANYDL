@@ -45,8 +45,7 @@ async def youtube_dl_call_back(bot, update):
     print(tg_send_type)
     thumb_image_path = Config.DOWNLOAD_LOCATION + \
         "/" + str(update.from_user.id) + f'{ran}' + ".jpg"
-    save_ytdl_json_path = Config.DOWNLOAD_LOCATION + \
-        "/" + str(update.from_user.id) + f'{ran}' + ".json"
+    save_ytdl_json_path = ran
     try:
         with open(save_ytdl_json_path, "r", encoding="utf8") as f:
             response_json = json.load(f)
@@ -348,13 +347,13 @@ async def youtube_dl_call_back(bot, update):
                                     media=image
                                 )
                             )
-                        i = i + 1'''
+                        i = i + 1
             await bot.send_media_group(
                 chat_id=update.message.chat.id,
                 disable_notification=True,
                 reply_to_message_id=update.message.message_id,
                 media=media_album_p
-            )
+            )'''
             #
             try:
                 shutil.rmtree(tmp_directory_for_each_user)
