@@ -43,7 +43,7 @@ async def youtube_dl_call_back(bot, update):
     # youtube_dl extractors
     tg_send_type, youtube_dl_format, youtube_dl_ext, rann = cb_data.split("|")
     print(cb_data)
-    random1 = random_char()
+    random1 = random_char(5)
     thumb_image_path = Config.DOWNLOAD_LOCATION + \
         "/" + str(update.from_user.id) + f'{random1}' + ".jpg"
     save_ytdl_json_path = rann
