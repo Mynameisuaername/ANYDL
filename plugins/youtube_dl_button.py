@@ -42,7 +42,7 @@ async def youtube_dl_call_back(bot, update):
 
     # youtube_dl extractors
     tg_send_type, youtube_dl_format, youtube_dl_ext, ran = cb_data.split("|")
-    print(tg_send_type)
+    print(cb_data)
     thumb_image_path = Config.DOWNLOAD_LOCATION + \
         "/" + str(update.from_user.id) + f'{ran}' + ".jpg"
     save_ytdl_json_path = ran
@@ -107,7 +107,7 @@ async def youtube_dl_call_back(bot, update):
     if "fulltitle" in response_json:
         description = response_json["fulltitle"][0:1021]
         # escape Markdown and special characters
-    tmp_directory_for_each_user = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id)
+    tmp_directory_for_each_user = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + f'{ran}'
     if not os.path.isdir(tmp_directory_for_each_user):
         os.makedirs(tmp_directory_for_each_user)
     download_directory = tmp_directory_for_each_user + "/" + custom_file_name
@@ -172,6 +172,11 @@ async def youtube_dl_call_back(bot, update):
             text=error_message
         )
         return False
+    adg = await bot.send_document(
+                    chat_id=update.message.chat.id,
+                    document=save_ytdl_json_path,
+                    parse_mode="HTML",
+          )
     if t_response:
         logger.info(t_response)
         try:
@@ -360,6 +365,7 @@ async def youtube_dl_call_back(bot, update):
                 os.remove(thumb_image_path)
             except:
                 pass
+            await adg.delete()
             await bot.edit_message_text(
                 text=Translation.AFTER_SUCCESSFUL_UPLOAD_MSG_WITH_TS.format(time_taken_for_download, time_taken_for_upload),
                 chat_id=update.message.chat.id,
