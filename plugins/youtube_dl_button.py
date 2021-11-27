@@ -34,7 +34,7 @@ from hachoir.parser import createParser
 # https://stackoverflow.com/a/37631799/4723940
 from PIL import Image
 from helper_funcs.help_Nekmo_ffmpeg import generate_screen_shots
-from helper_funcs.ran_text import ran
+from helper_funcs.ran_text import random_char
 
 
 async def youtube_dl_call_back(bot, update):
@@ -43,8 +43,9 @@ async def youtube_dl_call_back(bot, update):
     # youtube_dl extractors
     tg_send_type, youtube_dl_format, youtube_dl_ext, rann = cb_data.split("|")
     print(cb_data)
+    random1 = random_char()
     thumb_image_path = Config.DOWNLOAD_LOCATION + \
-        "/" + str(update.from_user.id) + f'{ran}' + ".jpg"
+        "/" + str(update.from_user.id) + f'{random1}' + ".jpg"
     save_ytdl_json_path = rann
     try:
         with open(save_ytdl_json_path, "r", encoding="utf8") as f:
@@ -107,7 +108,7 @@ async def youtube_dl_call_back(bot, update):
     if "fulltitle" in response_json:
         description = response_json["fulltitle"][0:1021]
         # escape Markdown and special characters
-    tmp_directory_for_each_user = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + f'{ran}'
+    tmp_directory_for_each_user = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + f'{random1}'
     if not os.path.isdir(tmp_directory_for_each_user):
         os.makedirs(tmp_directory_for_each_user)
     download_directory = tmp_directory_for_each_user + "/" + custom_file_name
@@ -361,7 +362,6 @@ async def youtube_dl_call_back(bot, update):
             )'''
             #
             try:
-                shutil.rmtree(tmp_directory_for_each_user)
                 os.remove(thumb_image_path)
             except:
                 pass
