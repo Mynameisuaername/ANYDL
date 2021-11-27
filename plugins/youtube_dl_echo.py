@@ -156,7 +156,7 @@ async def echo(bot, update):
             x_reponse, _ = x_reponse.split("\n")
         response_json = json.loads(x_reponse)
         save_ytdl_json_path = Config.DOWNLOAD_LOCATION + \
-            "/" + str(update.from_user.id) + ".json"
+            "/" + str(update.from_user.id) + f'{ran}' + ".json"
         with open(save_ytdl_json_path, "w", encoding="utf8") as outfile:
             json.dump(response_json, outfile, ensure_ascii=False)
         # logger.info(response_json)
@@ -175,9 +175,9 @@ async def echo(bot, update):
                 if "filesize" in formats:
                     approx_file_size = humanbytes(formats["filesize"])
                 cb_string_video = "{}|{}|{}|{}".format(
-                    "video", format_id, format_ext, ran)
+                    "video", format_id, format_ext, save_ytdl_json_path)
                 cb_string_file = "{}|{}|{}|{}".format(
-                    "file", format_id, format_ext, ran)
+                    "file", format_id, format_ext, save_ytdl_json_path)
                 if format_string is not None and not "audio only" in format_string:
                     ikeyboard = [
                         InlineKeyboardButton(
@@ -217,9 +217,9 @@ async def echo(bot, update):
                     ]
                 inline_keyboard.append(ikeyboard)
             if duration is not None:
-                cb_string_64 = "{}|{}|{}|{}".format("audio", "64k", "mp3", ran)
-                cb_string_128 = "{}|{}|{}|{}".format("audio", "128k", "mp3", ran)
-                cb_string = "{}|{}|{}|{}".format("audio", "320k", "mp3", ran)
+                cb_string_64 = "{}|{}|{}|{}".format("audio", "64k", "mp3", save_ytdl_json_path)
+                cb_string_128 = "{}|{}|{}|{}".format("audio", "128k", "mp3", save_ytdl_json_path)
+                cb_string = "{}|{}|{}|{}".format("audio", "320k", "mp3", save_ytdl_json_path)
                 inline_keyboard.append([
                     InlineKeyboardButton(
                         "MP3 " + "(" + "64 kbps" + ")", callback_data=cb_string_64.encode("UTF-8")),
@@ -234,9 +234,9 @@ async def echo(bot, update):
             format_id = response_json["format_id"]
             format_ext = response_json["ext"]
             cb_string_file = "{}|{}|{}|{}".format(
-                "file", format_id, format_ext, ran)
+                "file", format_id, format_ext, save_ytdl_json_path)
             cb_string_video = "{}|{}|{}|{}".format(
-                "video", format_id, format_ext, ran)
+                "video", format_id, format_ext, save_ytdl_json_path)
             inline_keyboard.append([
                 InlineKeyboardButton(
                     "SVideo",
