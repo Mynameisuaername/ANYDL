@@ -29,21 +29,25 @@ import pyrogram
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
 from helper_funcs.display_progress import progress_for_pyrogram, humanbytes
+from helper_funcs.help_uploadbot import DownLoadFile
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
 # https://stackoverflow.com/a/37631799/4723940
 from PIL import Image
 from helper_funcs.help_Nekmo_ffmpeg import generate_screen_shots
+from helper_funcs.ran_text import random_char
 
 
 async def youtube_dl_call_back(bot, update):
     cb_data = update.data
+
     # youtube_dl extractors
-    tg_send_type, youtube_dl_format, youtube_dl_ext = cb_data.split("|")
+    tg_send_type, youtube_dl_format, youtube_dl_ext, rann, ranom = cb_data.split("|")
+    print(cb_data)
+    random1 = random_char(5)
     thumb_image_path = Config.DOWNLOAD_LOCATION + \
-        "/" + str(update.from_user.id) + ".jpg"
-    save_ytdl_json_path = Config.DOWNLOAD_LOCATION + \
-        "/" + str(update.from_user.id) + ".json"
+        "/" + str(update.from_user.id) + f'{ranom}' + ".jpg"
+    save_ytdl_json_path = rann
     try:
         with open(save_ytdl_json_path, "r", encoding="utf8") as f:
             response_json = json.load(f)
@@ -105,14 +109,14 @@ async def youtube_dl_call_back(bot, update):
     if "fulltitle" in response_json:
         description = response_json["fulltitle"][0:1021]
         # escape Markdown and special characters
-    tmp_directory_for_each_user = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id)
+    tmp_directory_for_each_user = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + f'{random1}'
     if not os.path.isdir(tmp_directory_for_each_user):
         os.makedirs(tmp_directory_for_each_user)
     download_directory = tmp_directory_for_each_user + "/" + custom_file_name
     command_to_exec = []
     if tg_send_type == "audio":
         command_to_exec = [
-            "youtube-dl",
+            "yt-dlp",
             "-c",
             "--max-filesize", str(Config.TG_MAX_FILE_SIZE),
             "--prefer-ffmpeg",
@@ -128,7 +132,7 @@ async def youtube_dl_call_back(bot, update):
         if "youtu" in youtube_dl_url:
             minus_f_format = youtube_dl_format + "+bestaudio"
         command_to_exec = [
-            "youtube-dl",
+            "yt-dlp",
             "-c",
             "--max-filesize", str(Config.TG_MAX_FILE_SIZE),
             "--embed-subs",
@@ -170,9 +174,14 @@ async def youtube_dl_call_back(bot, update):
             text=error_message
         )
         return False
+
     if t_response:
-        # logger.info(t_response)
-        os.remove(save_ytdl_json_path)
+        logger.info(t_response)
+        try:
+            os.remove(save_ytdl_json_path)
+        except FileNotFoundError as exc:
+            pass
+        
         end_one = datetime.now()
         time_taken_for_download = (end_one -start).seconds
         file_size = Config.TG_MAX_FILE_SIZE + 1
@@ -190,7 +199,7 @@ async def youtube_dl_call_back(bot, update):
             )
         else:
             is_w_f = False
-            images = await generate_screen_shots(
+            '''images = await generate_screen_shots(
                 download_directory,
                 tmp_directory_for_each_user,
                 is_w_f,
@@ -198,7 +207,7 @@ async def youtube_dl_call_back(bot, update):
                 300,
                 9
             )
-            logger.info(images)
+            logger.info(images)'''
             await bot.edit_message_text(
                 text=Translation.UPLOAD_START,
                 chat_id=update.message.chat.id,
@@ -319,7 +328,7 @@ async def youtube_dl_call_back(bot, update):
             end_two = datetime.now()
             time_taken_for_upload = (end_two - end_one).seconds
             #
-            media_album_p = []
+            '''media_album_p = []
             if images is not None:
                 i = 0
                 caption = "JOIN : https://t.me/TGBotsCollection \n For the List of Telegram Bots"
@@ -347,13 +356,14 @@ async def youtube_dl_call_back(bot, update):
                 disable_notification=True,
                 reply_to_message_id=update.message.message_id,
                 media=media_album_p
-            )
+            )'''
             #
             try:
-                shutil.rmtree(tmp_directory_for_each_user)
                 os.remove(thumb_image_path)
+                shutil.rmtree(tmp_directory_for_each_user)
             except:
                 pass
+
             await bot.edit_message_text(
                 text=Translation.AFTER_SUCCESSFUL_UPLOAD_MSG_WITH_TS.format(time_taken_for_download, time_taken_for_upload),
                 chat_id=update.message.chat.id,
