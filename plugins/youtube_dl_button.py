@@ -29,6 +29,7 @@ import pyrogram
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
 from helper_funcs.display_progress import progress_for_pyrogram, humanbytes
+from helper_funcs.help_uploadbot import DownLoadFile
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
 # https://stackoverflow.com/a/37631799/4723940
@@ -41,11 +42,11 @@ async def youtube_dl_call_back(bot, update):
     cb_data = update.data
 
     # youtube_dl extractors
-    tg_send_type, youtube_dl_format, youtube_dl_ext, rann = cb_data.split("|")
+    tg_send_type, youtube_dl_format, youtube_dl_ext, rann, ranom = cb_data.split("|")
     print(cb_data)
     random1 = random_char(5)
     thumb_image_path = Config.DOWNLOAD_LOCATION + \
-        "/" + str(update.from_user.id) + f'{random1}' + ".jpg"
+        "/" + str(update.from_user.id) + f'{ranom}' + ".jpg"
     save_ytdl_json_path = rann
     try:
         with open(save_ytdl_json_path, "r", encoding="utf8") as f:
