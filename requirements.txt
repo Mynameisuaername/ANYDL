@@ -9,4 +9,5 @@ requests
 psutil
 tgcrypto
 youtube-dl
+yt-dlp
 olefile
