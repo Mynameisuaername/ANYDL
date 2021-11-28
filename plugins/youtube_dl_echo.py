@@ -28,7 +28,7 @@ logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
 from helper_funcs.display_progress import humanbytes
 from helper_funcs.help_uploadbot import DownLoadFile
-from helper_funcs.ran_text import ran
+from helper_funcs.ran_text import random_char
 
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.errors import UserNotParticipant, UserBannedInChannel
@@ -155,8 +155,9 @@ async def echo(bot, update):
         if "\n" in x_reponse:
             x_reponse, _ = x_reponse.split("\n")
         response_json = json.loads(x_reponse)
+        randem = random_char(5)
         save_ytdl_json_path = Config.DOWNLOAD_LOCATION + \
-            "/" + str(update.from_user.id) + ".json"
+            "/" + str(update.from_user.id) + f'{randem}' + ".json"
         with open(save_ytdl_json_path, "w", encoding="utf8") as outfile:
             json.dump(response_json, outfile, ensure_ascii=False)
         # logger.info(response_json)
@@ -174,10 +175,10 @@ async def echo(bot, update):
                 approx_file_size = ""
                 if "filesize" in formats:
                     approx_file_size = humanbytes(formats["filesize"])
-                cb_string_video = "{}|{}|{}|{}".format(
-                    "video", format_id, format_ext, ran)
-                cb_string_file = "{}|{}|{}|{}".format(
-                    "file", format_id, format_ext, ran)
+                cb_string_video = "{}|{}|{}|{}|{}".format(
+                    "video", format_id, format_ext, save_ytdl_json_path, randem)
+                cb_string_file = "{}|{}|{}|{}|{}".format(
+                    "file", format_id, format_ext, save_ytdl_json_path, randem)
                 if format_string is not None and not "audio only" in format_string:
                     ikeyboard = [
                         InlineKeyboardButton(
@@ -190,8 +191,8 @@ async def echo(bot, update):
                         )
                     ]
                     """if duration is not None:
-                        cb_string_video_message = "{}|{}|{}|{}".format(
-                            "vm", format_id, format_ext, ran)
+                        cb_string_video_message = "{}|{}|{}|{}|{}".format(
+                            "vm", format_id, format_ext, ran, randem)
                         ikeyboard.append(
                             InlineKeyboardButton(
                                 "VM",
@@ -217,9 +218,9 @@ async def echo(bot, update):
                     ]
                 inline_keyboard.append(ikeyboard)
             if duration is not None:
-                cb_string_64 = "{}|{}|{}|{}".format("audio", "64k", "mp3", ran)
-                cb_string_128 = "{}|{}|{}|{}".format("audio", "128k", "mp3", ran)
-                cb_string = "{}|{}|{}|{}".format("audio", "320k", "mp3", ran)
+                cb_string_64 = "{}|{}|{}|{}|{}".format("audio", "64k", "mp3", save_ytdl_json_path, randem)
+                cb_string_128 = "{}|{}|{}|{}|{}".format("audio", "128k", "mp3", save_ytdl_json_path, randem)
+                cb_string = "{}|{}|{}|{}|{}".format("audio", "320k", "mp3", save_ytdl_json_path, randem)
                 inline_keyboard.append([
                     InlineKeyboardButton(
                         "MP3 " + "(" + "64 kbps" + ")", callback_data=cb_string_64.encode("UTF-8")),
@@ -233,10 +234,10 @@ async def echo(bot, update):
         else:
             format_id = response_json["format_id"]
             format_ext = response_json["ext"]
-            cb_string_file = "{}|{}|{}|{}".format(
-                "file", format_id, format_ext, ran)
-            cb_string_video = "{}|{}|{}|{}".format(
-                "video", format_id, format_ext, ran)
+            cb_string_file = "{}|{}|{}|{}|{}".format(
+                "file", format_id, format_ext, save_ytdl_json_path, randem)
+            cb_string_video = "{}|{}|{}|{}|{}".format(
+                "video", format_id, format_ext, save_ytdl_json_path, randem)
             inline_keyboard.append([
                 InlineKeyboardButton(
                     "SVideo",
@@ -272,7 +273,7 @@ async def echo(bot, update):
         thumb_image_path = DownLoadFile(
             thumbnail_image,
             Config.DOWNLOAD_LOCATION + "/" +
-            str(update.from_user.id) + ".webp",
+            str(update.from_user.id) + f'{randem}' + ".webp",
             Config.CHUNK_SIZE,
             None,  # bot,
             Translation.DOWNLOAD_START,
