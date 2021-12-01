@@ -10,6 +10,7 @@ logger = logging.getLogger(__name__)
 
 import os
 import time
+import shutil
 import moviepy.editor as pp
 
 # the secret configuration specific things
