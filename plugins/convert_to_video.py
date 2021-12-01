@@ -10,6 +10,7 @@ logger = logging.getLogger(__name__)
 
 import os
 import time
+import shutil
 
 # the secret configuration specific things
 if bool(os.environ.get("WEBHOOK", False)):
@@ -24,7 +25,8 @@ import pyrogram
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
 from helper_funcs.display_progress import progress_for_pyrogram
-from helper_funcs.ran_text import ran
+from helper_funcs.ran_text import random_char
+
 
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
@@ -42,7 +44,8 @@ async def convert_to_video(bot, update):
         )
         return
     if update.reply_to_message is not None:
-        download_location = Config.DOWNLOAD_LOCATION + "/" + ran + "/"
+        nfh = random_char(5)
+        download_location = Config.DOWNLOAD_LOCATION + "/" + f'{nfh}' + "/"
         a = await bot.send_message(
             chat_id=update.chat.id,
             text=Translation.DOWNLOAD_FILE,
@@ -124,6 +127,7 @@ async def convert_to_video(bot, update):
             try:
                 os.remove(the_real_download_location)
                 os.remove(thumb_image_path)
+                shutil.rmtree(download_location)
             except:
                 pass
             await bot.edit_message_text(
