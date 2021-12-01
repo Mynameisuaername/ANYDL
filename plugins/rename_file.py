@@ -11,6 +11,7 @@ logger = logging.getLogger(__name__)
 import os
 import time
 import random
+import shutil
 
 # the secret configuration specific things
 if bool(os.environ.get("WEBHOOK", False)):
@@ -128,6 +129,7 @@ async def rename_doc(bot, update):
             try:
                 os.remove(new_file_name)
                 os.remove(thumb_image_path)
+                shutil.rmtree(download_location)
             except:
                 pass
             await bot.edit_message_text(
