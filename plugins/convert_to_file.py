@@ -126,6 +126,7 @@ async def convert_to_audio(bot, update):
                 os.remove(thumb_image_path)
                 os.remove(the_real_download_location)
                 os.remove(audio_file_location_path)
+                shutil.rmtree(download_location)
             except:
                 pass
             await bot.edit_message_text(
