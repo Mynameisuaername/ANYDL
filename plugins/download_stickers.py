@@ -39,7 +39,7 @@ async def DownloadStickersBot(bot, update):
     download_location = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + "_DownloadStickersBot_" + str(update.from_user.id) + ".png"
     a = await bot.send_message(
         chat_id=update.chat.id,
-        text=Translation.DOWNLOAD_START,
+        text=f"Sending Sticker...",
         reply_to_message_id=update.message_id
     )
     try:
@@ -47,12 +47,6 @@ async def DownloadStickersBot(bot, update):
         the_real_download_location = await bot.download_media(
             message=update,
             file_name=download_location,
-            progress=progress_for_pyrogram,
-            progress_args=(
-                Translation.DOWNLOAD_START,
-                a,
-                c_time
-            )
         )
     except (ValueError) as e:
         await bot.edit_message_text(
@@ -74,12 +68,6 @@ async def DownloadStickersBot(bot, update):
         # caption=description,
         # reply_markup=reply_markup,
         reply_to_message_id=a.message_id,
-        progress=progress_for_pyrogram,
-        progress_args=(
-            Translation.UPLOAD_START,
-            a,
-            c_time
-        )
     )
     try:
         await bot.send_photo(
@@ -89,12 +77,6 @@ async def DownloadStickersBot(bot, update):
           # caption=description,
           # reply_markup=reply_markup,
           reply_to_message_id=a.message_id,
-          progress=progress_for_pyrogram,
-          progress_args=(
-              Translation.UPLOAD_START,
-              a,
-              c_time
-            )
         )
     except:
       pass
