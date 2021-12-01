@@ -25,6 +25,7 @@ import pyrogram
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
 from helper_funcs.display_progress import progress_for_pyrogram
+from helper_funcs.ran_text import random_char
 
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
@@ -42,7 +43,8 @@ async def convert_to_audio(bot, update):
         )
         return
     if (update.reply_to_message is not None) and (update.reply_to_message.media is not None) :
-        download_location = Config.DOWNLOAD_LOCATION + "/"
+        rnom = random_char(5)
+        download_location = Config.DOWNLOAD_LOCATION + "/" + f"{rnom}" + "/"
         ab=await bot.send_message(
             chat_id=update.chat.id,
             text=Translation.DOWNLOAD_FILE,
