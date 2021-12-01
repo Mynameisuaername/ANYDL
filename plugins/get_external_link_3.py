@@ -13,6 +13,7 @@ import os
 import requests
 import subprocess
 import time
+import shutil
 
 # the secret configuration specific things
 if bool(os.environ.get("WEBHOOK", False)):
@@ -113,6 +114,7 @@ async def get_link(bot, update):
         await up.delete()
         try:
             os.remove(after_download_file_name)
+            shutil.rmtree(download_location)
         except:
             pass
     else:
