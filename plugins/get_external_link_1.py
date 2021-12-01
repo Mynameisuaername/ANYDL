@@ -29,7 +29,7 @@ import pyrogram
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
 from helper_funcs.display_progress import progress_for_pyrogram, humanbytes
-from helper_funcs.ran_text import ran
+from helper_funcs.ran_text import random_char
 
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
@@ -45,7 +45,8 @@ async def get_link(bot, update):
     logger.info(update.from_user)
     if update.reply_to_message is not None:
         reply_message = update.reply_to_message
-        download_location = Config.DOWNLOAD_LOCATION + "/" + ran + "/"
+        rjd1 = random_char(5)
+        download_location = Config.DOWNLOAD_LOCATION + "/" + f'{rjd1}' + "/"
         start = datetime.now()
         a = await bot.send_message(
             chat_id=update.chat.id,
