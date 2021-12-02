@@ -78,26 +78,26 @@ async def get_link(bot, update):
       logger.info(d_loc)
       try:
         await bot.send_video(
-          chat_id=update.message.chat.id,
-          video=d_loc,
-          supports_streaming=True,
-          reply_to_message_id=update.message.reply_to_message.message_id,
-          progress=progress_for_pyrogram,
-          progress_args=(
-              Translation.UPLOAD_START,
-              a,
-              c_time
-          )
+            chat_id=update.message.chat.id,
+            video=d_loc,
+            supports_streaming=True,
+            reply_to_message_id=update.message.reply_to_message.message_id,
+            progress=progress_for_pyrogram,
+            progress_args=(
+                Translation.UPLOAD_START,
+                a,
+                c_time
+            )
         )
       except Exception:
         pass
       nn = nn + 1
           
     await bot.edit_message_text(
-      text=f"Playlist Uploaded!"),
-      chat_id=update.message.chat.id,
-      message_id=a.message_id,
-      disable_web_page_preview=True  
+        text=f"Playlist Uploaded!"),
+        chat_id=update.message.chat.id,
+        message_id=a.message_id,
+        disable_web_page_preview=True  
     )
     
     
