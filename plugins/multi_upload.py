@@ -56,6 +56,7 @@ async def get_link(bot, update):
     os.makedirs(download_location)
     logger.info(tox)
     url = tox.split(" ")[1]
+    command_to_exec = []
     start = datetime.now()
     command_to_exec = [
         'yt-dlp',
