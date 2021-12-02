@@ -53,6 +53,7 @@ async def get_link(bot, update):
     )
     tox = update.text
     download_location = Config.DOWNLOAD_LOCATION + "/" + f"{h5rd}" + "/"
+    os.makedirs(download_location)
     logger.info(tox)
     url = tox.split(" ")[1]
     start = datetime.now()
@@ -72,7 +73,9 @@ async def get_link(bot, update):
     filenames = next(walk(download_location), (None, None, []))[2]  # [] if no file
     c_time = time.time()
     noss = len(filenames)
-    nn = 0
+    print(noss)
+    logger.info(filenames)
+    nn = 1
     while nn <= noss:
       d_loc = download_location + noss[nn]
       logger.info(d_loc)
