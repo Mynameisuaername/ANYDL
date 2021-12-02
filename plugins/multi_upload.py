@@ -62,7 +62,7 @@ async def get_link(bot, update):
     command_to_exec = [
         'yt-dlp',
         '-c',
-        '--max-filesize', '26748538',
+        '--max-filesize', '2147483648',
         '--embed-subs', 
         '--yes-playlist',
         '-f', '136+140',
@@ -79,7 +79,7 @@ async def get_link(bot, update):
     noss = len(filenames)
     print(noss)
     logger.info(filenames)
-    nn = 1
+    nn = 0
     while nn <= noss:
       d_loc = download_location + noss[nn]
       logger.info(d_loc)
