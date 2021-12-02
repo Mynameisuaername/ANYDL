@@ -47,9 +47,9 @@ async def get_link(bot, update):
     
     h5rd = random_char(5)
     a = await bot.send_message(
-        chat_id=update.chat.id,
-        text=f"Downloading Playlist...",
-        reply_to_message_id=update.message_id
+          chat_id=update.chat.id,
+          text=f"Downloading Playlist...",
+          reply_to_message_id=update.message_id
     )
     tox = update.text
     download_location = Config.DOWNLOAD_LOCATION + "/" + f"{h5rd}" + "/"
