@@ -73,7 +73,7 @@ async def get_link(bot, update):
     c_time = time.time()
     noos = len (filenames)
     nn = 0
-    while nn <= noos:
+    while nn <= noss:
       d_loc = download_location + noss[nn]
       logger.info(d_loc)
       try:
