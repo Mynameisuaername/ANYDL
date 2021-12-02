@@ -99,7 +99,7 @@ async def get_link(bot, update):
           
     await bot.edit_message_text(
         text=f"Playlist Uploaded!",
-        chat_id=update.message.chat.id,
+        chat_id=update.chat.id,
         message_id=a.message_id,
         disable_web_page_preview=True  
     )
