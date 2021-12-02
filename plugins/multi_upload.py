@@ -71,7 +71,7 @@ async def get_link(bot, update):
     
     filenames = next(walk(download_location), (None, None, []))[2]  # [] if no file
     c_time = time.time()
-    noos = len (filenames)
+    noss = len(filenames)
     nn = 0
     while nn <= noss:
       d_loc = download_location + noss[nn]
