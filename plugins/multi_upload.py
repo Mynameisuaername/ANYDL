@@ -71,6 +71,8 @@ async def get_link(bot, update):
          download_location
     ]
     logger.info(command_to_exec)
+    t_response = subprocess.check_output(command_to_exec, stderr=subprocess.STDOUT)
+    logger.info(t_response)
     
     filenames = next(walk(download_location), (None, None, []))[2]  # [] if no file
     c_time = time.time()
