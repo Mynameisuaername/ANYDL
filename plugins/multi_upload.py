@@ -62,7 +62,7 @@ async def get_link(bot, update):
     command_to_exec = [
         'yt-dlp',
         '-i', 
-        '-f', 'mp4', 
+        '-f', 'best', 
         '--yes-playlist', 
         url,
         '-o', download_location
@@ -77,7 +77,7 @@ async def get_link(bot, update):
     print(noss)
     logger.info(filenames)
     nn = 0
-    while nn <= noss:
+    while nn < noss:
       d_loc = download_location + noss[nn]
       logger.info(d_loc)
       try:
