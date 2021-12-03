@@ -68,6 +68,7 @@ async def get_link(bot, update):
         '--embed-subs', 
         '--yes-playlist',
         '-f', '136+140',
+        '%(playlist_index)s-%(title)s.%(ext)s'
          url,
          '-o',
          download_location
@@ -91,9 +92,9 @@ async def get_link(bot, update):
     noss = len(filenames)
     print(noss)
     logger.info(filenames)
-    nn = 0
-    while nn < noss:
-      d_loc = download_location + noss[nn]
+    nn = -1
+    while nn < noss - 1:
+      d_loc = download_location + noss[nn + 1]
       logger.info(d_loc)
       try:
         await bot.send_video(
