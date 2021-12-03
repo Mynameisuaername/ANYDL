@@ -64,10 +64,10 @@ async def get_link(bot, update):
     command_to_exec = [
         'yt-dlp',
         '-c',
-        '--max-filesize', '26748538',
+        '--max-filesize', '2147483648',
         '--embed-subs', 
         '--yes-playlist',
-        '--prefer-ffmpeg',
+        '--hls-prefer-ffmpeg',
         '-f', '136+140',
         url,
         '-o',
