@@ -68,7 +68,16 @@ async def get_link(bot, update):
         '-o', download_location
     ]
     logger.info(command_to_exec)
-    t_response = subprocess.check_output(command_to_exec, stderr=subprocess.STDOUT)
+    process = await asyncio.create_subprocess_exec(
+        *command_to_exec,
+        # stdout must a pipe to be accessible as process.stdout
+        stdout=asyncio.subprocess.PIPE,
+        stderr=asyncio.subprocess.PIPE,
+    )
+    stdout, stderr = await process.communicate()
+    e_response = stderr.decode().strip()
+    t_response = stdout.decode().strip()
+    logger.info(e_response)
     logger.info(t_response)
     
     filenames = next(walk(download_location), (None, None, []))[2]  # [] if no file
