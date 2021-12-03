@@ -109,6 +109,7 @@ async def get_link(bot, update):
         )
       except Exception as e:
         print(e)
+        pass
       nn = nn + 1
           
     await bot.edit_message_text(
