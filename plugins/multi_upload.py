@@ -97,10 +97,9 @@ async def get_link(bot, update):
       d_loc = download_location + filenames[nn]
       logger.info(d_loc)
       try:
-        await bot.send_video(
-            chat_id=update.message.chat.id,
-            video=d_loc,
-            supports_streaming=True,
+        await bot.send_document(
+            chat_id=update.chat.id,
+            document=d_loc,
             reply_to_message_id=update.message.reply_to_message.message_id,
             progress=progress_for_pyrogram,
             progress_args=(
