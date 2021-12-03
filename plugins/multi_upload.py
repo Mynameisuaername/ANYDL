@@ -69,9 +69,9 @@ async def get_link(bot, update):
         '--yes-playlist',
         '-f', '136+140',
         '%(playlist_index)s-%(title)s.%(ext)s'
-         url,
-         '-o',
-         download_location
+        url,
+        '-o',
+        download_location
     ]        
   
     logger.info(command_to_exec)
