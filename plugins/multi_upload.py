@@ -69,7 +69,6 @@ async def get_link(bot, update):
         '--yes-playlist',
         '--prefer-ffmpeg',
         '-f', '136+140',
-        '%(autonumber)s-%(title)s.%(ext)s',
         url,
         '-o',
         download_location
