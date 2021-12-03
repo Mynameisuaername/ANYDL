@@ -60,14 +60,19 @@ async def get_link(bot, update):
     print(update.chat.id, update.message_id)
     command_to_exec = []
     start = datetime.now()
+
     command_to_exec = [
         'yt-dlp',
-        '-i', 
-        '-f', 'best', 
-        '--yes-playlist', 
-        url,
-        '-o', download_location
-    ]
+        '-c',
+        '--max-filesize', '26748538',
+        '--embed-subs', 
+        '--yes-playlist',
+        '-f', '136+140',
+         url,
+         '-o',
+         download_location
+    ]        
+  
     logger.info(command_to_exec)
     process = await asyncio.create_subprocess_exec(
         *command_to_exec,
