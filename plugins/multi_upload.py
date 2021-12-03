@@ -100,7 +100,6 @@ async def get_link(bot, update):
         await bot.send_document(
             chat_id=update.chat.id,
             document=d_loc,
-            reply_to_message_id=update.message.reply_to_message.message_id,
             progress=progress_for_pyrogram,
             progress_args=(
                 Translation.UPLOAD_START,
@@ -108,8 +107,8 @@ async def get_link(bot, update):
                 c_time
             )
         )
-      except Exception:
-        pass
+      except Exception as e:
+        print(e)
       nn = nn + 1
           
     await bot.edit_message_text(
