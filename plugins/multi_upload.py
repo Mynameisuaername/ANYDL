@@ -92,9 +92,9 @@ async def get_link(bot, update):
     noss = len(filenames)
     print(noss)
     logger.info(filenames)
-    nn = -1
-    while nn < noss - 1:
-      d_loc = download_location + noss[nn + 1]
+    nn = 0
+    while nn < noss:
+      d_loc = download_location + filenames[nn]
       logger.info(d_loc)
       try:
         await bot.send_video(
