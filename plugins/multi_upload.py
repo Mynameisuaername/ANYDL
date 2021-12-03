@@ -60,15 +60,12 @@ async def get_link(bot, update):
     command_to_exec = []
     start = datetime.now()
     command_to_exec = [
-        'yt-dlp',
-        '-c',
-        '--max-filesize', '2147483648',
-        '--embed-subs', 
-        '--yes-playlist',
-        '-f', '136+140',
-         url,
-         '-o',
-         download_location
+        'yt-dlp', '--ignore-errors',
+        '--format bestaudio', '--extract-audio', 
+        '--audio-format', 'mp3' 
+        '--audio-quality', '160K' 
+        '--output', "%(title)s.%(ext)s", '--yes-playlist',
+        url, '-o', download_location
     ]
     logger.info(command_to_exec)
     t_response = subprocess.check_output(command_to_exec, stderr=subprocess.STDOUT)
@@ -84,9 +81,9 @@ async def get_link(bot, update):
       d_loc = download_location + noss[nn]
       logger.info(d_loc)
       try:
-        await bot.send_video(
+        await bot.send_audio(
             chat_id=update.message.chat.id,
-            video=d_loc,
+            audio=d_loc,
             supports_streaming=True,
             reply_to_message_id=update.message.reply_to_message.message_id,
             progress=progress_for_pyrogram,
