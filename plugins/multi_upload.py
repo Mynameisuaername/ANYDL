@@ -67,8 +67,9 @@ async def get_link(bot, update):
         '--max-filesize', '26748538',
         '--embed-subs', 
         '--yes-playlist',
+        '--prefer-ffmpeg',
         '-f', '136+140',
-        '%(playlist_index)s-%(title)s.%(ext)s',
+        '%(autonumber)s-%(title)s.%(ext)s',
         url,
         '-o',
         download_location
