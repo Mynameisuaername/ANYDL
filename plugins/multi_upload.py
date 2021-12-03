@@ -68,7 +68,7 @@ async def get_link(bot, update):
         '--embed-subs', 
         '--yes-playlist',
         '-f', '136+140',
-        '%(playlist_index)s-%(title)s.%(ext)s'
+        '%(playlist_index)s-%(title)s.%(ext)s',
         url,
         '-o',
         download_location
