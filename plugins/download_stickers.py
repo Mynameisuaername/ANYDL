@@ -36,7 +36,7 @@ async def DownloadStickersBot(bot, update):
         )
         return
     logger.info(update.from_user)
-    download_location = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + "_DownloadStickersBot_" + str(update.from_user.id) + ".png"
+    download_location = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + "_DownloadStickersBot_" + str(update.message_id) + ".png"
     a = await bot.send_message(
         chat_id=update.chat.id,
         text=f"Sending Sticker...",
