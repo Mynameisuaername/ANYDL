@@ -87,7 +87,7 @@ async def rename_doc(bot, update):
                 reply_to_message_id=update.message_id,
             )
             logger.info(the_real_download_location)
-            thumb_image_path = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + "_" + ran + ".jpg"
+            thumb_image_path = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + "_" + ".jpg"
             if not os.path.exists(thumb_image_path):
                 try:
                     thumb_image_path = await take_screen_shot(new_file_name, os.path.dirname(new_file_name), random.randint(0, duration - 1))
