@@ -62,6 +62,7 @@ async def echo(bot, update):
     youtube_dl_username = None
     youtube_dl_password = None
     file_name = None
+    print(url)
     if "|" in url:
         url_parts = url.split("|")
         if len(url_parts) == 2:
@@ -140,7 +141,7 @@ async def echo(bot, update):
     e_response = stderr.decode().strip()
     logger.info(e_response)
     t_response = stdout.decode().strip()
-    logger.info(t_response)
+    #logger.info(t_response)
     # https://github.com/rg3/youtube-dl/issues/2630#issuecomment-38635239
     if e_response and "nonnumeric port" not in e_response:
         # logger.warn("Status : FAIL", exc.returncode, exc.output)
