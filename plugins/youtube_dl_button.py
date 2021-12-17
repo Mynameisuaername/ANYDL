@@ -194,7 +194,7 @@ async def youtube_dl_call_back(bot, update):
             file_size = os.stat(download_directory).st_size
         try:
             if tg_send_type == 'video' and 'webm' in download_directory:
-                download_directory = download_directory.split('.')[0] + '.mkv'
+                download_directory = download_directory.rsplit('.')[0] + '.mkv'
         except:
             pass
 
