@@ -123,6 +123,12 @@ async def echo(bot, update):
         command_to_exec.append("--password")
         command_to_exec.append(youtube_dl_password)
     # logger.info(command_to_exec)
+    chk = await bot.send_message(
+            chat_id=update.chat.id,
+            text=f'Checking your link...🧐',
+            disable_web_page_preview=True,
+            reply_to_message_id=update.message_id
+          )
     process = await asyncio.create_subprocess_exec(
         *command_to_exec,
         # stdout must a pipe to be accessible as process.stdout
@@ -141,6 +147,8 @@ async def echo(bot, update):
         error_message = e_response.replace("please report this issue on https://yt-dl.org/bug . Make sure you are using the latest version; see  https://yt-dl.org/update  on how to update. Be sure to call youtube-dl with the --verbose flag and include its complete output.", "")
         if "This video is only available for registered users." in error_message:
             error_message += Translation.SET_CUSTOM_USERNAME_PASSWORD
+        await chk.delete()
+        time.sleep(1)
         await bot.send_message(
             chat_id=update.chat.id,
             text=Translation.NO_VOID_FORMAT_FOUND.format(str(error_message)),
@@ -310,6 +318,8 @@ async def echo(bot, update):
             )
         ])
         reply_markup = InlineKeyboardMarkup(inline_keyboard)
+        await chk.delete()
+        time.sleep(1)
         await bot.send_message(
             chat_id=update.chat.id,
             text=Translation.FORMAT_SELECTION.format(""),
