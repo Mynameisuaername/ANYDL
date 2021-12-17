@@ -293,6 +293,8 @@ async def echo(bot, update):
             im.save(thumb_image_path.replace(".webp", ".jpg"), "jpeg")
         else:
             thumb_image_path = None
+        await chk.delete()
+        time.sleep(1)
         await bot.send_message(
             chat_id=update.chat.id,
             text=Translation.FORMAT_SELECTION.format(thumbnail) + "\n" + Translation.SET_CUSTOM_USERNAME_PASSWORD,
