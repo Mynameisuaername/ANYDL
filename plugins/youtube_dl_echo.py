@@ -138,9 +138,9 @@ async def echo(bot, update):
     # Wait for the subprocess to finish
     stdout, stderr = await process.communicate()
     e_response = stderr.decode().strip()
-    # logger.info(e_response)
+    logger.info(e_response)
     t_response = stdout.decode().strip()
-    # logger.info(t_response)
+    logger.info(t_response)
     # https://github.com/rg3/youtube-dl/issues/2630#issuecomment-38635239
     if e_response and "nonnumeric port" not in e_response:
         # logger.warn("Status : FAIL", exc.returncode, exc.output)
