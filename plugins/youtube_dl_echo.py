@@ -122,7 +122,7 @@ async def echo(bot, update):
     if youtube_dl_password is not None:
         command_to_exec.append("--password")
         command_to_exec.append(youtube_dl_password)
-    # logger.info(command_to_exec)
+    logger.info(command_to_exec)
     chk = await bot.send_message(
             chat_id=update.chat.id,
             text=f'Checking your link...🧐',
