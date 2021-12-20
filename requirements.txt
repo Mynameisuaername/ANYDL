@@ -11,3 +11,4 @@ tgcrypto
 #youtube-dl
 yt-dlp
 olefile
+speedtest-cli
