@@ -62,6 +62,7 @@ async def speedd(client, message):
             chat_id=update.message.chat.id,
             reply_to_message_id=update.message.message_id,
         )
+    
     test = Speedtest()
     test.get_best_server()
     test.download()
@@ -93,6 +94,5 @@ async def speedd(client, message):
     except Exception as cv:
     	print("Error ", cv)
         update.message_id.reply_text(string_speed, parse_mode=ParseMode.HTML)
-
 
 
