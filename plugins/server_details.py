@@ -21,7 +21,7 @@ bot_start_time = time.time()
         result += f'{minutes}m'
     seconds = int(seconds)
     result += f'{seconds}s'
-    return result '''
+    return result 
 def speed_convert(size):
     """Hi human, you can't read bytes?"""
     power = 2 ** 10
@@ -30,7 +30,7 @@ def speed_convert(size):
     while size > power:
         size /= power
         zero += 1
-    return f"{round(size, 2)} {units[zero]}"
+    return f"{round(size, 2)} {units[zero]}"'''
 
 
 @Client.on_message(filters.command(["server"]), group=-2)
@@ -51,7 +51,7 @@ async def start(client, message):
     await message.reply_text(welcomed, reply_markup=joinButton)
     raise StopPropagation
 
-@Client.on_message(filters.command(["Speedtest"]) & filters.privte)
+'''@Client.on_message(filters.command(["Speedtest"]) & filters.privte)
 async def speedd(client, message):
 	try:
 		spg = await bot.send_message(text=f'Running speedtest....', chat_id=update.chat.id, reply_to_message_id=update.message_id,)
@@ -93,6 +93,6 @@ async def speedd(client, message):
         update.message_id.reply_photo(path, string_speed, parse_mode=ParseMode.HTML)
     except Exception as cv:
     	print("Error ", cv)
-        update.message_id.reply_text(string_speed, parse_mode=ParseMode.HTML)
+        update.message_id.reply_text(string_speed, parse_mode=ParseMode.HTML)'''
 
 
