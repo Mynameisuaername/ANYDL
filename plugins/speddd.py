@@ -5,7 +5,7 @@ import time
 from speedtest import Speedtest
 
 
-@Client.on_message(filters.command(["Speedtest"]) & filters.privte)
+@Client.on_message(filters.command(["speedtest"]) & filters.privte)
 async def speed(client, message):
     try:
         spg = await bot.send_message(text=f'Running speedtest....', chat_id=update.chat.id, reply_to_message_id=update.message_id,)
@@ -27,8 +27,8 @@ async def speed(client, message):
     try:
         print(test)
     except Exception as ere:
-    	print(ere)
-    	pass
+        print(ere)
+        pass
     string_speed = f'''
 <b>Server</b>
 <b>Name:</b> <code>{result['server']['name']}</code>
@@ -46,7 +46,7 @@ async def speed(client, message):
     try:
         update.message_id.reply_photo(path, string_speed, parse_mode=ParseMode.HTML)
     except Exception as cv:
-    	print("Error ", cv)
+        print("Error ", cv)
         update.message_id.reply_text(string_speed, parse_mode=ParseMode.HTML)
 
         
@@ -59,5 +59,4 @@ def speed_convert(size):
         size /= power
         zero += 1
     #return f"{round(size, 2)} {units[zero]}"        
-
 
