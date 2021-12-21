@@ -10,7 +10,7 @@ async def speed(bot, update):
     try:
         spg = await bot.send_message(text=f'Running speedtest....', chat_id=update.chat.id, reply_to_message_id=update.message_id,)
     except Exception as er:
-        print(er)
+        print(er, 13)
         spg = await bot.send_message(
             text=f'Running speedtest....',
             chat_id=update.message.chat.id,
@@ -25,9 +25,9 @@ async def speed(bot, update):
     result = test.results.dict()
     path = (result['share'])
     try:
-        print(test)
+        print('Line 28', test)
     except Exception as ere:
-        print(ere)
+        print(ere, '30')
         pass
     string_speed = f'''
 <b>Server</b>
@@ -42,12 +42,17 @@ async def speed(bot, update):
 <b>ISP:</b> <code>{result['client']['isp']}</code>
 '''
 
-    spg.delete()
+    await spg.delete()
     try:
-        update.message_id.reply_photo(path, string_speed, parse_mode=ParseMode.HTML)
+        print(path, string_speed, type(path), type(string_speed))
+    except Exception as pri:
+        print(pri)
+        
+    try:
+        update.message_id.reply_photo(path, str(string_speed), parse_mode=ParseMode.HTML)
     except Exception as cv:
         print("Error ", cv)
-        update.message_id.reply_text(string_speed, parse_mode=ParseMode.HTML)
+        update.message_id.reply_text(str(string_speed), parse_mode=ParseMode.HTML)
 
         
 def speed_convert(size):
