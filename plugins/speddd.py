@@ -49,11 +49,20 @@ async def speed(bot, update):
         print(pri)
         
     try:
-        update.message_id.reply_photo(path, str(string_speed), parse_mode=ParseMode.HTML)
+        await bot.send_photo(
+            chat_id=update.chat.id,
+            photo=path,
+            caption=string_speed,
+            parse_mode="HTML",
+            reply_to_message_id=update.message_id
+        )
     except Exception as cv:
-        print("Error ", cv)
-        update.message_id.reply_text(str(string_speed), parse_mode=ParseMode.HTML)
-
+        print("Error 60 ", cv)
+        await bot.send_message(
+            text=string_speed,
+            chat_id=update.message.chat.id,
+            reply_to_message_id=update.message.message_id,
+        )
         
 def speed_convert(size):
     """Hi human, you can't read bytes?"""
@@ -63,5 +72,5 @@ def speed_convert(size):
     while size > power:
         size /= power
         zero += 1
-    #return f"{round(size, 2)} {units[zero]}"        
+    return f"{round(size, 2)} {units[zero]}"        
 
