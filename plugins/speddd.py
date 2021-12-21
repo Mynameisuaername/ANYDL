@@ -5,7 +5,7 @@ import time
 from speedtest import Speedtest
 
 
-@Client.on_message(filters.command(["speedtest"]))
+@Client.on_message(filters.command(["speedtest"]) & filters.private)
 async def speed(client, message):
     try:
         spg = await bot.send_message(text=f'Running speedtest....', chat_id=update.chat.id, reply_to_message_id=update.message_id,)
