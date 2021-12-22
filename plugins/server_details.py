@@ -2,6 +2,7 @@ from pyrogram import Client, filters, StopPropagation
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 import psutil, shutil
 import time
+from helper_funcs.display_progress import humanbytes
 from speedtest import Speedtest
 
 bot_start_time = time.time()
@@ -37,12 +38,13 @@ async def start(client, message):
     ])
     # https://git.io/Jye7k
     total, used, free = shutil.disk_usage('.')
-    total = get_readable_file_size(total)
-    used = get_readable_file_size(used)
-    free = get_readable_file_size(free)
-    sent = get_readable_file_size(psutil.net_io_counters().bytes_sent)
-    recv = get_readable_file_size(psutil.net_io_counters().bytes_recv)
+    total = humanbytes(total)
+    used = humanbytes(used)
+    free = humanbytes(free)
+    sent = humanbytes(psutil.net_io_counters().bytes_sent)
+    recv = humanbytes(psutil.net_io_counters().bytes_recv)
     cpuUsage = psutil.cpu_percent(interval=0.5)
+    print(total, used, free, send, recv)
     memory = psutil.virtual_memory().percent
     disk = psutil.disk_usage('/').percent
     botstats = f'<b>Bot Uptime:</b> {bot_uptime}\n' \
