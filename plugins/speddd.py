@@ -1,4 +1,4 @@
-from pyrogram import Client, filters, StopPropagation
+'''from pyrogram import Client, filters, StopPropagation
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 import psutil
 import time
@@ -73,4 +73,4 @@ def speed_convert(size):
         size /= power
         zero += 1
     return f"{round(size, 2)} {units[zero]}"        
-
+''' 
