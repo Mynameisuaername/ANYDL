@@ -44,7 +44,7 @@ async def start(client, message):
     sent = humanbytes(psutil.net_io_counters().bytes_sent)
     recv = humanbytes(psutil.net_io_counters().bytes_recv)
     cpuUsage = psutil.cpu_percent(interval=0.5)
-    print(total, used, free, send, recv)
+    print(total, used, free, sent, recv)
     memory = psutil.virtual_memory().percent
     disk = psutil.disk_usage('/').percent
     botstats = f'<b>Bot Uptime:</b> {bot_uptime}\n' \
