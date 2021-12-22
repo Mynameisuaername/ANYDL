@@ -29,7 +29,7 @@ bot_start_time = time.time()
     return result '''
 
 @Client.on_message(filters.command(["server"]))
-async def start(client, message):
+async def start(bot, update):
     bot_uptime = time.strftime("%Hh %Mm %Ss", time.gmtime(time.time() - bot_start_time)) 
     joinButton = InlineKeyboardMarkup([
         [InlineKeyboardButton("JOIN", url="https://t.me/TGBotsCollection")],
