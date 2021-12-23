@@ -189,8 +189,9 @@ async def youtube_dl_call_back(bot, update):
         try:
             file_size = os.stat(download_directory).st_size
         except FileNotFoundError as exc:
+            print('Except block enterance')
             # download_directory = os.path.splitext(download_directory)[0] + "." + "mkv"
-            download_directory = os.listdir(tmp_directory_for_each_user)[0]
+            download_directory = tmp_directory_for_each_user + os.listdir(tmp_directory_for_each_user)[0]
             # https://stackoverflow.com/a/678242/4723940
             file_size = os.stat(download_directory).st_size
         try:
