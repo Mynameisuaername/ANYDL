@@ -272,6 +272,7 @@ async def echo(bot, update):
                     callback_data=(cb_string_file).encode("UTF-8")
                 )
             ])
+            print(inline_keyboard, '\n')
         reply_markup = InlineKeyboardMarkup(inline_keyboard)
         # logger.info(reply_markup)
         thumbnail = Config.DEF_THUMB_NAIL_VID_S
