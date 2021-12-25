@@ -131,3 +131,11 @@ async def button(bot, update):
         await youtube_dl_call_back(bot, update)
     elif "=" in cb_data:
         await ddl_call_back(bot, update)
+    elif "//" in cb_data:
+        download_directory = Config.DOWNLOAD_LOCATION + "/" + str(update.message.message_id)
+        if not os.path.isdir(download_directory):
+            siio='This file is not present in the directory!'
+        elif:
+            siio = os.path.getsize(download_directory)
+
+        await update.answer(f'Downloaded: {siio} of {cb_data.split("//")[1]}')
