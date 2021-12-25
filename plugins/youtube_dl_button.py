@@ -42,13 +42,26 @@ async def youtube_dl_call_back(bot, update):
     cb_data = update.data
 
     # youtube_dl extractors
-    tg_send_type, youtube_dl_format, youtube_dl_ext, ranom = cb_data.split("|")
+    tg_send_type, youtube_dl_format, youtube_dl_ext, szz = cb_data.split("|")
+    if type(szz) is int and szz > Config.TG_MAX_FILE_SIZE:
+        try:
+            await update.answer('Choosen video is bigger than Telegram upload limit.')
+        except Exception as anss:
+            print(anss)
+            pass
+
     print(cb_data)
+    try:
+        print(update)
+    except Exception as pri:
+        print(pri)
+        pass
+
     random1 = random_char(5)
     thumb_image_path = Config.DOWNLOAD_LOCATION + \
-        "/" + str(update.from_user.id) + f'{ranom}' + ".jpg"
+        "/" + str(update.from_user.id) + ' ' + str(update.message.message_id) + ".jpg"
     save_ytdl_json_path = Config.DOWNLOAD_LOCATION + \
-        "/" + str(update.from_user.id) + f'{ranom}' + ".json"
+        "/" + str(update.message.message_id) + '/' + str(update.chat_id) + ".json"
     try:
         with open(save_ytdl_json_path, "r", encoding="utf8") as f:
             response_json = json.load(f)
@@ -105,12 +118,14 @@ async def youtube_dl_call_back(bot, update):
         text=Translation.DOWNLOAD_START,
         chat_id=update.message.chat.id,
         message_id=update.message.message_id
-    )
+        reply_markup=InlineKeyboardMarkup([ [InlineKeyboardButton("Check Progress", callback_data=f'progress//{szz}')], ]),
+
     description = Translation.CUSTOM_CAPTION_UL_FILE
     if "fulltitle" in response_json:
-        description = response_json["fulltitle"][0:1021]
+        description = response_json['fulltitle'][0:1021]
+        description = f"<a href = '{youtube_dl_url}'> {description} </a>"
         # escape Markdown and special characters
-    tmp_directory_for_each_user = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + f'{random1}'
+    tmp_directory_for_each_user = Config.DOWNLOAD_LOCATION + "/" + str(update.message.message_id)
     if not os.path.isdir(tmp_directory_for_each_user):
         os.makedirs(tmp_directory_for_each_user)
     download_directory = tmp_directory_for_each_user + "/" + custom_file_name
