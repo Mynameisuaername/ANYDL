@@ -135,7 +135,7 @@ async def button(bot, update):
         download_directory = Config.DOWNLOAD_LOCATION + "/" + str(update.message.message_id)
         if not os.path.isdir(download_directory):
             siio='This file is not present in the directory!'
-        elif:
+        else:
             siio = os.path.getsize(download_directory)
 
         await update.answer(f'Downloaded: {siio} of {cb_data.split("//")[1]}')
