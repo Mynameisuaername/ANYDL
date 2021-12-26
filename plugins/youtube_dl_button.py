@@ -115,11 +115,12 @@ async def youtube_dl_call_back(bot, update):
                 l = entity.length
                 youtube_dl_url = youtube_dl_url[o:o + l]
     cbv = '''progress//''' + str(szz)
+    ina = InlineKeyboardMarkup([ [InlineKeyboardButton("Check Progress", callback_data=cbv)], ])
     await bot.edit_message_text(
         text=Translation.DOWNLOAD_START,
         chat_id=update.message.chat.id,
-        message_id=update.message.message_id
-        reply_markup=InlineKeyboardMarkup([ [InlineKeyboardButton("Check Progress", callback_data=cbv)], ])
+        message_id=update.message.message_id,
+        reply_markup=ina
 
     description = Translation.CUSTOM_CAPTION_UL_FILE
     if "fulltitle" in response_json:
