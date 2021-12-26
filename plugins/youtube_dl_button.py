@@ -61,7 +61,7 @@ async def youtube_dl_call_back(bot, update):
     thumb_image_path = Config.DOWNLOAD_LOCATION + \
         "/" + str(update.from_user.id) + ' ' + str(update.message.message_id) + ".jpg"
     save_ytdl_json_path = Config.DOWNLOAD_LOCATION + \
-        "/" + str(update.message.message_id) + '/' + str(update.chat_id) + ".json"
+        "/" + str(update.message.message_id) + '/' + str(update.chat.id) + ".json"
     try:
         with open(save_ytdl_json_path, "r", encoding="utf8") as f:
             response_json = json.load(f)
