@@ -192,10 +192,11 @@ async def echo(bot, update):
                 if "filesize" in formats:
                     approx_file_size = humanbytes(formats["filesize"])
                     sz_in_bytes = formats["filesize"]
+                    print(type(sz_in_bytes), "sz in bytes")
                 cb_string_video = "{}|{}|{}|{}".format(
-                    "video", format_id, format_ext, str(sz_in_bytes) + idd_m)
+                    "video", format_id, format_ext, str(formats["filesize"]) + idd_m)
                 cb_string_file = "{}|{}|{}|{}".format(
-                    "file", format_id, format_ext, str(sz_in_bytes) + idd_m)
+                    "file", format_id, format_ext, str(formats["filesize"]) + idd_m)
                 if format_string is not None and not "audio only" in format_string:
                     ikeyboard = [
                         InlineKeyboardButton(
