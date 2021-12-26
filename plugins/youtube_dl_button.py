@@ -43,7 +43,7 @@ async def youtube_dl_call_back(bot, update):
 
     # youtube_dl extractors
     tg_send_type, youtube_dl_format, youtube_dl_ext, sz = cb_data.split("|")
-    szz, msd_id = sz.split(' ')
+    szz, msd_id = sz.rsplit(' ', 1)
     if type(szz) is int and szz > Config.TG_MAX_FILE_SIZE:
         try:
             await update.answer('Choosen video is bigger than Telegram upload limit.')
