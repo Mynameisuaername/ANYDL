@@ -50,9 +50,9 @@ async def youtube_dl_call_back(bot, update):
             print(anss)
             pass
 
-    print(cb_data)
+    print(cb_data, update.message.message_id)
     try:
-        print(update)
+        print(update, 'printing update')
     except Exception as pri:
         print(pri)
         pass
@@ -66,6 +66,7 @@ async def youtube_dl_call_back(bot, update):
         with open(save_ytdl_json_path, "r", encoding="utf8") as f:
             response_json = json.load(f)
     except (FileNotFoundError) as e:
+        print(e, 'json file not found')
         await bot.delete_messages(
             chat_id=update.message.chat.id,
             message_ids=update.message.message_id,
