@@ -168,7 +168,7 @@ async def echo(bot, update):
         response_json = json.loads(x_reponse)
         randem = random_char(5)
         save_ytdl_json_path = Config.DOWNLOAD_LOCATION + \
-            "/" + str(update.message_id) + '/' + str(update.chat_id) + ".json"
+            "/" + str(update.message_id) + '/' + str(update.chat.id) + ".json"
         with open(save_ytdl_json_path, "w", encoding="utf8") as outfile:
             json.dump(response_json, outfile, ensure_ascii=False)
         # logger.info(response_json)
@@ -282,7 +282,7 @@ async def echo(bot, update):
         if "thumbnail" in response_json:
             if response_json["thumbnail"] is not None:
                 thumbnail = response_json["thumbnail"]
-                print(thumbnail)
+                print(thumbnail, update.from_user.id)
                 thumbnail_image = response_json["thumbnail"]
         thumb_image_path = DownLoadFile(
             thumbnail_image,
