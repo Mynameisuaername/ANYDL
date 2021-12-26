@@ -42,7 +42,8 @@ async def youtube_dl_call_back(bot, update):
     cb_data = update.data
 
     # youtube_dl extractors
-    tg_send_type, youtube_dl_format, youtube_dl_ext, szz = cb_data.split("|")
+    tg_send_type, youtube_dl_format, youtube_dl_ext, sz = cb_data.split("|")
+    szz, msd_id = sz.split(' ')
     if type(szz) is int and szz > Config.TG_MAX_FILE_SIZE:
         try:
             await update.answer('Choosen video is bigger than Telegram upload limit.')
@@ -50,7 +51,7 @@ async def youtube_dl_call_back(bot, update):
             print(anss)
             pass
 
-    print(cb_data, update.message.message_id)
+    print(cb_data, update.message.message_id, msd_id)
     try:
         print(update, 'printing update')
     except Exception as pri:
@@ -59,9 +60,9 @@ async def youtube_dl_call_back(bot, update):
 
     random1 = random_char(5)
     thumb_image_path = Config.DOWNLOAD_LOCATION + \
-        "/" + str(update.from_user.id) + ' ' + str(update.message.message_id) + ".jpg"
+        "/" + str(update.from_user.id) + ' ' + str(msd_id) + ".jpg"
     save_ytdl_json_path = Config.DOWNLOAD_LOCATION + \
-        "/" + str(update.message.message_id) + '/' + str(update.from_user.id) + ".json"
+        "/" + str(msd_id) + '/' + str(update.from_user.id) + ".json"
     try:
         with open(save_ytdl_json_path, "r", encoding="utf8") as f:
             response_json = json.load(f)
@@ -128,7 +129,7 @@ async def youtube_dl_call_back(bot, update):
         description = response_json['fulltitle'][0:1021]
         description = f"<a href = '{youtube_dl_url}'> {description} </a>"
         # escape Markdown and special characters
-    tmp_directory_for_each_user = Config.DOWNLOAD_LOCATION + "/" + str(update.message.message_id)
+    tmp_directory_for_each_user = Config.DOWNLOAD_LOCATION + "/" + str(msd_id)
     if not os.path.isdir(tmp_directory_for_each_user):
         os.makedirs(tmp_directory_for_each_user)
     download_directory = tmp_directory_for_each_user + "/" + custom_file_name
