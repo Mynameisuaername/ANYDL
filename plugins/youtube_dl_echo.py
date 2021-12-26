@@ -58,7 +58,8 @@ async def echo(bot, update):
         except Exception:
             await update.reply_text("Something Wrong. Contact my Support Group")
             return
-    no_sz ='N/A' + ' update.message_id'
+    idd_m = ' ' + str(update.message_id)
+    no_sz ='N/A' + idd_m
     logger.info(update.from_user)
     url = update.text
     youtube_dl_username = None
@@ -192,9 +193,9 @@ async def echo(bot, update):
                     approx_file_size = humanbytes(formats["filesize"])
                     sz_in_bytes = formats["filesize"]
                 cb_string_video = "{}|{}|{}|{}".format(
-                    "video", format_id, format_ext, str(sz_in_bytes) + " update.message_id)
+                    "video", format_id, format_ext, str(sz_in_bytes) + idd_m)
                 cb_string_file = "{}|{}|{}|{}".format(
-                    "file", format_id, format_ext, str(sz_in_bytes) + " update.message_id)
+                    "file", format_id, format_ext, str(sz_in_bytes) + idd_m)
                 if format_string is not None and not "audio only" in format_string:
                     ikeyboard = [
                         InlineKeyboardButton(
