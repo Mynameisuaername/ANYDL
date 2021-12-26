@@ -58,7 +58,7 @@ async def echo(bot, update):
         except Exception:
             await update.reply_text("Something Wrong. Contact my Support Group")
             return
-    no_sz ='NO'
+    no_sz ='N/A' + ' update.message_id'
     logger.info(update.from_user)
     url = update.text
     youtube_dl_username = None
@@ -190,10 +190,11 @@ async def echo(bot, update):
                 approx_file_size = ""
                 if "filesize" in formats:
                     approx_file_size = humanbytes(formats["filesize"])
+                    sz_in_bytes = formats["filesize"]
                 cb_string_video = "{}|{}|{}|{}".format(
-                    "video", format_id, format_ext, approx_file_size)
+                    "video", format_id, format_ext, sz_in_bytes + " update.message_id)
                 cb_string_file = "{}|{}|{}|{}".format(
-                    "file", format_id, format_ext, approx_file_size)
+                    "file", format_id, format_ext, sz_in_bytes + " update.message_id)
                 if format_string is not None and not "audio only" in format_string:
                     ikeyboard = [
                         InlineKeyboardButton(
@@ -285,7 +286,7 @@ async def echo(bot, update):
         if "thumbnail" in response_json:
             if response_json["thumbnail"] is not None:
                 thumbnail = response_json["thumbnail"]
-                print(thumbnail, update.from_user.id)
+                print(thumbnail, '\n')
                 thumbnail_image = response_json["thumbnail"]
         thumb_image_path = DownLoadFile(
             thumbnail_image,
