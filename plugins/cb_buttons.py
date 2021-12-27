@@ -139,20 +139,25 @@ async def button(bot, update):
         if not os.path.isdir(download_directory):
             siio='This file is not present in the directory!'
             await update.answer(siio)
-        elif:
+        '''elif:
             for ele in os.scandir(download_directory):
                 smze+=os.path.getsize(ele)
-            if smze>round(int(cb_data.split("//")[1])*1.2, 2):
+            if smze>int(cb_data.split("//")[1])*1.2:
                 await update.answer("Video Downloded Successfully. \n\n Now Downloading audio", show_alert="True")
         elif:
             for ele in os.scandir(download_directory):
                 smze+=os.path.getsize(ele)
             if smze>int(cb_data.split("//")[1]):
-                await update.answer("Video, audio downloaded sucessfully. \n\n Upload starts soon.", show_alert="True")
+                await update.answer("Video, audio downloaded sucessfully. \n\n Upload starts soon.", show_alert="True")'''
         else:
             for ele in os.scandir(download_directory):
                 smze+=os.path.getsize(ele)
                 siio = humanbytes(smze)
-            await update.answer(f'Downloaded: {siio} of {humanbytes(cb_data.split("//")[1])}')
+            if smze>round(int(cb_data.split("//")[1])*1.5, 2):
+                await update.answer("Video, audio downloaded Successfully, \n\n Uploading starts soon. . .")
+            if smze>round(int(cb_data.split("//")[1])*1.2, 2):
+                await update.answer("Video Downloded Successfully. \n\n Now Downloading audio", show_alert="True") 
+            if smze<int(cb_data.split("//")[1]):
+                await update.answer(f'Downloaded: {siio} of {humanbytes(cb_data.split("//")[1])}')
         time.sleep(5)
         await cbb.delete()
