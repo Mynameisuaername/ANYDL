@@ -132,6 +132,7 @@ async def button(bot, update):
     elif "=" in cb_data:
         await ddl_call_back(bot, update)
     elif "//" in cb_data:
+        print('\n\n', cb_data, 'cb_buttons')
         ms_id = cb_data.rsplit('//', 1)[1]
         cbb = await update.reply_text(cb_data)
         smze = 0
