@@ -183,28 +183,28 @@ async def echo(bot, update):
         if "formats" in response_json:
             for formats in response_json["formats"]:
                 format_id = formats.get("format_id")
-                print(format_id, '181 Line')
+                print(format_id, '186 Line')
                 format_string = formats.get("format_note")
                 if format_string is None:
                     format_string = formats.get("format")
                 format_ext = formats.get("ext")
                 approx_file_size = ""
                 if "filesize" in formats:
-                    approx_file_size = humanbytes(formats["filesize"])
-                    sz_in_bytes = formats["filesize"]
-                    print(type(sz_in_bytes), "sz in bytes")
+                    approx_file_size = formats["filesize"]
+                    #sz_in_bytes = formats["filesize"]
+                    print('Printing approx_file_size', type(approx_file_size), "sz in bytes")
                 cb_string_video = "{}|{}|{}|{}".format(
-                    "video", format_id, format_ext, approx_file_size + idd_m)
+                    "video", format_id, format_ext, str(approx_file_size) + idd_m)
                 cb_string_file = "{}|{}|{}|{}".format(
-                    "file", format_id, format_ext, approx_file_size + idd_m)
+                    "file", format_id, format_ext, str(approx_file_size) + idd_m)
                 if format_string is not None and not "audio only" in format_string:
                     ikeyboard = [
                         InlineKeyboardButton(
-                            "S " + format_string + " video " + approx_file_size + " ",
+                            "S " + format_string + " video " + humanbytes(approx_file_size) + " ",
                             callback_data=(cb_string_video).encode("UTF-8")
                         ),
                         InlineKeyboardButton(
-                            "D " + format_ext + " " + approx_file_size + " ",
+                            "D " + format_ext + " " + humanbytes(approx_file_size) + " ",
                             callback_data=(cb_string_file).encode("UTF-8")
                         )
                     ]
@@ -280,7 +280,7 @@ async def echo(bot, update):
                     callback_data=(cb_string_file).encode("UTF-8")
                 )
             ])
-            print(inline_keyboard, '\n')
+            print("Inline Keyboard ---", inline_keyboard, '\n --End Inline Keyboard')
         reply_markup = InlineKeyboardMarkup(inline_keyboard)
         # logger.info(reply_markup)
         thumbnail = Config.DEF_THUMB_NAIL_VID_S
