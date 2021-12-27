@@ -133,13 +133,26 @@ async def button(bot, update):
         await ddl_call_back(bot, update)
     elif "//" in cb_data:
         ms_id = cb_data.rsplit('//', 1)[1]
+        cbb = await update.reply_text(cb_data)
         smze = 0
         download_directory = Config.DOWNLOAD_LOCATION + "/" + str(ms_id)
         if not os.path.isdir(download_directory):
             siio='This file is not present in the directory!'
+        await update.answer(siio)
+        elif:
+            for ele in os.scandir(download_directory):
+                smze+=os.path.getsize(ele)
+            if smze>int(cb_data.split("//")[1])*1.2:
+                await update.answer("Video Downloded Successfully. \n\n Now Downloading audio", show_alert="True")
+        elif:
+            for ele in os.scandir(download_directory):
+                smze+=os.path.getsize(ele)
+            if smze>int(cb_data.split("//")[1]):
+                await update.answer("Video, audio downloaded sucessfully. \n\n Upload starts soon.", show_alert="True")
         else:
             for ele in os.scandir(download_directory):
                 smze+=os.path.getsize(ele)
                 siio = humanbytes(smze)
-
-        await update.answer(f'Downloaded: {siio} of {cb_data.split("//")[1]}')
+            await update.answer(f'Downloaded: {siio} of {humanbytes(cb_data.split("//")[1])}')
+        time.sleep(5)
+        await cbb.delete()
