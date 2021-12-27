@@ -134,7 +134,6 @@ async def button(bot, update):
     elif "//" in cb_data:
         print('\n\n', cb_data, 'cb_buttons')
         ms_id = cb_data.rsplit('//', 1)[1]
-        cbb = await bot.send_message(chat_id=update.message.chat.id, text=cb_data)
         smze = 0
         download_directory = Config.DOWNLOAD_LOCATION + "/" + str(ms_id)
         if not os.path.isdir(download_directory):
@@ -155,12 +154,7 @@ async def button(bot, update):
             for ele in os.scandir(download_directory):
                 smze+=os.path.getsize(ele)
                 siio = humanbytes(smze)
-            if smze>round(int(cb_data.split("//")[1])*1.5, 2):
-                await update.answer("Video, audio downloaded Successfully, \n\n Uploading starts soon. . .")
-            elif smze>round(int(cb_data.split("//")[1])*1.2, 2):
-                await update.answer("Video Downloded Successfully. \n\n Now Downloading audio", show_alert="True") 
-            else:
+            if smze<cb_data.split("//")[1]:
                 await update.answer(f'Downloaded: {siio} of {humanbytes(cb_data.split("//")[1])}')
-        
-        time.sleep(5)
-        await cbb.delete()
+            else:
+                await update.answer("Video Downloded Successfully. \n\n Now Downloading audio", show_alert="True")
