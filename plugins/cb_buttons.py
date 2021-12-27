@@ -142,7 +142,7 @@ async def button(bot, update):
         elif:
             for ele in os.scandir(download_directory):
                 smze+=os.path.getsize(ele)
-            if smze>int(cb_data.split("//")[1])*1.2:
+            if smze>round(int(cb_data.split("//")[1])*1.2, 2):
                 await update.answer("Video Downloded Successfully. \n\n Now Downloading audio", show_alert="True")
         elif:
             for ele in os.scandir(download_directory):
