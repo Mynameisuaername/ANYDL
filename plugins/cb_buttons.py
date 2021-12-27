@@ -134,7 +134,7 @@ async def button(bot, update):
     elif "//" in cb_data:
         print('\n\n', cb_data, 'cb_buttons')
         ms_id = cb_data.rsplit('//', 1)[1]
-        cbb = await update.reply_text(cb_data)
+        cbb = await bot.send_message(chat_id=update.message.chat.id, text=cb_data)
         smze = 0
         download_directory = Config.DOWNLOAD_LOCATION + "/" + str(ms_id)
         if not os.path.isdir(download_directory):
