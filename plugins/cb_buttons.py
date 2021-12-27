@@ -153,7 +153,7 @@ async def button(bot, update):
         else:
             for ele in os.scandir(download_directory):
                 smze+=os.path.getsize(ele)
-                siio = humanbytes(smze)
+                siio = humanbytes(int(smze))
             print('Type of smze:', type(smze), '\n', 'Type of siio:', type(siio))
             if int(smze)<int(cb_data.split("//")[1]):
                 await update.answer(f'Downloaded: {siio} of {humanbytes(cb_data.split("//")[1])}')
