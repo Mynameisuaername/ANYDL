@@ -154,7 +154,8 @@ async def button(bot, update):
             for ele in os.scandir(download_directory):
                 smze+=os.path.getsize(ele)
                 siio = humanbytes(smze)
-            if smze<int(cb_data.split("//")[1]):
+            print('Type of smze:', type(smze), '\n', 'Type of siio:', type(siio))
+            if int(smze)<int(cb_data.split("//")[1]):
                 await update.answer(f'Downloaded: {siio} of {humanbytes(cb_data.split("//")[1])}')
             else:
                 await update.answer("Video Downloded Successfully. \n\n Now Downloading audio", show_alert="True")
