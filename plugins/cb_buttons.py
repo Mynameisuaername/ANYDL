@@ -156,9 +156,9 @@ async def button(bot, update):
                 siio = humanbytes(smze)
             if smze>round(int(cb_data.split("//")[1])*1.5, 2):
                 await update.answer("Video, audio downloaded Successfully, \n\n Uploading starts soon. . .")
-            if smze>round(int(cb_data.split("//")[1])*1.2, 2):
+            elif smze>round(int(cb_data.split("//")[1])*1.2, 2):
                 await update.answer("Video Downloded Successfully. \n\n Now Downloading audio", show_alert="True") 
-            if smze<int(cb_data.split("//")[1]):
+            else:
                 await update.answer(f'Downloaded: {siio} of {humanbytes(cb_data.split("//")[1])}')
         
         time.sleep(5)
