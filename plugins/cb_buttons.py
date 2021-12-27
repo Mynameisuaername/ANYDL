@@ -149,7 +149,8 @@ async def button(bot, update):
                 smze+=os.path.getsize(ele)
             if smze>int(cb_data.split("//")[1]):
                 await update.answer("Video, audio downloaded sucessfully. \n\n Upload starts soon.", show_alert="True")'''
-        else path.exists(download_directory):
+        
+        else os.path.exists(download_directory) is True:
             for ele in os.scandir(download_directory):
                 smze+=os.path.getsize(ele)
                 siio = humanbytes(smze)
@@ -159,5 +160,6 @@ async def button(bot, update):
                 await update.answer("Video Downloded Successfully. \n\n Now Downloading audio", show_alert="True") 
             if smze<int(cb_data.split("//")[1]):
                 await update.answer(f'Downloaded: {siio} of {humanbytes(cb_data.split("//")[1])}')
+        
         time.sleep(5)
         await cbb.delete()
