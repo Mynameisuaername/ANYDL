@@ -44,6 +44,10 @@ async def youtube_dl_call_back(bot, update):
     # youtube_dl extractors
     tg_send_type, youtube_dl_format, youtube_dl_ext, sz = cb_data.split("|")
     szz, msd_id = sz.rsplit(' ', 1)
+    try:
+        int(szz)
+    except:
+        pass
     if type(szz) is int and szz > Config.TG_MAX_FILE_SIZE:
         try:
             await update.answer('Choosen video is bigger than Telegram upload limit.')
@@ -53,7 +57,8 @@ async def youtube_dl_call_back(bot, update):
 
     print(cb_data, update.message.message_id, msd_id)
     try:
-        print(update, 'printing update')
+        print('PRINTING UPDATE' ,update, 'printing update')
+        return False
     except Exception as pri:
         print(pri)
         pass
@@ -209,6 +214,7 @@ async def youtube_dl_call_back(bot, update):
             file_size = os.stat(download_directory).st_size
         except FileNotFoundError as exc:
             print('Except block enterance')
+            print("\n", os.listdir(tmp_directory_for_each_user), "Line 217")
             # download_directory = os.path.splitext(download_directory)[0] + "." + "mkv"
             download_directory = tmp_directory_for_each_user + '/' + os.listdir(tmp_directory_for_each_user)[0]
             # https://stackoverflow.com/a/678242/4723940
