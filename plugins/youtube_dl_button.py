@@ -48,20 +48,14 @@ async def youtube_dl_call_back(bot, update):
         int(szz)
     except:
         pass
-    if type(szz) is int and szz > Config.TG_MAX_FILE_SIZE:
+    '''if type(szz) is int and szz > Config.TG_MAX_FILE_SIZE:
         try:
             await update.answer('Choosen video is bigger than Telegram upload limit.')
         except Exception as anss:
             print(anss)
-            pass
+            pass'''
 
     print(cb_data, update.message.message_id, msd_id)
-    try:
-        print('PRINTING UPDATE' ,update, 'printing update')
-        return False
-    except Exception as pri:
-        print(pri)
-        pass
 
     random1 = random_char(5)
     thumb_image_path = Config.DOWNLOAD_LOCATION + \
