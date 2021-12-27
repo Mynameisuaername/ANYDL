@@ -138,7 +138,7 @@ async def button(bot, update):
         download_directory = Config.DOWNLOAD_LOCATION + "/" + str(ms_id)
         if not os.path.isdir(download_directory):
             siio='This file is not present in the directory!'
-        await update.answer(siio)
+            await update.answer(siio)
         elif:
             for ele in os.scandir(download_directory):
                 smze+=os.path.getsize(ele)
