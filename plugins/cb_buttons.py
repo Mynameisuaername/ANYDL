@@ -133,7 +133,7 @@ async def button(bot, update):
         await ddl_call_back(bot, update)
     elif "//" in cb_data:
         print('\n\n', cb_data, 'cb_buttons')
-        ms_id = cb_data.rsplit('//', 1)[1]
+        ms_id, szze = cb_data.rsplit('//', 1)
         smze = 0
         download_directory = Config.DOWNLOAD_LOCATION + "/" + str(ms_id)
         print(os.listdir(download_directory), "cb_buttons")
@@ -156,15 +156,15 @@ async def button(bot, update):
             for ele in os.scandir(download_directory):
                 smze+=os.path.getsize(ele)
                 siio = humanbytes(int(smze))
-            await update.answer(f'Downloaded: {siio} of {cb_data.split("//")[1]}')
+            await update.answer(f'Downloaded: {siio} of {humanbytes(szze)}')
         else:
             for ele in os.scandir(download_directory):
                 smze+=os.path.getsize(ele)
                 siio = humanbytes(int(smze))
             print('Type of smze:', type(smze), '\n', 'Type of siio:', type(siio))
-            if int(smze)<int(cb_data.split("//")[1]):
-                await update.answer(f'Downloaded: {siio} of {humanbytes(int(cb_data.split("//")[1]))}')
+            if int(smze)<int(szze):
+                await update.answer(f'Downloaded: {siio} of {humanbytes(int(szze))}')
             else:
-                diff = int(smze)-int(cb_data.split("//")[1])
-                await update.answer(f'Video Downloded Successfully: {humanbytes(int(cb_data.split("//")[1]))} \n\n Now Downloading audio: {humanbytes(diff)}', show_alert="True")
+                diff = int(smze)-int(szze)
+                await update.answer(f'Video Downloded Successfully: {humanbytes(int(szze))} \n\n Now Downloading audio: {humanbytes(diff)}')
                 
