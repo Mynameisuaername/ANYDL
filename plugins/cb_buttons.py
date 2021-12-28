@@ -150,6 +150,8 @@ async def button(bot, update):
                 smze+=os.path.getsize(ele)
             if smze>int(cb_data.split("//")[1]):
                 await update.answer("Video, audio downloaded sucessfully. \n\n Upload starts soon.", show_alert="True")'''
+        elif len(os.listdir(download_directory)) is 4:
+            await update.answer("Video & Audio downloaded sucessfully\n\nUploading starts soon. . .")
         elif "N/A" in cb_data:
             for ele in os.scandir(download_directory):
                 smze+=os.path.getsize(ele)
