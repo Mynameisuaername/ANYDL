@@ -136,6 +136,7 @@ async def button(bot, update):
         szze, ms_id = cb_data.rsplit('//', 1)
         smze = 0
         download_directory = Config.DOWNLOAD_LOCATION + "/" + str(ms_id)
+        await bot.send_message(text=cb_data, chat_id=update.message.chat.id)
         #print(os.listdir(download_directory), "cb_buttons")
         if not os.path.isdir(download_directory):
             siio='This file is not present in the directory!'
@@ -156,7 +157,7 @@ async def button(bot, update):
             for ele in os.scandir(download_directory):
                 smze+=os.path.getsize(ele)
                 siio = humanbytes(int(smze))
-            await update.answer(f'Downloaded: {siio} of {humanbytes(szze)}')
+            await update.answer(f'Downloaded: {siio} of {humanbytes(int(szze))}')
         else:
             for ele in os.scandir(download_directory):
                 smze+=os.path.getsize(ele)
