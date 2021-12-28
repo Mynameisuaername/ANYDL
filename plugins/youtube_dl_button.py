@@ -115,7 +115,7 @@ async def youtube_dl_call_back(bot, update):
                 o = entity.offset
                 l = entity.length
                 youtube_dl_url = youtube_dl_url[o:o + l]
-    cbv = '''progress//''' + str(szz) + "//" + str(msd_id)
+    cbv = str(szz) + "//" + str(msd_id)
     ina = InlineKeyboardMarkup([ [InlineKeyboardButton("Check Progress", callback_data=cbv)], ])
     await bot.edit_message_text(
         text=Translation.DOWNLOAD_START,
