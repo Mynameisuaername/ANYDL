@@ -151,7 +151,7 @@ async def button(bot, update):
             if smze>int(cb_data.split("//")[1]):
                 await update.answer("Video, audio downloaded sucessfully. \n\n Upload starts soon.", show_alert="True")'''
         elif len(os.listdir(download_directory)) == 4:
-            print(os.listdir(download_directory))
+            print(len(os.listdir(download_directory)), os.listdir(download_directory))
             await update.answer("Video & Audio downloaded sucessfully\n\nUploading starts soon. . .")
         elif "N/A" or "None" in cb_data:
             #szze = "N/A"
