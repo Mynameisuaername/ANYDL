@@ -153,11 +153,11 @@ async def button(bot, update):
                 await update.answer("Video, audio downloaded sucessfully. \n\n Upload starts soon.", show_alert="True")'''
         elif len(os.listdir(download_directory)) is 4:
             await update.answer("Video & Audio downloaded sucessfully\n\nUploading starts soon. . .")
-        elif "N/A" in cb_data:
+        elif "N/A" or "None" in cb_data:
             for ele in os.scandir(download_directory):
                 smze+=os.path.getsize(ele)
                 siio = humanbytes(int(smze))
-            await update.answer(f'Downloaded: {siio} of {humanbytes(int(szze))}')
+            await update.answer(f'Downloaded: {siio} of {szze}')
         else:
             for ele in os.scandir(download_directory):
                 smze+=os.path.getsize(ele)
