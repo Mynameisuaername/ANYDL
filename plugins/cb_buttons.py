@@ -133,10 +133,10 @@ async def button(bot, update):
         await ddl_call_back(bot, update)
     elif "//" in cb_data:
         print('\n\n', cb_data, 'cb_buttons')
-        ms_id, szze = cb_data.rsplit('//', 1)
+        szze, ms_id = cb_data.rsplit('//', 1)
         smze = 0
         download_directory = Config.DOWNLOAD_LOCATION + "/" + str(ms_id)
-        print(os.listdir(download_directory), "cb_buttons")
+        #print(os.listdir(download_directory), "cb_buttons")
         if not os.path.isdir(download_directory):
             siio='This file is not present in the directory!'
             await update.answer(siio)
