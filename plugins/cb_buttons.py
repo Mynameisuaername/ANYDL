@@ -163,5 +163,6 @@ async def button(bot, update):
             if int(smze)<int(cb_data.split("//")[1]):
                 await update.answer(f'Downloaded: {siio} of {humanbytes(int(cb_data.split("//")[1]))}')
             else:
-                await update.answer(f"Video Downloded Successfully: {humanbytes(int(cb_data.split("//")[1]))} \n\n Now Downloading audio: {humanbytes(int(cb_data.split("//")[1])-int(smze))}", show_alert="True")
+                diff = int(cb_data.split("//")[1])-int(smze)
+                await update.answer(f"Video Downloded Successfully: {humanbytes(int(cb_data.split("//")[1]))} \n\n Now Downloading audio: {humanbytes(diff)}", show_alert="True")
                 
