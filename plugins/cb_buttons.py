@@ -153,7 +153,7 @@ async def button(bot, update):
         elif len(os.listdir(download_directory)) == 4:
             print(len(os.listdir(download_directory)), os.listdir(download_directory))
             await update.answer("Video & Audio downloaded sucessfully\n\nUploading starts soon. . .")
-        elif "N/A" or "None" in cb_data:
+        elif "N/A" or "None//" in cb_data:
             #szze = "N/A"
             for ele in os.scandir(download_directory):
                 smze+=os.path.getsize(ele)
