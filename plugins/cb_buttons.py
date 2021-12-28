@@ -136,6 +136,7 @@ async def button(bot, update):
         ms_id = cb_data.rsplit('//', 1)[1]
         smze = 0
         download_directory = Config.DOWNLOAD_LOCATION + "/" + str(ms_id)
+        print(os.listdir(download_directory), "cb_buttons")
         if not os.path.isdir(download_directory):
             siio='This file is not present in the directory!'
             await update.answer(siio)
@@ -149,7 +150,11 @@ async def button(bot, update):
                 smze+=os.path.getsize(ele)
             if smze>int(cb_data.split("//")[1]):
                 await update.answer("Video, audio downloaded sucessfully. \n\n Upload starts soon.", show_alert="True")'''
-        
+        elif "N/A" in cb_data:
+            for ele in os.scandir(download_directory):
+                smze+=os.path.getsize(ele)
+                siio = humanbytes(int(smze))
+            await update.answer(f'Downloaded: {siio} of {cb_data.split("//")[1]}')
         else:
             for ele in os.scandir(download_directory):
                 smze+=os.path.getsize(ele)
@@ -158,4 +163,5 @@ async def button(bot, update):
             if int(smze)<int(cb_data.split("//")[1]):
                 await update.answer(f'Downloaded: {siio} of {humanbytes(int(cb_data.split("//")[1]))}')
             else:
-                await update.answer("Video Downloded Successfully. \n\n Now Downloading audio", show_alert="True")
+                await update.answer(f"Video Downloded Successfully: {humanbytes(int(cb_data.split("//")[1]))} \n\n Now Downloading audio: {humanbytes(int(cb_data.split("//")[1])-int(smze))}", show_alert="True")
+                
