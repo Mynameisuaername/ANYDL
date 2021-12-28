@@ -136,7 +136,6 @@ async def button(bot, update):
         szze, ms_id = cb_data.rsplit('//', 1)
         smze = 0
         download_directory = Config.DOWNLOAD_LOCATION + "/" + str(ms_id)
-        await bot.send_message(text=cb_data, chat_id=update.message.chat.id)
         #print(os.listdir(download_directory), "cb_buttons")
         if not os.path.isdir(download_directory):
             siio='This file is not present in the directory!'
@@ -154,6 +153,7 @@ async def button(bot, update):
         elif len(os.listdir(download_directory)) is 4:
             await update.answer("Video & Audio downloaded sucessfully\n\nUploading starts soon. . .")
         elif "N/A" or "None" in cb_data:
+            szze = "N/A"
             for ele in os.scandir(download_directory):
                 smze+=os.path.getsize(ele)
                 siio = humanbytes(int(smze))
