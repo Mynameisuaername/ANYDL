@@ -133,12 +133,20 @@ async def button(bot, update):
         await ddl_call_back(bot, update)
     elif "//" in cb_data:
         szze, ms_id = cb_data.rsplit('//', 1)
-        print('\n\n', cb_data, 'cb_buttons')
         download_directory = Config.DOWNLOAD_LOCATION + "/" + str(ms_id)
-        smze = 0
-        ToStr = ' •• '.join(map(str, os.listdir(download_directory)))
+        smze, vtt = 0, 0
+        '''ToStr = ' •• '.join(map(str, os.listdir(download_directory)))
         await bot.send_message(chat_id = update.message.chat.id, text=ToStr)
-        #print(os.listdir(download_directory), "cb_buttons")
+        print(os.listdir(download_directory), "cb_buttons")
+        print('\n\n', cb_data, 'cb_buttons')'''
+        if os.path.isdir(download_directory):
+            try:
+                for vt in os.listdir(download_directory):
+                    if ".vtt" in vt:
+                        vtt+=1
+            except Exception as vit:
+                print(vit)
+                pass
         if not os.path.isdir(download_directory):
             siio='This file is not present in the directory!'
             await update.answer(siio)
@@ -152,7 +160,7 @@ async def button(bot, update):
                 smze+=os.path.getsize(ele)
             if smze>int(cb_data.split("//")[1]):
                 await update.answer("Video, audio downloaded sucessfully. \n\n Upload starts soon.", show_alert="True")'''
-        elif len(os.listdir(download_directory)) == 4:
+        elif len(os.listdir(download_directory))-vtt == 4:
             print(len(os.listdir(download_directory)), os.listdir(download_directory))
             await update.answer("Video & Audio downloaded sucessfully\n\nUploading starts soon. . .")
         elif "N/A" in cb_data:
