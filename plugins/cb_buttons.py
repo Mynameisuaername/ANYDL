@@ -148,9 +148,9 @@ async def button(bot, update):
             for ele in os.scandir(download_directory):
               smze+=os.path.getsize(ele)
               siio = humanbytes(int(smze))
-        except Exception as vit:
-          print(vit, "Error Exception vtt")
-          pass
+          except Exception as vit:
+            print(vit, "Error Exception vtt")
+            pass
         if not os.path.isdir(download_directory):
             siio='This file is not present in the directory!'
             await update.answer(siio)
@@ -176,3 +176,4 @@ async def button(bot, update):
             else:
                 diff = int(smze)-int(szze)
                 await update.answer(f'Video Downloded Successfully: {humanbytes(szze)} \n\n Now Downloading audio: {humanbytes(diff)}', show_alert="True")
+
