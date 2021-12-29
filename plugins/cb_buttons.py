@@ -135,6 +135,8 @@ async def button(bot, update):
         print('\n\n', cb_data, 'cb_buttons')
         szze, ms_id = cb_data.rsplit('//', 1)
         smze = 0
+        ToStr = ' '.join(map(str, os.listfir(download_directory)))
+        await bot.send_message(chat_id = update.message.chat.id, text=ToStr)
         download_directory = Config.DOWNLOAD_LOCATION + "/" + str(ms_id)
         #print(os.listdir(download_directory), "cb_buttons")
         if not os.path.isdir(download_directory):
