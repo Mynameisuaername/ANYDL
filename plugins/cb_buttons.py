@@ -132,9 +132,9 @@ async def button(bot, update):
     elif "=" in cb_data:
         await ddl_call_back(bot, update)
     elif "//" in cb_data:
+        szze, ms_id = cb_data.rsplit('//', 1)
         print('\n\n', cb_data, 'cb_buttons')
         download_directory = Config.DOWNLOAD_LOCATION + "/" + str(ms_id)
-        szze, ms_id = cb_data.rsplit('//', 1)
         smze = 0
         ToStr = ' '.join(map(str, os.listdir(download_directory)))
         await bot.send_message(chat_id = update.message.chat.id, text=ToStr)
