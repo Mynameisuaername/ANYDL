@@ -172,8 +172,8 @@ async def button(bot, update):
             await update.answer(f'Downloaded: {siio} of {"N/A"}')
         else:
             if int(smze)<int(szze):
-                await update.answer(f'Downloaded: {siio} of {humanbytes(szze)}')
+                await update.answer(f'Downloaded: {siio} of {humanbytes(int(szze))}')
             else:
                 diff = int(smze)-int(szze)
-                await update.answer(f'Video Downloded Successfully: {humanbytes(szze)} \n\n Now Downloading audio: {humanbytes(diff)}', show_alert="True")
+                await update.answer(f'Video Downloded Successfully: {humanbytes(int(szze))} \n\n Now Downloading audio: {humanbytes(diff)}', show_alert="True")
 
