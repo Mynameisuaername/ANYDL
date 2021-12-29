@@ -26,7 +26,7 @@ import pyrogram
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
 from helper_funcs.display_progress import progress_for_pyrogram
-from helper_funcs.help_Nekmo_ffmpeg import generate_screen_shots
+from helper_funcs.help_Nekmo_ffmpeg import take_screen_shot
 from helper_funcs.ran_text import random_char
 
 
@@ -90,7 +90,7 @@ async def convert_to_video(bot, update):
             thumb_image_path = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + ".jpg"
             if not os.path.exists(thumb_image_path):
                 
-                thumb_image_path = await generate_screen_shots(
+                thumb_image_path = await take_screen_shot(
                     the_real_download_location,
                     os.path.dirname(the_real_download_location),
                     random.randint(
@@ -118,11 +118,12 @@ async def convert_to_video(bot, update):
                 # https://pillow.readthedocs.io/en/3.1.x/reference/Image.html#create-thumbnails
             # try to upload file
             c_time = time.time()
+            capp=the_real_download_location.rsplit(".", 1)[0]
             await bot.send_video(
                 chat_id=update.chat.id,
                 video=the_real_download_location,
                 duration=duration,
-                caption=the_real_download_location.rsplit(".", 1)[0],
+                caption=capp.rsplit("/", 1)[1],
                 width=width,
                 height=height,
                 supports_streaming=True,
