@@ -132,7 +132,7 @@ async def button(bot, update):
     elif "=" in cb_data:
         await ddl_call_back(bot, update)
     elif "//" in cb_data:
-        szze, ms_id = cb_data.rsplit('//', 1)
+        szze, ms_id = cb_data.rsplit('//')
         download_directory = Config.DOWNLOAD_LOCATION + "/" + str(ms_id)
         smze, vtt = 0, 0
         '''ToStr = ' •• '.join(map(str, os.listdir(download_directory)))
@@ -140,13 +140,17 @@ async def button(bot, update):
         print(os.listdir(download_directory), "cb_buttons")
         print('\n\n', cb_data, 'cb_buttons')'''
         if os.path.isdir(download_directory):
-            try:
-                for vt in os.listdir(download_directory):
-                    if ".vtt" in vt:
-                        vtt+=1
-            except Exception as vit:
-                print(vit)
-                pass
+          lsst=os.listdir(download_directory)
+          try:
+            for vt in lsst:
+              if ".vtt" in vt:
+                vtt+=1
+            for ele in os.scandir(download_directory):
+              smze+=os.path.getsize(ele)
+              siio = humanbytes(int(smze))
+        except Exception as vit:
+          print(vit, "Error Exception vtt")
+          pass
         if not os.path.isdir(download_directory):
             siio='This file is not present in the directory!'
             await update.answer(siio)
@@ -160,23 +164,15 @@ async def button(bot, update):
                 smze+=os.path.getsize(ele)
             if smze>int(cb_data.split("//")[1]):
                 await update.answer("Video, audio downloaded sucessfully. \n\n Upload starts soon.", show_alert="True")'''
-        elif len(os.listdir(download_directory))-vtt == 4:
-            print(len(os.listdir(download_directory)), os.listdir(download_directory))
+        elif len(lsst)-vtt == 4:
             await update.answer("Video & Audio downloaded sucessfully\n\nUploading starts soon. . .")
         elif "N/A" in cb_data:
-            #szze = "N/A"
-            for ele in os.scandir(download_directory):
-                smze+=os.path.getsize(ele)
-                siio = humanbytes(int(smze))
+            await update.answer(f'Downloaded: {siio} of {"N/A"}')
+        elif "None" in cb_data:
             await update.answer(f'Downloaded: {siio} of {"N/A"}')
         else:
-            for ele in os.scandir(download_directory):
-                smze+=os.path.getsize(ele)
-                siio = humanbytes(int(smze))
-            print('Type of smze:', type(smze), '\n', 'Type of siio:', type(siio))
             if int(smze)<int(szze):
-                await update.answer(f'Downloaded: {siio} of {humanbytes(int(szze))}')
+                await update.answer(f'Downloaded: {siio} of {humanbytes(szze)}')
             else:
                 diff = int(smze)-int(szze)
-                await update.answer(f'Video Downloded Successfully: {humanbytes(int(szze))} \n\n Now Downloading audio: {humanbytes(diff)}', show_alert="True")
-                
+                await update.answer(f'Video Downloded Successfully: {humanbytes(szze)} \n\n Now Downloading audio: {humanbytes(diff)}', show_alert="True")
