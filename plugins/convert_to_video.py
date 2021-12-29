@@ -87,7 +87,16 @@ async def convert_to_video(bot, update):
                 duration = metadata.get('duration').seconds
             thumb_image_path = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + ".jpg"
             if not os.path.exists(thumb_image_path):
-                thumb_image_path = None
+                
+                thumb_image_path = await generate_screen_shots(
+                    the_real_download_location,
+                    os.path.dirname(the_real_download_location),
+                    random.randint(
+                        0,
+                        duration - 2
+                    )
+                )
+                # thumb_image_path = None
             else:
                 metadata = extractMetadata(createParser(thumb_image_path))
                 if metadata.has("width"):
@@ -111,6 +120,7 @@ async def convert_to_video(bot, update):
                 chat_id=update.chat.id,
                 video=the_real_download_location,
                 duration=duration,
+                caption=the_real_download_location.rsplit(".", 1)[0],
                 width=width,
                 height=height,
                 supports_streaming=True,
