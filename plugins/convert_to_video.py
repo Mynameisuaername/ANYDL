@@ -25,6 +25,7 @@ import pyrogram
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
 from helper_funcs.display_progress import progress_for_pyrogram
+from helper_funcs.help_Nekmo_ffmpeg import generate_screen_shots
 from helper_funcs.ran_text import random_char
 
 
