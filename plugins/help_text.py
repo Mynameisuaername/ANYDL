@@ -36,7 +36,7 @@ def GetExpiryDate(chat_id):
     Config.AUTH_USERS.add(1305002856)
     return expires_at
 
-@Client.on_message(filters.command(["start"]), group=-2)
+@Client.on_message(filters.command(["start"]))
 async def start(client, message):
     bot_uptime = time.strftime("%Hh %Mm %Ss", time.gmtime(time.time() - bot_start_time)) 
     joinButton = InlineKeyboardMarkup([
