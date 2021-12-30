@@ -310,7 +310,7 @@ async def echo(bot, update):
         time.sleep(1)
         await bot.send_photo(
             chat_id=update.chat.id,
-            photo=thumb_image_path,
+            photo=thumbnail,
             caption=Translation.FORMAT_SELECTION.format(thumbnail) + "\n" + Translation.SET_CUSTOM_USERNAME_PASSWORD,
             reply_markup=reply_markup,
             parse_mode="html",
