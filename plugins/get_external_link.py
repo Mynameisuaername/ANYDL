@@ -151,7 +151,7 @@ async def get_link(bot, update):
 
             if "getlink1" in update.text:
                 DO_LINK=InlineKeyboardMarkup([[InlineKeyboardButton("Download Link", url=t_response_ray[37])], ])
-                t_xt=Translation.AFTER_GET_GOFILE_LINK.format(t_response_ray[29], humanbytes(s0ze), t_response_ray[33], t_response_ray[13])
+                t_xt=Translation.AFTER_GET_GOFILE_LINK.format(t_response_ray[29], s0ze, t_response_ray[33], t_response_ray[13])
             if "getlink2" in update.text:
                 DO_LINK=InlineKeyboardMarkup([[InlineKeyboardButton("Download Link", url=t_response_ray[11])], ])
                 t_xt=Translation.AFTER_GET_LINK.format(t_response_ray[25], t_response_ray[-2], t_response_ray[15])
