@@ -32,7 +32,7 @@ from helper_funcs.ran_text import random_char
 
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
-@pyrogram.Client.on_message(pyrogram.filters.command(["getlink2"]))
+#@pyrogram.Client.on_message(pyrogram.filters.command(["getlink2"]))
 async def get_link(bot, update):
     if update.from_user.id not in Config.AUTH_USERS:
         await bot.delete_messages(
