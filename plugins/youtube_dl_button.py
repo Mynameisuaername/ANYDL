@@ -196,7 +196,10 @@ async def youtube_dl_call_back(bot, update):
 
     if t_response:
         logger.info(t_response)
-        
+        try:
+            os.remove(save_ytdl_json_path)
+        except FileNotFoundError as exc:
+            pass
         end_one = datetime.now()
         time_taken_for_download = (end_one -start).seconds
         file_size = Config.TG_MAX_FILE_SIZE + 1
