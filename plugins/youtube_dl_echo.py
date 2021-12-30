@@ -308,9 +308,9 @@ async def echo(bot, update):
             thumb_image_path = None
         await chk.delete()
         time.sleep(1)
-        await bot.send_message(
+        await bot.send_photo(
             chat_id=update.chat.id,
-            text=Translation.FORMAT_SELECTION.format(thumbnail) + "\n" + Translation.SET_CUSTOM_USERNAME_PASSWORD,
+            caption=Translation.FORMAT_SELECTION.format(thumbnail) + "\n" + Translation.SET_CUSTOM_USERNAME_PASSWORD,
             reply_markup=reply_markup,
             parse_mode="html",
             reply_to_message_id=update.message_id
@@ -335,10 +335,9 @@ async def echo(bot, update):
         reply_markup = InlineKeyboardMarkup(inline_keyboard)
         await chk.delete()
         #time.sleep(1)
-        await bot.send_photo(
+        await bot.send_message(
             chat_id=update.chat.id,
-            photo=thumb_image_path,
-            caption=Translation.FORMAT_SELECTION.format(""),
+            text=Translation.FORMAT_SELECTION.format(""),
             reply_markup=reply_markup,
             parse_mode="html",
             reply_to_message_id=update.message_id
