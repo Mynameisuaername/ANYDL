@@ -130,7 +130,7 @@ async def echo(bot, update):
     chk = await bot.send_photo(
             chat_id=update.chat.id,
             photo="https://telegra.ph/file/7b9ae974724cff07771e7.jpg",
-            text=f'Searching on Youtube...🔎',
+            caption=f'Searching on Youtube...🔎',
             disable_web_page_preview=True,
             reply_to_message_id=update.message_id
           )
@@ -338,7 +338,7 @@ async def echo(bot, update):
         await bot.send_photo(
             chat_id=update.chat.id,
             photo=thumb_image_path,
-            text=Translation.FORMAT_SELECTION.format(""),
+            caption=Translation.FORMAT_SELECTION.format(""),
             reply_markup=reply_markup,
             parse_mode="html",
             reply_to_message_id=update.message_id
