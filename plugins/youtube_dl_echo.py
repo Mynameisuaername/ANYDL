@@ -131,7 +131,7 @@ async def echo(bot, update):
             chat_id=update.chat.id,
             photo="https://telegra.ph/file/7b9ae974724cff07771e7.jpg",
             caption=f'Searching on Youtube...🔎',
-            disable_web_page_preview=True,
+            # disable_web_page_preview=True,
             reply_to_message_id=update.message_id
           )
     process = await asyncio.create_subprocess_exec(
