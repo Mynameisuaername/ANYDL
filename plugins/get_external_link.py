@@ -142,7 +142,7 @@ async def get_link(bot, update):
             return False
         else:
             logger.info(t_response)
-            if "/getlink" == update.text
+            if "/getlink" == update.text:
                 t_response_array = t_response.decode("UTF-8").split("\n")[-1].strip()
             else:
                 t_response_array = t_response.decode("UTF-8").split("\n")[-1].strip()
