@@ -127,9 +127,10 @@ async def echo(bot, update):
         command_to_exec.append("--password")
         command_to_exec.append(youtube_dl_password)
     logger.info(command_to_exec)
-    chk = await bot.send_message(
+    chk = await bot.send_photo(
             chat_id=update.chat.id,
-            text=f'Checking your link...🧐',
+            photo="https://telegra.ph/file/7b9ae974724cff07771e7.jpg",
+            text=f'Searching on Youtube...🔎',
             disable_web_page_preview=True,
             reply_to_message_id=update.message_id
           )
@@ -334,8 +335,9 @@ async def echo(bot, update):
         reply_markup = InlineKeyboardMarkup(inline_keyboard)
         await chk.delete()
         #time.sleep(1)
-        await bot.send_message(
+        await bot.send_photo(
             chat_id=update.chat.id,
+            photo=thumb_image_path,
             text=Translation.FORMAT_SELECTION.format(""),
             reply_markup=reply_markup,
             parse_mode="html",
