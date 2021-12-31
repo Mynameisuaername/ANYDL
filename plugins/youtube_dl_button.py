@@ -37,6 +37,7 @@ from PIL import Image
 from helper_funcs.help_Nekmo_ffmpeg import generate_screen_shots
 from helper_funcs.ran_text import random_char
 from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
+from pyrogram.types import InputMediaPhoto, InputMediaVideo, InputMediaAudio
 
 async def youtube_dl_call_back(bot, update):
     cb_data = update.data
@@ -285,7 +286,7 @@ async def youtube_dl_call_back(bot, update):
             if tg_send_type == "audio":
                 await bot.edit_message_media(
                     chat_id=update.message.chat.id,
-                    audio=download_directory,
+                    media=InputMediaAudio(download_directory),
                     caption=description,
                     parse_mode="HTML",
                     duration=duration,
@@ -304,7 +305,7 @@ async def youtube_dl_call_back(bot, update):
             elif tg_send_type == "file":
                 await bot.edit_message_media(
                     chat_id=update.message.chat.id,
-                    document=download_directory,
+                    media=InputMediaDocument(download_directory),
                     thumb=thumb_image_path,
                     caption=description,
                     parse_mode="HTML",
@@ -335,7 +336,7 @@ async def youtube_dl_call_back(bot, update):
             elif tg_send_type == "video":
                 await bot.edit_message_media(
                     chat_id=update.message.chat.id,
-                    video=download_directory,
+                    media=InputMediaVideo(download_directory),
                     caption=description,
                     parse_mode="HTML",
                     duration=duration,
