@@ -304,13 +304,14 @@ async def echo(bot, update):
         if os.path.exists(thumb_image_path):
             im = Image.open(thumb_image_path).convert("RGB")
             im.save(thumb_image_path.replace(".webp", ".jpg"), "jpeg")
+            print(thumb_image_path)
         else:
             thumb_image_path = None
         await chk.delete()
         time.sleep(1)
         await bot.send_photo(
             chat_id=update.chat.id,
-            photo=thumbnail,
+            photo=thumb_image_path,
             caption=Translation.FORMAT_SELECTION.format(thumbnail) + "\n" + Translation.SET_CUSTOM_USERNAME_PASSWORD,
             reply_markup=reply_markup,
             parse_mode="html",
