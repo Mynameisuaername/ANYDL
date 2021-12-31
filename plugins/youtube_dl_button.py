@@ -286,7 +286,7 @@ async def youtube_dl_call_back(bot, update):
             if tg_send_type == "audio":
                 await bot.edit_message_media(
                     chat_id=update.message.chat.id,
-                    media=InputMediaAudio(media=download_directory, caption=description, duration=duration, thumb=thumb_image_path, supports_streaming=True, prase_mode="HTML"),
+                    media=InputMediaAudio(media=download_directory, caption=description, duration=duration, thumb=thumb_image_path, supports_streaming=True, parse_mode="HTML"),
                     # caption=description,
                     # parse_mode="HTML",
                     # duration=duration,
@@ -305,7 +305,7 @@ async def youtube_dl_call_back(bot, update):
             elif tg_send_type == "file":
                 await bot.edit_message_media(
                     chat_id=update.message.chat.id,
-                    media=InputMediaDocument(media=download_directory, caption=description, duration=duration, thumb=thumb_image_path, supports_streaming=True, prase_mode="HTML"),
+                    media=InputMediaDocument(media=download_directory, caption=description, duration=duration, thumb=thumb_image_path, supports_streaming=True, parse_mode="HTML"),
                     # thumb=thumb_image_path,
                     # caption=description,
                     # parse_mode="HTML",
@@ -336,7 +336,7 @@ async def youtube_dl_call_back(bot, update):
             elif tg_send_type == "video":
                 await bot.edit_message_media(
                     chat_id=update.message.chat.id,
-                    media=InputMediaVideo(media=download_directory, caption=description, width=width, height=height, duration=duration, thumb=thumb_image_path, supports_streaming=True, prase_mode="HTML"),
+                    media=InputMediaVideo(media=download_directory, caption=description, width=width, height=height, duration=duration, thumb=thumb_image_path, supports_streaming=True, parse_mode="HTML"),
                     # caption=description,
                     # parse_mode="HTML",
                     # duration=duration,
