@@ -309,9 +309,10 @@ async def echo(bot, update):
             thumb_image_path = None
         await chk.delete()
         time.sleep(1)
+        thumbb=Config.DOWNLOAD_LOCATION + '/' + str(update.from_user.id) + ' ' + str(update.message_id) + '.jpg'
         await bot.send_photo(
             chat_id=update.chat.id,
-            photo=thumb_image_path,
+            photo=thumbb,
             caption=Translation.FORMAT_SELECTION.format(thumbnail) + "\n" + Translation.SET_CUSTOM_USERNAME_PASSWORD,
             reply_markup=reply_markup,
             parse_mode="html",
