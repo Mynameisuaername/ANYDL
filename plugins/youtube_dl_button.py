@@ -286,14 +286,14 @@ async def youtube_dl_call_back(bot, update):
             if tg_send_type == "audio":
                 await bot.edit_message_media(
                     chat_id=update.message.chat.id,
-                    media=InputMediaAudio(download_directory),
-                    caption=description,
-                    parse_mode="HTML",
-                    duration=duration,
+                    media=InputMediaAudio(media=download_directory, caption=description, duration=duration, thumb=thumb_image_path, supports_streaming=True, prase_mode="HTML"),
+                    # caption=description,
+                    # parse_mode="HTML",
+                    # duration=duration,
                     # performer=response_json["uploader"],
                     # title=response_json["title"],
                     # reply_markup=reply_markup,
-                    thumb=thumb_image_path,
+                    # thumb=thumb_image_path,
                     reply_to_message_id=update.message.reply_to_message.message_id,
                     progress=progress_for_pyrogram,
                     progress_args=(
@@ -305,10 +305,10 @@ async def youtube_dl_call_back(bot, update):
             elif tg_send_type == "file":
                 await bot.edit_message_media(
                     chat_id=update.message.chat.id,
-                    media=InputMediaDocument(download_directory),
-                    thumb=thumb_image_path,
-                    caption=description,
-                    parse_mode="HTML",
+                    media=InputMediaDocument(media=download_directory, caption=description, duration=duration, thumb=thumb_image_path, supports_streaming=True, prase_mode="HTML"),
+                    # thumb=thumb_image_path,
+                    # caption=description,
+                    # parse_mode="HTML",
                     # reply_markup=reply_markup,
                     reply_to_message_id=update.message.reply_to_message.message_id,
                     progress=progress_for_pyrogram,
@@ -336,15 +336,15 @@ async def youtube_dl_call_back(bot, update):
             elif tg_send_type == "video":
                 await bot.edit_message_media(
                     chat_id=update.message.chat.id,
-                    media=InputMediaVideo(download_directory),
-                    caption=description,
-                    parse_mode="HTML",
-                    duration=duration,
-                    width=width,
-                    height=height,
-                    supports_streaming=True,
+                    media=InputMediaVideo(media=download_directory, caption=description, width=width, height=height, duration=duration, thumb=thumb_image_path, supports_streaming=True, prase_mode="HTML"),
+                    # caption=description,
+                    # parse_mode="HTML",
+                    # duration=duration,
+                    # width=width,
+                    # height=height,
+                    # supports_streaming=True,
                     # reply_markup=reply_markup,
-                    thumb=thumb_image_path,
+                    # thumb=thumb_image_path,
                     reply_to_message_id=update.message.reply_to_message.message_id,
                     progress=progress_for_pyrogram,
                     progress_args=(
