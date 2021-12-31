@@ -295,12 +295,13 @@ async def youtube_dl_call_back(bot, update):
                     # reply_markup=reply_markup,
                     # thumb=thumb_image_path,
                     # reply_to_message_id=update.message.reply_to_message.message_id,
-                    progress=progress_for_pyrogram,
+                    message_id=update.message.message_id
+                    '''progress=progress_for_pyrogram,
                     progress_args=(
                         Translation.UPLOAD_START,
                         update.message,
                         start_time
-                    )
+                    )'''
                 )
             elif tg_send_type == "file":
                 await bot.edit_message_media(
@@ -311,12 +312,13 @@ async def youtube_dl_call_back(bot, update):
                     # parse_mode="HTML",
                     # reply_markup=reply_markup,
                     # reply_to_message_id=update.message.reply_to_message.message_id,
-                    progress=progress_for_pyrogram,
+                    message_id=update.message.message_id
+                    '''progress=progress_for_pyrogram,
                     progress_args=(
                         Translation.UPLOAD_START,
                         update.message,
                         start_time
-                    )
+                    )'''
                 )
             elif tg_send_type == "vm":
                 await bot.send_video_note(
@@ -346,12 +348,13 @@ async def youtube_dl_call_back(bot, update):
                     # reply_markup=reply_markup,
                     # thumb=thumb_image_path,
                     # reply_to_message_id=update.message.reply_to_message.message_id,
-                    progress=progress_for_pyrogram,
+                    message_id=update.message.message_id
+                    '''progress=progress_for_pyrogram,
                     progress_args=(
                         Translation.UPLOAD_START,
                         update.message,
                         start_time
-                    )
+                    )'''
                 )
             else:
                 logger.info("Did this happen? :\\")
