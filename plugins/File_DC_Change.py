@@ -81,7 +81,8 @@ async def rename_doc(bot, update):
                 message_id=a.message_id,
             )
             logger.info(the_real_download_location)
-            thumb_image_path = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + "_" + ".jpg"
+            # thumb_image_path = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + "_" + ".jpg"
+            
             '''if not os.path.exists(thumb_image_path):
                 try:
                     thumb_image_path = await take_screen_shot(new_file_name, os.path.dirname(new_file_name), random.randint(0, duration - 1))
@@ -109,7 +110,7 @@ async def rename_doc(bot, update):
             await bot.send_document(
                 chat_id=update.chat.id,
                 document=the_real_download_location,
-                thumb=thumb_image_path,
+                # thumb=thumb_image_path,
                 caption=caption,
                 # reply_markup=reply_markup,
                 reply_to_message_id=update.reply_to_message.message_id,
