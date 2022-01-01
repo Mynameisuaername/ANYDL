@@ -70,13 +70,14 @@ async def convert_to_audio(bot, update):
         else:
             # don't care about the extension
             # convert video to audio format
-            audio_file_location_path = the_real_download_location
+            # audio_file_location_path = the_real_download_location
             # await a.delete()
             await bot.edit_message_text(
                 chat_id=update.chat.id,
                 text=Translation.UPLOAD_START,
                 message_id=a.message_id
             )
+            print(os.listdir(Config.DOWNLOAD_LOCATION))
             logger.info(the_real_download_location)
             # get the correct width, height, and duration for videos greater than 10MB
             # ref: message from @BotSupport
@@ -86,7 +87,7 @@ async def convert_to_audio(bot, update):
             metadata = extractMetadata(createParser(the_real_download_location))
             if metadata.has("duration"):
                 duration = metadata.get('duration').seconds
-            thumb_image_path = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + ".jpg"
+            thumb_image_path = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + "_" + ".jpg"
             if not os.path.exists(thumb_image_path):
                 thumb_image_path = None
             else:
@@ -110,7 +111,7 @@ async def convert_to_audio(bot, update):
             c_time = time.time()
             await bot.send_document(
                 chat_id=update.chat.id,
-                document=audio_file_location_path,
+                document=the_real_download_location,
                 duration=duration,
                 # performer="",
                 # title="",
