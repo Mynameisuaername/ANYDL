@@ -112,7 +112,6 @@ async def convert_to_audio(bot, update):
             await bot.send_document(
                 chat_id=update.chat.id,
                 document=the_real_download_location,
-                duration=duration,
                 # performer="",
                 # title="",
                 # reply_markup=reply_markup,
