@@ -54,8 +54,8 @@ async def rename_doc(bot, update):
             reply_to_message_id=update.message_id
         )
         c_time = time.time()
-        if update.message.caption is not None:
-            caption=update.message.caption
+        if update.caption is not None:
+            caption=update.caption
             print(caption)
         else:
             caption=""
