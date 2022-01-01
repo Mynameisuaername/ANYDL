@@ -44,7 +44,7 @@ async def rename_doc(bot, update):
         )
         return
     if update.reply_to_message is not None:
-        cmd, file_name = update.text.split(" ", 1)
+        # cmd, file_name = update.text.split(" ", 1)
         # description = Translation.CUSTOM_CAPTION_UL_FILE
         r5 = random_char(5)
         download_location = Config.DOWNLOAD_LOCATION + "/" + f'{r5}' + "/"
@@ -57,7 +57,7 @@ async def rename_doc(bot, update):
         if update.caption is not None:
             caption=update.caption
         else:
-            caption=None
+            caption=""
         the_real_download_location = await bot.download_media(
             message=update.reply_to_message,
             file_name=download_location,
