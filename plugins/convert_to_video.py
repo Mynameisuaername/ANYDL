@@ -113,7 +113,7 @@ async def convert_to_video(bot, update):
                 img = Image.open(thumb_image_path)
                 # https://stackoverflow.com/a/37631799/4723940
                 # img.thumbnail((90, 90))
-                img.resize((90, height))
+                img.resize((90, 90))
                 img.save(thumb_image_path, "JPEG")
                 # https://pillow.readthedocs.io/en/3.1.x/reference/Image.html#create-thumbnails
             # try to upload file
