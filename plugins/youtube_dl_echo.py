@@ -31,6 +31,7 @@ from helper_funcs.help_uploadbot import DownLoadFile
 from helper_funcs.ran_text import random_char
 
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from pyrogram.types import InputMediaPhoto, InputMediaVideo, InputMediaAudio, InputMediaDocument
 from pyrogram import filters
 from pyrogram.errors import UserNotParticipant, UserBannedInChannel
 
@@ -307,16 +308,13 @@ async def echo(bot, update):
             print(thumb_image_path)
         else:
             thumb_image_path = None
-        await chk.delete()
-        time.sleep(1)
+        # await chk.delete()
         thumbb=Config.DOWNLOAD_LOCATION + '/' + str(update.from_user.id) + ' ' + str(update.message_id) + '.jpg'
-        await bot.send_photo(
-            chat_id=update.chat.id,
-            photo=thumbb,
-            caption=Translation.FORMAT_SELECTION.format(thumbnail) + "\n" + Translation.SET_CUSTOM_USERNAME_PASSWORD,
-            reply_markup=reply_markup,
-            parse_mode="html",
-            reply_to_message_id=update.message_id
+        await bot.edit_message_media(
+           chat_id=update.message.chat.id,
+           media=InputMediaPhoto(media=thumbb, caption=description, parse_mode="HTML"),
+           message_id=chk.message.message_id,
+           reply_markup=reply_markup
         )
     else:
         # fallback for nonnumeric port a.k.a seedbox.io
@@ -337,7 +335,7 @@ async def echo(bot, update):
         ])
         reply_markup = InlineKeyboardMarkup(inline_keyboard)
         await chk.delete()
-        #time.sleep(1)
+        # time.sleep(1)
         await bot.send_message(
             chat_id=update.chat.id,
             text=Translation.FORMAT_SELECTION.format(""),
