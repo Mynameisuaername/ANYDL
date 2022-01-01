@@ -56,6 +56,7 @@ async def rename_doc(bot, update):
         c_time = time.time()
         if update.caption is not None:
             caption=update.caption
+            print(caption)
         else:
             caption=""
         the_real_download_location = await bot.download_media(
