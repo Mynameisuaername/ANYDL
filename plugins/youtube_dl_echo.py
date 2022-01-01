@@ -193,8 +193,6 @@ async def echo(bot, update):
                 approx_file_size = ""
                 if "filesize" in formats:
                     approx_file_size = formats["filesize"]
-                    #sz_in_bytes = formats["filesize"]
-                    print('Printing approx_file_size', type(approx_file_size), "sz in bytes")
                 cb_string_video = "{}|{}|{}|{}".format(
                     "video", format_id, format_ext, str(approx_file_size) + idd_m)
                 cb_string_file = "{}|{}|{}|{}".format(
