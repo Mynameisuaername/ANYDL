@@ -81,12 +81,6 @@ async def convert_to_audio(bot, update):
             logger.info(the_real_download_location)
             # get the correct width, height, and duration for videos greater than 10MB
             # ref: message from @BotSupport
-            width = 0
-            height = 0
-            duration = 0
-            metadata = extractMetadata(createParser(the_real_download_location))
-            if metadata.has("duration"):
-                duration = metadata.get('duration').seconds
             thumb_image_path = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + "_" + ".jpg"
             if not os.path.exists(thumb_image_path):
                 thumb_image_path = None
