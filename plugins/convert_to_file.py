@@ -77,8 +77,9 @@ async def convert_to_audio(bot, update):
                 text=Translation.UPLOAD_START,
                 message_id=a.message_id
             )
-            print(os.listdir(Config.DOWNLOAD_LOCATION))
             logger.info(the_real_download_location)
+            caption=the_real_download_location.rsplit("/", 1)[1]
+            caption=caption.rsplit(".", 1)[0]
             # get the correct width, height, and duration for videos greater than 10MB
             # ref: message from @BotSupport
             thumb_image_path = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + "_" + ".jpg"
@@ -106,6 +107,7 @@ async def convert_to_audio(bot, update):
             await bot.send_document(
                 chat_id=update.chat.id,
                 document=the_real_download_location,
+                caption=caption,
                 # performer="",
                 # title="",
                 # reply_markup=reply_markup,
@@ -114,7 +116,7 @@ async def convert_to_audio(bot, update):
                 progress=progress_for_pyrogram,
                 progress_args=(
                     Translation.UPLOAD_START,
-                    up, 
+                    a, 
                     c_time
                 )
             )
