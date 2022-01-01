@@ -282,11 +282,13 @@ async def echo(bot, update):
                     callback_data=(cb_string_file).encode("UTF-8")
                 )
             ])
-            print("Inline Keyboard ---", inline_keyboard, '\n --End Inline Keyboard')
+            # print("Inline Keyboard ---", inline_keyboard, '\n --End Inline Keyboard')
         reply_markup = InlineKeyboardMarkup(inline_keyboard)
         # logger.info(reply_markup)
         thumbnail = Config.DEF_THUMB_NAIL_VID_S
         thumbnail_image = Config.DEF_THUMB_NAIL_VID_S
+        if "fulltitle" in response_json:
+            titlle = response_json["fulltitle"][0:1021]
         if "thumbnail" in response_json:
             if response_json["thumbnail"] is not None:
                 thumbnail = response_json["thumbnail"]
@@ -312,7 +314,7 @@ async def echo(bot, update):
         thumbb=Config.DOWNLOAD_LOCATION + '/' + str(update.from_user.id) + ' ' + str(update.message_id) + '.jpg'
         await bot.edit_message_media(
            chat_id=update.message.chat.id,
-           media=InputMediaPhoto(media=thumbb, caption=description, parse_mode="HTML"),
+           media=InputMediaPhoto(media=thumbb, caption=description.format(titlle, url), parse_mode="HTML"),
            message_id=chk.message.message_id,
            reply_markup=reply_markup
         )
