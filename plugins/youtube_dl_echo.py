@@ -313,9 +313,9 @@ async def echo(bot, update):
         # await chk.delete()
         thumbb=Config.DOWNLOAD_LOCATION + '/' + str(update.from_user.id) + ' ' + str(update.message_id) + '.jpg'
         await bot.edit_message_media(
-           chat_id=update.message.chat.id,
+           chat_id=update.chat.id,
            media=InputMediaPhoto(media=thumbb, caption=description.format(titlle, url), parse_mode="HTML"),
-           message_id=chk.message.message_id,
+           message_id=chk.message_id,
            reply_markup=reply_markup
         )
     else:
