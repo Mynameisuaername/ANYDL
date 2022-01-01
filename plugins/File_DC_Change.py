@@ -116,7 +116,7 @@ async def rename_doc(bot, update):
                 progress=progress_for_pyrogram,
                 progress_args=(
                     Translation.UPLOAD_START,
-                    up, 
+                    a, 
                     c_time
                 )
             )
