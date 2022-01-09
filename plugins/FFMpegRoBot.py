@@ -77,9 +77,11 @@ async def trim(bot, update):
                     message_id=a.message_id
                 )
                 metadata = extractMetadata(createParser(o))
+                print("metedata ::", metadata, "::Metadata")
                 duration = None
                 if metadata.has("duration"):
                     duration = metadata.get('duration')
+                    print(duration)
                 thumb_image_path = await take_screen_shot(
                     o,
                     os.path.dirname(o),
