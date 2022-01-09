@@ -80,7 +80,7 @@ async def trim(bot, update):
                 print("metedata ::", metadata, "::Metadata")
                 duration = None
                 if metadata.has("duration"):
-                    duration = metadata.get('duration')
+                    duration = metadata.get('duration').seconds
                     print(duration)
                 thumb_image_path = await take_screen_shot(
                     o,
