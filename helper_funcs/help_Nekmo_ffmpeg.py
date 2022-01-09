@@ -105,10 +105,10 @@ async def cult_small_video(video_file, output_directory, start_time, end_time):
     file_genertor_command = [
         "ffmpeg",
         "-ss",
-        start_time,
         "-i",
         video_file,
-        "-to",
+        start_time,
+        "-t",
         end_time,
         "-c:v",
         "copy",
