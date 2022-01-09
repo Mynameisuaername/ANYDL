@@ -79,7 +79,7 @@ async def convert_to_audio(bot, update):
                     message_id=ab.message_id
                 )
                 metadata = extractMetadata(createParser(auddio))
-                print('Metadata:', metadate, ':Metadata')
+                print('Metadata:', metadata, ':Metadata')
                 duration=None
                 # if metadata.has('duration'):
                     # duration=metadata.get("duration").seconds
