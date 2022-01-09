@@ -86,7 +86,7 @@ async def convert_to_audio(bot, update):
                 await bot.send_audio(
                     chat_id=update.chat.id,
                     audio=auddio,
-                    supports_streaming=True,
+                    # supports_streaming=True,
                     reply_to_message_id=update.message_id,
                     progress=progress_for_pyrogram,
                     progress_args=(
