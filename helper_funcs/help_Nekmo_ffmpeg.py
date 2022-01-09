@@ -106,7 +106,7 @@ async def cult_small_video(video_file, output_directory, start_time, end_time):
         "ffmpeg",
         "-ss",
         start_time,
-        "-i"
+        "-i",
         video_file,
         "-to",
         end_time,
