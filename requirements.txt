@@ -8,7 +8,7 @@ moviepy
 requests
 psutil
 tgcrypto
-#youtube-dl
+youtube-dl
 yt-dlp
 olefile
 speedtest-cli
