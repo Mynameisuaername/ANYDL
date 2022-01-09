@@ -108,12 +108,12 @@ async def cult_small_video(video_file, output_directory, start_time, end_time):
         video_file,
         "-ss",
         start_time,
-        "-t",
+        "-to",
         end_time,
-        "-async",
-        "1",
-        "-c",
-        "-copy",
+        "-c:v",
+        "copy",
+        "-c:a",
+        "copy",
         out_put_file_name
     ]
     process = await asyncio.create_subprocess_exec(
