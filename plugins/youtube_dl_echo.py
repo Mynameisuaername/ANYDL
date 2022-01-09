@@ -113,9 +113,17 @@ async def echo(bot, update):
             url,
             "--proxy", Config.HTTP_PROXY
         ]
-    else:
+    elif "/shorts/" in url:
         command_to_exec = [
             "yt-dlp",
+            "--no-warnings",
+            "--youtube-skip-dash-manifest",
+            "-j",
+            url
+        ]        
+    else:
+        command_to_exec = [
+            "youtube-dl",
             "--no-warnings",
             "--youtube-skip-dash-manifest",
             "-j",
