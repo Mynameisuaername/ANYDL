@@ -76,6 +76,8 @@ async def trim(bot, update):
                     text=Translation.UPLOAD_START,
                     message_id=a.message_id
                 )
+                metadata = extractMetadata(createParser(o))
+                duration = None
                 if metadata.has("duration"):
                     duration = metadata.get('duration')
                 thumb_image_path = await take_screen_shot(
