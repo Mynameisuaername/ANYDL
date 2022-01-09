@@ -80,7 +80,7 @@ async def convert_to_audio(bot, update):
                 metadata = extractMetadata(createParser(auddio))
                 duration=None
                 if metadata.has('duration'):
-                    duration=metadat.get("duration").seconds
+                    duration=metadata.get("duration").seconds
                 await bot.send_audio(
                     chat_id=update.chat.id,
                     audio=auddio,
