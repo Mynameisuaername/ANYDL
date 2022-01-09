@@ -72,15 +72,17 @@ async def convert_to_audio(bot, update):
             time.sleep(0.5)
             auddio=exa_audio(the_real_download_location)
             if auddio is not None:
+                logger.info(auddio)
                 await bot.edit_message_text(
                     text=Translation.UPLOAD_START,
                     chat_id=update.chat.id,
                     message_id=ab.message_id
                 )
                 metadata = extractMetadata(createParser(auddio))
+                print('Metadata:', metadate, ':Metadata')
                 duration=None
-                if metadata.has('duration'):
-                    duration=metadata.get("duration").seconds
+                # if metadata.has('duration'):
+                    # duration=metadata.get("duration").seconds
                 await bot.send_audio(
                     chat_id=update.chat.id,
                     audio=auddio,
