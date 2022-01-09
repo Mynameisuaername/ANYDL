@@ -104,16 +104,16 @@ async def cult_small_video(video_file, output_directory, start_time, end_time):
         "/" + str(round(time.time())) + ".mp4"
     file_genertor_command = [
         "ffmpeg",
-        "-ss",
         "-i",
         video_file,
+        "-ss"
         start_time,
         "-t",
         end_time,
-        "-c:v",
-        "copy",
-        "-c:a",
-        "copy",
+        "-async",
+        "1",
+        "-c",
+        "-copy",
         out_put_file_name
     ]
     process = await asyncio.create_subprocess_exec(
