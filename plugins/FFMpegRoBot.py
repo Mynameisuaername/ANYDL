@@ -28,6 +28,7 @@ from helper_funcs.help_Nekmo_ffmpeg import take_screen_shot, cult_small_video
 
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
+import random
 
 
 @pyrogram.Client.on_message(pyrogram.filters.command(["ffmpegrobot"]))
@@ -75,17 +76,27 @@ async def trim(bot, update):
                     text=Translation.UPLOAD_START,
                     message_id=a.message_id
                 )
+                if metadata.has("duration"):
+                    duration = metadata.get('duration')
+                thumb_image_path = await take_screen_shot(
+                    o,
+                    os.path.dirname(o),
+                    random.randint(
+                        0,
+                        duration - 2
+                    )
+                )
                 c_time = time.time()
                 await bot.send_video(
                     chat_id=update.chat.id,
                     video=o,
                     # caption=description,
-                    # duration=duration,
+                    duration=duration,
                     # width=width,
                     # height=height,
                     supports_streaming=True,
                     # reply_markup=reply_markup,
-                    # thumb=thumb_image_path,
+                    thumb=thumb_image_path,
                     reply_to_message_id=update.message_id,
                     progress=progress_for_pyrogram,
                     progress_args=(
