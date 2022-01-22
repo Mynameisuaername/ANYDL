@@ -73,6 +73,7 @@ async def convert_to_audio(bot, update):
             auddio=exa_audio(the_real_download_location)
             if auddio is not None:
                 logger.info(auddio)
+                update.reply_text(str(auddio)+'\n'+type(auddio))
                 await bot.edit_message_text(
                     text=Translation.UPLOAD_START,
                     chat_id=update.chat.id,
