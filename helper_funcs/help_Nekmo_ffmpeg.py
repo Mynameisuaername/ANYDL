@@ -165,7 +165,6 @@ async def exa_audio(video_file):
         "ffmpeg",
         "-i",
         video_file,
-        "-vn",
         "-acodec",
         "copy",
         audio_file
