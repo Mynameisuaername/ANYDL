@@ -161,6 +161,7 @@ async def generate_screen_shots(
 
 async def exa_audio(video_file):
     audio_file=video_file.rsplit(".", 1)[0]+".mp3"
+    print(audio_file)
     audio_extract=[
         "ffmpeg",
         "-i",
@@ -180,6 +181,7 @@ async def exa_audio(video_file):
     e_response = stderr.decode().strip()
     t_response = stdout.decode().strip()
     if os.path.lexists(audio_file):
+        print(os.path.getsize(audio_file))
         return audio_file
     else:
         return None
