@@ -37,15 +37,15 @@ def GetExpiryDate(chat_id):
     return expires_at
 
 @Client.on_message(pyrogram.filters.command(["start"]))
-async def start(client, message):
+async def start(bot, update):
     bot_uptime = time.strftime("%Hh %Mm %Ss", time.gmtime(time.time() - bot_start_time)) 
     joinButton = InlineKeyboardMarkup([
         [InlineKeyboardButton("JOIN", url="https://t.me/TGBotsCollection")],
         [InlineKeyboardButton(
             "Try", url="https://t.me/TGBotsCollectionbot")]
     ])
-    welcomed = f"Hey <b>{message.from_user.first_name}</b>\nThis is Multipurpose Bot that can perform many functions.\n\n/help for More info \n Bot Uptime : {bot_uptime}"
-    await message.reply_text(welcomed, reply_markup=joinButton)
+    welcomed = f"Hey <b>{update.from_user.first_name}</b>\nThis is Multipurpose Bot that can perform many functions.\n\n/help for More info \n Bot Uptime : {bot_uptime}"
+    await update.reply_text(welcomed, reply_markup=joinButton)
   
 @Client.on_message(pyrogram.filters.command(["help"]))
 async def help_user(bot, update):
