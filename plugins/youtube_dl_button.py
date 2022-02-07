@@ -208,9 +208,14 @@ async def youtube_dl_call_back(bot, update):
             file_size = os.stat(download_directory).st_size
         except FileNotFoundError as exc:
             print('Except block enterance')
-            print("\n", os.listdir(tmp_directory_for_each_user), "Line 217")
+            # print("\n", os.listdir(lia), "Line 217")
+            lia=os.listdir(tmp_directory_for_each_user)
+            if lia[0].rsplit(".", 1)[1] is "json":
+                download_directory = tmp_directory_for_each_user + '/' + os.listdir(lia)[1]
+                print("---------", lia, '---------')
+            else:
+                download_directory = tmp_directory_for_each_user + '/' + os.listdir(lia)[0]
             # download_directory = os.path.splitext(download_directory)[0] + "." + "mkv"
-            download_directory = tmp_directory_for_each_user + '/' + os.listdir(tmp_directory_for_each_user)[0]
             # https://stackoverflow.com/a/678242/4723940
             file_size = os.stat(download_directory).st_size
         try:
