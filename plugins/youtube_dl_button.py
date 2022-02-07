@@ -210,7 +210,8 @@ async def youtube_dl_call_back(bot, update):
             print('Except block enterance')
             # print("\n", os.listdir(lia), "Line 217")
             lia=os.listdir(tmp_directory_for_each_user)
-            if lia[0].rsplit(".", 1)[1] is "json":
+            print(lia)
+            if lia[0].rsplit(".", 1)[1] == "json":
                 download_directory = tmp_directory_for_each_user + '/' + lia[1]
                 print("---------", lia, '---------')
             else:
