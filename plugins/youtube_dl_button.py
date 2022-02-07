@@ -214,7 +214,7 @@ async def youtube_dl_call_back(bot, update):
                 download_directory = tmp_directory_for_each_user + '/' + lia[1]
                 print("---------", lia, '---------')
             else:
-                download_directory = tmp_directory_for_each_user + '/' lia[0]
+                download_directory = tmp_directory_for_each_user + '/' + lia[0]
             # download_directory = os.path.splitext(download_directory)[0] + "." + "mkv"
             # https://stackoverflow.com/a/678242/4723940
             file_size = os.stat(download_directory).st_size
