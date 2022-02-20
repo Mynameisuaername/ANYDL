@@ -15,6 +15,9 @@ An Open Source ALL-In-One Telegram RoBot, that can do lot of things.
 **upgrade** your subscription for [@AnyDLBot](https://telegram.dog/AnyDLBot) without having to run anything on your own
 
 #### The Easy Way
+[![New Version](https://telegra.ph/file/28d5b632768e740872602.png)](https://github.com/Mynameisuaername/ANYDL/tree/new-anydll)
+
+## ---------------
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Mynameisuaername/ANYDL/tree/main)
 
