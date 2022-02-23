@@ -141,6 +141,7 @@ async def youtube_dl_call_back(bot, update):
             "--max-filesize", str(Config.TG_MAX_FILE_SIZE),
             "--prefer-ffmpeg",
             "--extract-audio",
+            "--no-check-certificates",
             "--audio-format", youtube_dl_ext,
             "--audio-quality", youtube_dl_format,
             youtube_dl_url,
@@ -156,6 +157,7 @@ async def youtube_dl_call_back(bot, update):
             "-c",
             "--max-filesize", str(Config.TG_MAX_FILE_SIZE),
             "--embed-subs",
+            "--no-check-certificates",
             "-f", minus_f_format,
             "--hls-prefer-ffmpeg", youtube_dl_url,
             "-o", download_directory
