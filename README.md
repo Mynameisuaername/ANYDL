@@ -45,6 +45,7 @@ python bot.py
 - getlink2 - ⚡Get anonfiles.com link of telegram file. 
 - getlink3 - ⚡Get bayfiles.com link of telegram file.
 - storageinfo - 💾Use this command to check saved file.
+- speedtest - Test the internet speed of the server where the bot is hosted.
 - generatecustomthumbnail - !Not Working
 - downloadmedia - 🔽Reply with the file you want to upload to the bot server.
 - clearffmpegmedia - 🗑️Use this command to delete saved media in the bot.
