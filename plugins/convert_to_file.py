@@ -38,7 +38,7 @@ async def convert_to_audio(bot, update):
     if update.from_user.id not in Config.AUTH_USERS:
         await bot.delete_messages(
             chat_id=update.chat.id,
-            message_ids=update.message_id,
+            message_ids=update.message.id,
             revoke=True
         )
         return
@@ -48,7 +48,7 @@ async def convert_to_audio(bot, update):
         a = await bot.send_message(
             chat_id=update.chat.id,
             text=Translation.DOWNLOAD_FILE,
-            reply_to_message_id=update.message_id
+            reply_to_message_id=update.message.id
         )
         c_time = time.time()
         the_real_download_location = await bot.download_media(
@@ -65,7 +65,7 @@ async def convert_to_audio(bot, update):
             await bot.edit_message_text(
                 text=Translation.SAVED_RECVD_DOC_FILE,
                 chat_id=update.chat.id,
-                message_id=a.message_id
+                message_id=a.message.id
             )
         else:
             # don't care about the extension
@@ -75,7 +75,7 @@ async def convert_to_audio(bot, update):
             await bot.edit_message_text(
                 chat_id=update.chat.id,
                 text=Translation.UPLOAD_START,
-                message_id=a.message_id
+                message_id=a.message.id
             )
             logger.info(the_real_download_location)
             caption=the_real_download_location.rsplit("/", 1)[1]
@@ -112,7 +112,7 @@ async def convert_to_audio(bot, update):
                 # title="",
                 # reply_markup=reply_markup,
                 thumb=thumb_image_path,
-                reply_to_message_id=update.reply_to_message.message_id,
+                reply_to_message_id=update.reply_to_message.message.id,
                 progress=progress_for_pyrogram,
                 progress_args=(
                     Translation.UPLOAD_START,
@@ -130,12 +130,12 @@ async def convert_to_audio(bot, update):
             await bot.edit_message_text(
                 text=Translation.AFTER_SUCCESSFUL_UPLOAD_MSG,
                 chat_id=update.chat.id,
-                message_id=a.message_id,
+                message_id=a.message.id,
                 disable_web_page_preview=True
             )
     else:
         await bot.send_message(
             chat_id=update.chat.id,
             text=Translation.REPLY_TO_DOC_FOR_C2V,
-            reply_to_message_id=update.message_id
+            reply_to_message_id=update.message.id
         )
