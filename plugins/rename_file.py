@@ -39,7 +39,7 @@ async def rename_doc(bot, update):
     if update.from_user.id not in Config.AUTH_USERS:
         await bot.delete_messages(
             chat_id=update.chat.id,
-            message_ids=update.message_id,
+            message_ids=update.message.id,
             revoke=True
         )
         return
@@ -51,7 +51,7 @@ async def rename_doc(bot, update):
         a = await bot.send_message(
             chat_id=update.chat.id,
             text=Translation.DOWNLOAD_FILE,
-            reply_to_message_id=update.message_id
+            reply_to_message_id=update.message.id
         )
         c_time = time.time()
         the_real_download_location = await bot.download_media(
@@ -69,14 +69,14 @@ async def rename_doc(bot, update):
             await bot.send_message(
                 text=Translation.FILE_NOT_FOUND,
                 chat_id=update.chat.id,
-                reply_to_message_id=update.message_id
+                reply_to_message_id=update.message.id
             )
         else:
             if "IndianMovie" in the_real_download_location:
                 await bot.edit_message_text(
                     text=Translation.RENAME_403_ERR,
                     chat_id=update.chat.id,
-                    message_id=a.message_id
+                    message_id=a.message.id
                 )
                 return
             new_file_name = download_location + file_name
@@ -85,7 +85,7 @@ async def rename_doc(bot, update):
             up = await bot.send_message(
                 text=Translation.UPLOAD_START,
                 chat_id=update.chat.id,
-                reply_to_message_id=update.message_id,
+                reply_to_message_id=update.message.id,
             )
             logger.info(the_real_download_location)
             thumb_image_path = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + "_" + ".jpg"
@@ -119,7 +119,7 @@ async def rename_doc(bot, update):
                 thumb=thumb_image_path,
                 caption=capp,
                 # reply_markup=reply_markup,
-                reply_to_message_id=update.reply_to_message.message_id,
+                reply_to_message_id=update.reply_to_message.message.id,
                 progress=progress_for_pyrogram,
                 progress_args=(
                     Translation.UPLOAD_START,
@@ -136,12 +136,12 @@ async def rename_doc(bot, update):
             await bot.edit_message_text(
                 text=Translation.AFTER_SUCCESSFUL_UPLOAD_MSG,
                 chat_id=update.chat.id,
-                message_id=up.message_id,
+                message_id=up.message.id,
                 disable_web_page_preview=True
             )
     else:
         await bot.send_message(
             chat_id=update.chat.id,
             text=Translation.REPLY_TO_DOC_FOR_RENAME_FILE,
-            reply_to_message_id=update.message_id
+            reply_to_message_id=update.message.id
         )
