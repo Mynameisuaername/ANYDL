@@ -37,7 +37,7 @@ async def get_link(bot, update):
     if update.from_user.id not in Config.AUTH_USERS:
         await bot.delete_messages(
             chat_id=update.chat.id,
-            message_ids=update.message_id,
+            message_ids=update.message.id,
             revoke=True
         )
         return
@@ -45,12 +45,12 @@ async def get_link(bot, update):
     if update.reply_to_message is not None:
         reply_message = update.reply_to_message
         # rbfh = random_char(5)
-        download_location = Config.DOWNLOAD_LOCATION + "/" + str(update.message_id) + "/"
+        download_location = Config.DOWNLOAD_LOCATION + "/" + str(update.message.id) + "/"
         start = datetime.now()
         a = await bot.send_message(
             chat_id=update.chat.id,
             text=Translation.DOWNLOAD_FILE,
-            reply_to_message_id=update.message_id
+            reply_to_message_id=update.message.id
         )
         c_time = time.time()
         after_download_file_name = await bot.download_media(
@@ -70,7 +70,7 @@ async def get_link(bot, update):
         await bot.edit_message_text(
             text=Translation.SAVED_RECVD_DOC_FILE,
             chat_id=update.chat.id,
-            message_id=a.message_id
+            message_id=a.message.id
         )
         end_one = datetime.now()
 
@@ -87,7 +87,7 @@ async def get_link(bot, update):
                 await bot.edit_message_text(
                     chat_id=update.chat.id,
                     text=exc.output.decode("UTF-8"),
-                    message_id=a.message_id
+                    message_id=a.message.id
                 )
                 return False
             else:
@@ -127,7 +127,7 @@ async def get_link(bot, update):
         await bot.edit_message_text(
             text=t_xt,
             chat_id=update.chat.id,
-            message_id=a.message_id
+            message_id=a.message.id
         )
         try:
             logger.info(command_to_exec)
@@ -137,7 +137,7 @@ async def get_link(bot, update):
             await bot.edit_message_text(
                 chat_id=update.chat.id,
                 text=exc.output.decode("UTF-8"),
-                message_id=a.message_id
+                message_id=a.message.id
             )
             return False
         else:
@@ -167,7 +167,7 @@ async def get_link(bot, update):
                 text=t_xt,
                 parse_mode="html",
                 reply_markup=DO_LINK,
-                message_id=a.message_id,
+                message_id=a.message.id,
                 disable_web_page_preview=True
             )
         try:
@@ -179,5 +179,5 @@ async def get_link(bot, update):
         await bot.send_message(
         chat_id=update.chat.id,
         text=Translation.REPLY_TO_DOC_GET_LINK,
-        reply_to_message_id=update.message_id
+        reply_to_message_id=update.message.id
         )
