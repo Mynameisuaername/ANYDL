@@ -59,7 +59,7 @@ async def echo(bot, update):
         except Exception:
             await update.reply_text("Something Wrong. Contact my Support Group")
             return
-    idd_m = ' ' + str(update.message_id)
+    idd_m = ' ' + str(update.message.id)
     no_sz ='N/A' + idd_m
     logger.info(update.from_user)
     url = update.text
@@ -141,7 +141,7 @@ async def echo(bot, update):
             photo="https://telegra.ph/file/7b9ae974724cff07771e7.jpg",
             caption=f'Searching on Youtube...🔎',
             # disable_web_page_preview=True,
-            reply_to_message_id=update.message_id
+            reply_to_message_id=update.message.id
           )
     process = await asyncio.create_subprocess_exec(
         *command_to_exec,
@@ -166,7 +166,7 @@ async def echo(bot, update):
         await bot.send_message(
             chat_id=update.chat.id,
             text=Translation.NO_VOID_FORMAT_FOUND.format(str(error_message)),
-            reply_to_message_id=update.message_id,
+            reply_to_message_id=update.message.id,
             parse_mode="html",
             disable_web_page_preview=True
         )
@@ -179,9 +179,9 @@ async def echo(bot, update):
         response_json = json.loads(x_reponse)
         randem = random_char(5)
         os.mkdir(Config.DOWNLOAD_LOCATION + \
-            "/" + str(update.message_id) + "/")
+            "/" + str(update.message.id) + "/")
         save_ytdl_json_path = Config.DOWNLOAD_LOCATION + \
-            "/" + str(update.message_id) + "/" + str(update.from_user.id) + ".json"
+            "/" + str(update.message.id) + "/" + str(update.from_user.id) + ".json"
         print(save_ytdl_json_path, "echo")
         with open(save_ytdl_json_path, "w", encoding="utf8") as outfile:
             json.dump(response_json, outfile, ensure_ascii=False)
@@ -303,11 +303,11 @@ async def echo(bot, update):
         thumb_image_path = DownLoadFile(
             thumbnail_image,
             Config.DOWNLOAD_LOCATION + "/" +
-            str(update.from_user.id) + ' ' + str(update.message_id) + ".webp",
+            str(update.from_user.id) + ' ' + str(update.message.id) + ".webp",
             Config.CHUNK_SIZE,
             None,  # bot,
             Translation.DOWNLOAD_START,
-            update.message_id,
+            update.message.id,
             update.chat.id
         )
         if os.path.exists(thumb_image_path):
@@ -317,11 +317,11 @@ async def echo(bot, update):
         else:
             thumb_image_path = None
         # await chk.delete()
-        thumbb=Config.DOWNLOAD_LOCATION + '/' + str(update.from_user.id) + ' ' + str(update.message_id) + '.jpg'
+        thumbb=Config.DOWNLOAD_LOCATION + '/' + str(update.from_user.id) + ' ' + str(update.message.id) + '.jpg'
         await bot.edit_message_media(
            chat_id=update.chat.id,
            media=InputMediaPhoto(media=thumbb, caption=Translation.FORMAT_SELECTION.format(titlle, url), parse_mode="HTML"),
-           message_id=chk.message_id,
+           message_id=chk.message.id,
            reply_markup=reply_markup
         )
     else:
@@ -349,5 +349,5 @@ async def echo(bot, update):
             text=Translation.FORMAT_SELECTION.format(""),
             reply_markup=reply_markup,
             parse_mode="html",
-            reply_to_message_id=update.message_id
+            reply_to_message_id=update.message.id
         )
