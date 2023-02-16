@@ -33,7 +33,7 @@ async def generate_screen_shot(bot, update):
     if update.from_user.id not in Config.AUTH_USERS:
         await bot.delete_messages(
             chat_id=update.chat.id,
-            message_ids=update.message_id,
+            message_ids=update.message.id,
             revoke=True
         )
         return
@@ -42,7 +42,7 @@ async def generate_screen_shot(bot, update):
         a = await bot.send_message(
             chat_id=update.chat.id,
             text=Translation.DOWNLOAD_FILE,
-            reply_to_message_id=update.message_id
+            reply_to_message_id=update.message.id
         )
         c_time = time.time()
         the_real_download_location = await bot.download_media(
@@ -59,13 +59,13 @@ async def generate_screen_shot(bot, update):
             await bot.edit_message_text(
                 text=Translation.SAVED_RECVD_DOC_FILE,
                 chat_id=update.chat.id,
-                message_id=a.message_id
+                message_id=a.message.id
             )
         else:
             await bot.edit_message_text(
                 text=f"Video Downloaded Successfully.\n Now Generating Screenshots📸.",
                 chat_id=update.chat.id,
-                message_id=a.message_id
+                message_id=a.message.id
             )
             tmp_directory_for_each_user = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id)
             if not os.path.isdir(tmp_directory_for_each_user):
@@ -82,7 +82,7 @@ async def generate_screen_shot(bot, update):
             await bot.edit_message_text(
                 text=Translation.UPLOAD_START,
                 chat_id=update.chat.id,
-                message_id=a.message_id
+                message_id=a.message.id
             )
             media_album_p = []
             if images is not None:
@@ -108,7 +108,7 @@ async def generate_screen_shot(bot, update):
             await bot.send_media_group(
                 chat_id=update.chat.id,
                 disable_notification=True,
-                reply_to_message_id=a.message_id,
+                reply_to_message_id=a.message.id,
                 media=media_album_p
             )
             #
@@ -120,12 +120,12 @@ async def generate_screen_shot(bot, update):
             await bot.edit_message_text(
                 text=Translation.AFTER_SUCCESSFUL_UPLOAD_MSG,
                 chat_id=update.chat.id,
-                message_id=a.message_id,
+                message_id=a.message.id,
                 disable_web_page_preview=True
             )
     else:
         await bot.send_message(
             chat_id=update.chat.id,
             text=Translation.REPLY_TO_DOC_FOR_SCSS,
-            reply_to_message_id=update.message_id
+            reply_to_message_id=update.message.id
         )
