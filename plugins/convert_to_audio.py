@@ -14,6 +14,7 @@ import shutil
 import moviepy.editor as pp
 
 # the secret configuration specific things
+
 if bool(os.environ.get("WEBHOOK", False)):
     from sample_config import Config
 else:
@@ -40,17 +41,17 @@ async def convert_to_audio(bot, update):
     if update.from_user.id not in Config.AUTH_USERS:
         await bot.delete_messages(
             chat_id=update.chat.id,
-            message_ids=update.message_id,
+            message_ids=update.id,
             revoke=True
         )
         return
     if (update.reply_to_message is not None) and (update.reply_to_message.media is not None) :
         rnom = random_char(5)
-        download_location = Config.DOWNLOAD_LOCATION + "/" + f"{rnom}" + "/"
+        download_location = f"{Config.DOWNLOAD_LOCATION}/{str(update.from_user.id)}/{str(update.id)}" + "/"
         ab=await bot.send_message(
             chat_id=update.chat.id,
             text=Translation.DOWNLOAD_FILE,
-            reply_to_message_id=update.message_id
+            reply_to_message_id=update.id
         )
         c_time = time.time()
         the_real_download_location = await bot.download_media(
@@ -67,35 +68,34 @@ async def convert_to_audio(bot, update):
             await bot.edit_message_text(
                 text=f"Video Download Successfully, now trying to convert into Audio. \n\n⌛️Wait for some time.",
                 chat_id=update.chat.id,
-                message_id=ab.message_id
+                message_id=ab.id
             )
             time.sleep(0.5)
-            auddio=exa_audio(the_real_download_location)
+            auddio= await exa_audio(download_location, update.id, the_real_download_location)
             if auddio is not None:
                 logger.info(auddio)
-                update.reply_text(str(auddio))
                 await bot.edit_message_text(
                     text=Translation.UPLOAD_START,
                     chat_id=update.chat.id,
-                    message_id=ab.message_id
+                    message_id=ab.id
                 )
                 metadata = extractMetadata(createParser(auddio))
-                print('Metadata:', metadata, ':Metadata')
                 duration=None
-                # if metadata.has('duration'):
-                    # duration=metadata.get("duration").seconds
-                await bot.send_audio(
-                    chat_id=update.chat.id,
-                    audio=auddio,
-                    # supports_streaming=True,
-                    reply_to_message_id=update.message_id,
-                    progress=progress_for_pyrogram,
-                    progress_args=(
-                        Translation.UPLOAD_START,
-                        ab,
-                        c_time
+                if metadata.has('duration'):
+                    duration=metadata.get("duration").seconds
+                for audio in auddio:
+                    await bot.send_audio(
+                        chat_id=update.chat.id,
+                        audio=audio,
+                        # supports_streaming=True,
+                        reply_to_message_id=update.id,
+                        progress=progress_for_pyrogram,
+                        progress_args=(
+                            Translation.UPLOAD_START,
+                            ab,
+                            c_time
+                        )
                     )
-                )
             # don't care about the extension
             # convert video to audio format
             '''f_name = the_real_download_location.rsplit('/',1)[-1]
@@ -107,19 +107,18 @@ async def convert_to_audio(bot, update):
             # ref: message from @BotSupport
             try:
                 # os.remove(thumb_image_path)
-                os.remove(the_real_download_location)
-                os.remove(audio_file_location)
+                shutil.rmtree(str(download_location))
             except:
                 pass
             await bot.edit_message_text(
                 text=Translation.AFTER_SUCCESSFUL_UPLOAD_MSG,
                 chat_id=update.chat.id,
-                message_id=ab.message_id,
+                message_id=ab.id,
                 disable_web_page_preview=True
             )
     else:
         await bot.send_message(
             chat_id=update.chat.id,
             text=f"**Reply** with a telegram video file to convert.",
-            reply_to_message_id=update.message_id
+            reply_to_message_id=update.id
         )
