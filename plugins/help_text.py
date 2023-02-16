@@ -55,7 +55,7 @@ async def help_user(bot, update):
         text=Translation.HELP_USER,
         parse_mode="html",
         disable_web_page_preview=True,
-        reply_to_message_id=update.message_id
+        reply_to_message_id=update.message.id
     )
 
 
@@ -90,7 +90,7 @@ async def upgrade(bot, update):
         chat_id=update.chat.id,
         text=Translation.UPGRADE_TEXT,
         parse_mode="html",
-        reply_to_message_id=update.message_id,
+        reply_to_message_id=update.message.id,
         disable_web_page_preview=True
     )
     
@@ -133,7 +133,7 @@ async def speed(bot, update):
         spg = await bot.send_message(
             text=f'Running speedtest....',
             chat_id=update.message.chat.id,
-            reply_to_message_id=update.message.message_id,
+            reply_to_message_id=update.message.message.id,
         )
     
     test = Speedtest()
