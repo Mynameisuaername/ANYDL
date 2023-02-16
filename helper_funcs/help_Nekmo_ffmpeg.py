@@ -14,6 +14,7 @@ import os
 import time
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
+import subprocess
 
 
 async def place_water_mark(input_file, output_file, water_mark_file):
@@ -159,29 +160,22 @@ async def generate_screen_shots(
     else:
         return None
 
-async def exa_audio(video_file):
-    audio_file=video_file.rsplit(".", 1)[0]+".mp3"
-    print(audio_file)
-    audio_extract=[
-        "ffmpeg",
-        "-i",
-        video_file,
-        "-acodec",
-        "copy",
-        audio_file
-    ]
-    process = await asyncio.create_subprocess_exec(
-        *audio_extract,
-        # stdout must a pipe to be accessible as process.stdout
-        stdout=asyncio.subprocess.PIPE,
-        stderr=asyncio.subprocess.PIPE,
-    )
-    # Wait for the subprocess to finish
-    stdout, stderr = await process.communicate()
-    e_response = stderr.decode().strip()
-    t_response = stdout.decode().strip()
-    if os.path.lexists(audio_file):
-        print(os.path.getsize(audio_file))
-        return audio_file
+async def exa_audio(download_location, message_id, video_file):
+    ffprobe_cmd = ["ffprobe", "-v", "error", "-select_streams", "a", "-show_entries",
+               "stream=codec_name", "-of", "default=noprint_wrappers=1:nokey=1", video_file]
+    print(video_file)
+    result = subprocess.run(ffprobe_cmd, capture_output=True, text=True)
+    audio_files = []
+    # os.makedirs(str(message_id))
+    if len(result.stderr.strip()) < 6:
+        num_audio_tracks = len(result.stdout.strip().split('\n'))
+        for i in range(num_audio_tracks):
+            file_ext = result.stdout.strip().split('\n')[i]
+            output_audio_file = f"{download_location}audio_{i+1}.{file_ext}"
+            audio_files.append(output_audio_file)
+            audio_extract = ["ffmpeg", "-loglevel", "warning", "-i", video_file, "-map", f"0:a:{i}",  "-c", "copy", "-vn", "-hide_banner", output_audio_file]
+            subprocess.run(audio_extract)
+        # Wait for the subprocess to finish
+        return audio_files
     else:
         return None
