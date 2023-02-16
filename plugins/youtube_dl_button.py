@@ -56,7 +56,7 @@ async def youtube_dl_call_back(bot, update):
             print(anss)
             pass'''
 
-    print(cb_data, update.message.message_id, msd_id)
+    print(cb_data, update.message.message.id, msd_id)
 
     random1 = random_char(5)
     thumb_image_path = Config.DOWNLOAD_LOCATION + \
@@ -70,7 +70,7 @@ async def youtube_dl_call_back(bot, update):
         print(e, 'json file not found')
         await bot.delete_messages(
             chat_id=update.message.chat.id,
-            message_ids=update.message.message_id,
+            message_ids=update.message.message.id,
             revoke=True
         )
         return False
@@ -121,7 +121,7 @@ async def youtube_dl_call_back(bot, update):
     await bot.edit_message_caption(
         caption=Translation.DOWNLOAD_START,
         chat_id=update.message.chat.id,
-        message_id=update.message.message_id,
+        message_id=update.message.message.id,
         reply_markup=ina
     )
     description = Translation.CUSTOM_CAPTION_UL_FILE
@@ -192,7 +192,7 @@ async def youtube_dl_call_back(bot, update):
         error_message = e_response.replace(ad_string_to_replace, "")
         await bot.edit_message_text(
             chat_id=update.message.chat.id,
-            message_id=update.message.message_id,
+            message_id=update.message.message.id,
             text=error_message
         )
         return False
@@ -233,7 +233,7 @@ async def youtube_dl_call_back(bot, update):
             await bot.edit_message_text(
                 chat_id=update.message.chat.id,
                 text=Translation.RCHD_TG_API_LIMIT.format(time_taken_for_download, humanbytes(file_size)),
-                message_id=update.message.message_id
+                message_id=update.message.message.id
             )
         else:
             is_w_f = False
@@ -249,7 +249,7 @@ async def youtube_dl_call_back(bot, update):
             await bot.edit_message_caption(
                 caption=Translation.UPLOAD_START,
                 chat_id=update.message.chat.id,
-                message_id=update.message.message_id
+                message_id=update.message.message.id
             )
             # get the correct width, height, and duration for videos greater than 10MB
             # ref: message from @BotSupport
@@ -302,8 +302,8 @@ async def youtube_dl_call_back(bot, update):
                     # title=response_json["title"],
                     # reply_markup=reply_markup,
                     # thumb=thumb_image_path,
-                    # reply_to_message_id=update.message.reply_to_message.message_id,
-                    message_id=update.message.message_id
+                    # reply_to_message_id=update.message.reply_to_message.message.id,
+                    message_id=update.message.message.id
                     # progress=progress_for_pyrogram,
                     # progress_args=(
                     #     Translation.UPLOAD_START,
@@ -319,8 +319,8 @@ async def youtube_dl_call_back(bot, update):
                     # caption=description,
                     # parse_mode="HTML",
                     # reply_markup=reply_markup,
-                    # reply_to_message_id=update.message.reply_to_message.message_id,
-                    message_id=update.message.message_id
+                    # reply_to_message_id=update.message.reply_to_message.message.id,
+                    message_id=update.message.message.id
                 )
             elif tg_send_type == "vm":
                 await bot.send_video_note(
@@ -329,7 +329,7 @@ async def youtube_dl_call_back(bot, update):
                     duration=duration,
                     length=width,
                     thumb=thumb_image_path,
-                    reply_to_message_id=update.message.reply_to_message.message_id,
+                    reply_to_message_id=update.message.reply_to_message.message.id,
                     progress=progress_for_pyrogram,
                     progress_args=(
                         Translation.UPLOAD_START,
@@ -349,8 +349,8 @@ async def youtube_dl_call_back(bot, update):
                     # supports_streaming=True,
                     # reply_markup=reply_markup,
                     # thumb=thumb_image_path,
-                    # reply_to_message_id=update.message.reply_to_message.message_id,
-                    message_id=update.message.message_id
+                    # reply_to_message_id=update.message.reply_to_message.message.id,
+                    message_id=update.message.message.id
                 )
             else:
                 logger.info("Did this happen? :\\")
@@ -383,7 +383,7 @@ async def youtube_dl_call_back(bot, update):
             await bot.send_media_group(
                 chat_id=update.message.chat.id,
                 disable_notification=True,
-                reply_to_message_id=update.message.message_id,
+                reply_to_message_id=update.message.message.id,
                 media=media_album_p
             )'''
             #
@@ -396,6 +396,6 @@ async def youtube_dl_call_back(bot, update):
             '''await bot.edit_message_text(
                 text=Translation.AFTER_SUCCESSFUL_UPLOAD_MSG_WITH_TS.format(time_taken_for_download, time_taken_for_upload),
                 chat_id=update.message.chat.id,
-                message_id=update.message.message_id,
+                message_id=update.message.message.id,
                 disable_web_page_preview=True
             )'''
