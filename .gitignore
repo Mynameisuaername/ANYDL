@@ -218,3 +218,6 @@ config.py
 
 credential.json
 client_secrets.json
+
+# sublime-project
+*.sublime-*
