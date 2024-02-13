@@ -33,7 +33,7 @@ async def unzip(bot, update):
     if update.from_user.id not in Config.AUTH_USERS:
         await bot.delete_messages(
             chat_id=update.chat.id,
-            message_ids=update.message_id,
+            message_ids=update.id,
             revoke=True
         )
         return
@@ -48,7 +48,7 @@ async def unzip(bot, update):
         a = await bot.send_message(
             chat_id=update.chat.id,
             text=Translation.DOWNLOAD_START,
-            reply_to_message_id=update.message_id
+            reply_to_message_id=update.id
         )
         c_time = time.time()
         try:
@@ -105,7 +105,7 @@ async def unzip(bot, update):
                     chat_id=update.chat.id,
                     text=Translation.EXTRACT_ZIP_ERRS_OCCURED,
                     disable_web_page_preview=True,
-                    parse_mode="html",
+                    parse_mode=pyrogram.enums.ParseMode.HTML,
                     message_id=a.message_id
                 )
             else:
@@ -147,5 +147,5 @@ async def unzip(bot, update):
         await bot.send_message(
             chat_id=update.chat.id,
             text=Translation.EXTRACT_ZIP_INTRO_ONE,
-            reply_to_message_id=update.message_id
+            reply_to_message_id=update.id
         )

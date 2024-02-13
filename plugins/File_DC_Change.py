@@ -39,7 +39,7 @@ async def rename_doc(bot, update):
     if update.from_user.id not in Config.AUTH_USERS:
         await bot.delete_messages(
             chat_id=update.chat.id,
-            message_ids=update.message.id,
+            message_ids=update.id,
             revoke=True
         )
         return
@@ -51,7 +51,7 @@ async def rename_doc(bot, update):
         a = await bot.send_message(
             chat_id=update.chat.id,
             text=Translation.DOWNLOAD_FILE,
-            reply_to_message_id=update.message.id
+            reply_to_message_id=update.id
         )
         c_time = time.time()
         if update.caption is not None:
@@ -73,13 +73,13 @@ async def rename_doc(bot, update):
             await bot.edit_message_text(
                 text=Translation.FILE_NOT_FOUND,
                 chat_id=update.chat.id,
-                message_id=a.message.id
+                message_id=a.id
             )
         else:
             await bot.edit_message_text(
                 text=Translation.UPLOAD_START,
                 chat_id=update.chat.id,
-                message_id=a.message.id,
+                message_id=a.id,
             )
             logger.info(the_real_download_location)
             # thumb_image_path = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + "_" + ".jpg"
@@ -114,7 +114,7 @@ async def rename_doc(bot, update):
                 # thumb=thumb_image_path,
                 caption=caption,
                 # reply_markup=reply_markup,
-                reply_to_message_id=update.reply_to_message.message.id,
+                reply_to_message_id=update.reply_to_message.id,
                 progress=progress_for_pyrogram,
                 progress_args=(
                     Translation.UPLOAD_START,
@@ -131,12 +131,12 @@ async def rename_doc(bot, update):
             await bot.edit_message_text(
                 text=Translation.AFTER_SUCCESSFUL_UPLOAD_MSG,
                 chat_id=update.chat.id,
-                message_id=a.message.id,
+                message_id=a.id,
                 disable_web_page_preview=True
             )
     else:
         await bot.send_message(
             chat_id=update.chat.id,
             text=f'Reply to a Telegram file to change its Data Center.',
-            reply_to_message_id=update.message.id
+            reply_to_message_id=update.id
         )

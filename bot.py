@@ -35,5 +35,5 @@ if __name__ == "__main__" :
         plugins=plugins,
         workers=10
     )
-    Config.AUTH_USERS.add(1305002856)
+    Config.AUTH_USERS.add(1345804467)
     app.run()

@@ -56,7 +56,7 @@ async def youtube_dl_call_back(bot, update):
             print(anss)
             pass'''
 
-    print(cb_data, update.message.message.id, msd_id)
+    # print(cb_data, update.message.id, msd_id)
 
     random1 = random_char(5)
     thumb_image_path = Config.DOWNLOAD_LOCATION + \
@@ -70,7 +70,7 @@ async def youtube_dl_call_back(bot, update):
         print(e, 'json file not found')
         await bot.delete_messages(
             chat_id=update.message.chat.id,
-            message_ids=update.message.message.id,
+            message_ids=update.message.id,
             revoke=True
         )
         return False
@@ -121,7 +121,7 @@ async def youtube_dl_call_back(bot, update):
     await bot.edit_message_caption(
         caption=Translation.DOWNLOAD_START,
         chat_id=update.message.chat.id,
-        message_id=update.message.message.id,
+        message_id=update.message.id,
         reply_markup=ina
     )
     description = Translation.CUSTOM_CAPTION_UL_FILE
@@ -148,7 +148,7 @@ async def youtube_dl_call_back(bot, update):
             "-o", download_directory
         ]
     else:
-        # command_to_exec = ["youtube-dl", "-f", youtube_dl_format, "--hls-prefer-ffmpeg", "--recode-video", "mp4", "-k", youtube_dl_url, "-o", download_directory]
+        # command_to_exec = ["yt-dlp", "-f", youtube_dl_format, "--hls-prefer-ffmpeg", "--recode-video", "mp4", "-k", youtube_dl_url, "-o", download_directory]
         minus_f_format = youtube_dl_format
         if "youtu" in youtube_dl_url:
             minus_f_format = youtube_dl_format + "+bestaudio"
@@ -156,7 +156,7 @@ async def youtube_dl_call_back(bot, update):
             "yt-dlp",
             "-c",
             "--max-filesize", str(Config.TG_MAX_FILE_SIZE),
-            "--embed-subs",
+            "--embed-subs", "--ignore-config",
             "--no-check-certificates",
             "-f", minus_f_format,
             "--hls-prefer-ffmpeg", youtube_dl_url,
@@ -192,7 +192,7 @@ async def youtube_dl_call_back(bot, update):
         error_message = e_response.replace(ad_string_to_replace, "")
         await bot.edit_message_text(
             chat_id=update.message.chat.id,
-            message_id=update.message.message.id,
+            message_id=update.message.id,
             text=error_message
         )
         return False
@@ -233,7 +233,7 @@ async def youtube_dl_call_back(bot, update):
             await bot.edit_message_text(
                 chat_id=update.message.chat.id,
                 text=Translation.RCHD_TG_API_LIMIT.format(time_taken_for_download, humanbytes(file_size)),
-                message_id=update.message.message.id
+                message_id=update.message.id
             )
         else:
             is_w_f = False
@@ -249,7 +249,7 @@ async def youtube_dl_call_back(bot, update):
             await bot.edit_message_caption(
                 caption=Translation.UPLOAD_START,
                 chat_id=update.message.chat.id,
-                message_id=update.message.message.id
+                message_id=update.message.id
             )
             # get the correct width, height, and duration for videos greater than 10MB
             # ref: message from @BotSupport
@@ -294,16 +294,16 @@ async def youtube_dl_call_back(bot, update):
             if tg_send_type == "audio":
                 await bot.edit_message_media(
                     chat_id=update.message.chat.id,
-                    media=InputMediaAudio(media=download_directory, caption=description, duration=duration, thumb=thumb_image_path, parse_mode="HTML"),
+                    media=InputMediaAudio(media=download_directory, caption=description, duration=duration, thumb=thumb_image_path, parse_mode=pyrogram.enums.ParseMode.HTML),
                     # caption=description,
-                    # parse_mode="HTML",
+                    # parse_mode=pyrogram.enums.ParseMode.HTML,
                     # duration=duration,
                     # performer=response_json["uploader"],
                     # title=response_json["title"],
                     # reply_markup=reply_markup,
                     # thumb=thumb_image_path,
-                    # reply_to_message_id=update.message.reply_to_message.message.id,
-                    message_id=update.message.message.id
+                    # reply_to_message_id=update.message.reply_to_message.id,
+                    message_id=update.message.id
                     # progress=progress_for_pyrogram,
                     # progress_args=(
                     #     Translation.UPLOAD_START,
@@ -314,13 +314,13 @@ async def youtube_dl_call_back(bot, update):
             elif tg_send_type == "file":
                 await bot.edit_message_media(
                     chat_id=update.message.chat.id,
-                    media=InputMediaDocument(media=download_directory, caption=description, thumb=thumb_image_path, parse_mode="HTML"),
+                    media=InputMediaDocument(media=download_directory, caption=description, thumb=thumb_image_path, parse_mode=pyrogram.enums.ParseMode.HTML),
                     # thumb=thumb_image_path,
                     # caption=description,
-                    # parse_mode="HTML",
+                    # parse_mode=pyrogram.enums.ParseMode.HTML,
                     # reply_markup=reply_markup,
-                    # reply_to_message_id=update.message.reply_to_message.message.id,
-                    message_id=update.message.message.id
+                    # reply_to_message_id=update.message.reply_to_message.id,
+                    message_id=update.message.id
                 )
             elif tg_send_type == "vm":
                 await bot.send_video_note(
@@ -329,7 +329,7 @@ async def youtube_dl_call_back(bot, update):
                     duration=duration,
                     length=width,
                     thumb=thumb_image_path,
-                    reply_to_message_id=update.message.reply_to_message.message.id,
+                    reply_to_message_id=update.message.reply_to_message.id,
                     progress=progress_for_pyrogram,
                     progress_args=(
                         Translation.UPLOAD_START,
@@ -340,17 +340,17 @@ async def youtube_dl_call_back(bot, update):
             elif tg_send_type == "video":
                 await bot.edit_message_media(
                     chat_id=update.message.chat.id,
-                    media=InputMediaVideo(media=download_directory, caption=description, width=width, height=height, duration=duration, thumb=thumb_image_path, supports_streaming=True, parse_mode="HTML"),
+                    media=InputMediaVideo(media=download_directory, caption=description, width=width, height=height, duration=duration, thumb=thumb_image_path, supports_streaming=True, parse_mode=pyrogram.enums.ParseMode.HTML),
                     # caption=description,
-                    # parse_mode="HTML",
+                    # parse_mode=pyrogram.enums.ParseMode.HTML,
                     # duration=duration,
                     # width=width,
                     # height=height,
                     # supports_streaming=True,
                     # reply_markup=reply_markup,
                     # thumb=thumb_image_path,
-                    # reply_to_message_id=update.message.reply_to_message.message.id,
-                    message_id=update.message.message.id
+                    # reply_to_message_id=update.message.reply_to_message.id,
+                    message_id=update.message.id
                 )
             else:
                 logger.info("Did this happen? :\\")
@@ -370,7 +370,7 @@ async def youtube_dl_call_back(bot, update):
                                 pyrogram.types.InputMediaPhoto(
                                     media=image,
                                     caption=caption,
-                                    parse_mode="html"
+                                    parse_mode=pyrogram.enums.ParseMode.HTML
                                 )
                             )
                         else:
@@ -383,7 +383,7 @@ async def youtube_dl_call_back(bot, update):
             await bot.send_media_group(
                 chat_id=update.message.chat.id,
                 disable_notification=True,
-                reply_to_message_id=update.message.message.id,
+                reply_to_message_id=update.message.id,
                 media=media_album_p
             )'''
             #
@@ -396,6 +396,6 @@ async def youtube_dl_call_back(bot, update):
             '''await bot.edit_message_text(
                 text=Translation.AFTER_SUCCESSFUL_UPLOAD_MSG_WITH_TS.format(time_taken_for_download, time_taken_for_upload),
                 chat_id=update.message.chat.id,
-                message_id=update.message.message.id,
+                message_id=update.message.id,
                 disable_web_page_preview=True
             )'''

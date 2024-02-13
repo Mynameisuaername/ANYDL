@@ -41,7 +41,7 @@ async def button(bot, update):
     if update.from_user.id in Config.BANNED_USERS:
         await bot.delete_messages(
             chat_id=update.message.chat.id,
-            message_ids=update.message.message.id,
+            message_ids=update.message.id,
             revoke=True
         )
         return
@@ -54,7 +54,7 @@ async def button(bot, update):
         if not os.path.isdir(extract_dir_path):
             await bot.delete_messages(
                 chat_id=update.message.chat.id,
-                message_ids=update.message.message.id,
+                message_ids=update.message.id,
                 revoke=True
             )
             return False
@@ -68,7 +68,7 @@ async def button(bot, update):
             await bot.edit_message_text(
                 chat_id=update.message.chat.id,
                 text=Translation.CANCEL_STR,
-                message_id=update.message.message.id
+                message_id=update.message.id
             )
         elif index_extractor == "ALL":
             i = 0
@@ -81,7 +81,7 @@ async def button(bot, update):
                     # thumb=thumb_image_path,
                     caption=file_content,
                     # reply_markup=reply_markup,
-                    reply_to_message_id=update.message.message.id,
+                    reply_to_message_id=update.message.id,
                     progress=progress_for_pyrogram,
                     progress_args=(
                         Translation.UPLOAD_START,
@@ -98,7 +98,7 @@ async def button(bot, update):
             await bot.edit_message_text(
                 chat_id=update.message.chat.id,
                 text=Translation.ZIP_UPLOADED_STR.format(i, "0"),
-                message_id=update.message.message.id
+                message_id=update.message.id
             )
         else:
             file_content = zip_file_contents[int(index_extractor)]
@@ -110,7 +110,7 @@ async def button(bot, update):
                 # thumb=thumb_image_path,
                 caption=file_content,
                 # reply_markup=reply_markup,
-                reply_to_message_id=update.message.message.id,
+                reply_to_message_id=update.message.id,
                 progress=progress_for_pyrogram,
                 progress_args=(
                     Translation.UPLOAD_START,
@@ -125,7 +125,7 @@ async def button(bot, update):
             await bot.edit_message_text(
                 chat_id=update.message.chat.id,
                 text=Translation.ZIP_UPLOADED_STR.format("1", "0"),
-                message_id=update.message.message.id
+                message_id=update.message.id
             )
     elif "|" in cb_data:
         await youtube_dl_call_back(bot, update)
@@ -136,11 +136,11 @@ async def button(bot, update):
         try:
             os.remove(saved_file_path)
             print(saved_file_path, " removed/deleted successfully.")
-            await bot.edit_message_text(chat_id=update.message.chat.id, message_id=update.message.message.id, text=f"✅ Media file deleted successfully.")
+            await bot.edit_message_text(chat_id=update.message.chat.id, message_id=update.message.id, text=f"✅ Media file deleted successfully.")
         except Exception as fc:
             print(fc)
-    elif "NO-delM" in cd_data:
-        await bot.edit_message_text(chat_id=update.message.chat.id, message_id=update.message.message.id, text=f"Media file is not deleted.")
+    elif "NO-delM" in cb_data:
+        await bot.edit_message_text(chat_id=update.message.chat.id, message_id=update.message.id, text=f"Media file is not deleted.")
     elif "//" in cb_data:
         szze, ms_id = cb_data.rsplit('//')
         download_directory = Config.DOWNLOAD_LOCATION + "/" + str(ms_id)

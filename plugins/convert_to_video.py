@@ -41,7 +41,7 @@ async def convert_to_video(bot, update):
     if update.from_user.id not in Config.AUTH_USERS:
         await bot.delete_messages(
             chat_id=update.chat.id,
-            message_ids=update.message.id,
+            message_ids=update.id,
             revoke=True
         )
         return
@@ -51,7 +51,7 @@ async def convert_to_video(bot, update):
         a = await bot.send_message(
             chat_id=update.chat.id,
             text=Translation.DOWNLOAD_FILE,
-            reply_to_message_id=update.message.id
+            reply_to_message_id=update.id
         )
         c_time = time.time()
         the_real_download_location = await bot.download_media(
@@ -69,13 +69,13 @@ async def convert_to_video(bot, update):
             await bot.edit_message_text(
                 text=Translation.SAVED_RECVD_DOC_FILE,
                 chat_id=update.chat.id,
-                message_id=a.message.id
+                message_id=a.id
             )
             await a.delete()
             up = await bot.send_message(
             chat_id=update.chat.id,
             text=Translation.UPLOAD_START,
-            reply_to_message_id=update.message.id
+            reply_to_message_id=update.id
             )
             
             logger.info(the_real_download_location)
@@ -129,7 +129,7 @@ async def convert_to_video(bot, update):
                 supports_streaming=True,
                 # reply_markup=reply_markup,
                 thumb=thumb_image_path,
-                reply_to_message_id=update.reply_to_message.message.id,
+                reply_to_message_id=update.reply_to_message.id,
                 progress=progress_for_pyrogram,
                 progress_args=(
                     Translation.UPLOAD_START,
@@ -146,14 +146,14 @@ async def convert_to_video(bot, update):
             await bot.edit_message_text(
                 text=Translation.AFTER_SUCCESSFUL_UPLOAD_MSG,
                 chat_id=update.chat.id,
-                message_id=up.message.id,
+                message_id=up.id,
                 disable_web_page_preview=True
             )
     else:
         await bot.send_message(
             chat_id=update.chat.id,
             text=Translation.REPLY_TO_DOC_FOR_C2V,
-            reply_to_message_id=update.message.id
+            reply_to_message_id=update.id
         )
     
             

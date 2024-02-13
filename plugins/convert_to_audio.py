@@ -35,6 +35,9 @@ from hachoir.parser import createParser
 # https://stackoverflow.com/a/37631799/4723940
 from PIL import Image
 
+async def list_to_async_iterator(my_list):
+    for item in my_list:
+        yield item  # Use 'yield' to signal items asynchronously
 
 @pyrogram.Client.on_message(pyrogram.filters.command(["c2a"]))
 async def convert_to_audio(bot, update):
@@ -79,11 +82,13 @@ async def convert_to_audio(bot, update):
                     chat_id=update.chat.id,
                     message_id=ab.id
                 )
-                metadata = extractMetadata(createParser(auddio))
-                duration=None
-                if metadata.has('duration'):
-                    duration=metadata.get("duration").seconds
-                for audio in auddio:
+                async for audio in list_to_async_iterator(auddio):
+                    metadata = extractMetadata(createParser(audio))
+                    duration=None
+                    # if metadata.has('duration'):
+                    if metadata:
+                        duration=metadata.get("duration",None)
+                        if duration: duration.seconds
                     await bot.send_audio(
                         chat_id=update.chat.id,
                         audio=audio,

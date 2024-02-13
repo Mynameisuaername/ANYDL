@@ -31,16 +31,16 @@ async def DownloadStickersBot(bot, update):
     if update.from_user.id not in Config.AUTH_USERS:
         await bot.delete_messages(
             chat_id=update.chat.id,
-            message_ids=update.message_id,
+            message_ids=update.id,
             revoke=True
         )
         return
     logger.info(update.from_user)
-    download_location = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + "_DownloadStickersBot_" + str(update.message_id) + ".png"
+    download_location = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + "_DownloadStickersBot_" + str(update.id) + ".png"
     a = await bot.send_message(
         chat_id=update.chat.id,
         text=f"Sending Sticker...",
-        reply_to_message_id=update.message_id
+        reply_to_message_id=update.id
     )
     try:
         c_time = time.time()

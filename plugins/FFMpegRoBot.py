@@ -36,7 +36,7 @@ async def ffmpegrobot_ad(bot, update):
     if update.from_user.id not in Config.AUTH_USERS:
         await bot.delete_messages(
             chat_id=update.chat.id,
-            message_ids=update.message.id,
+            message_ids=update.id,
             revoke=True
         )
         return
@@ -44,7 +44,7 @@ async def ffmpegrobot_ad(bot, update):
         chat_id=update.chat.id,
         text=Translation.FF_MPEG_RO_BOT_AD_VER_TISE_MENT,
         disable_web_page_preview=True,
-        reply_to_message_id=update.message.id
+        reply_to_message_id=update.id
     )
 
 
@@ -53,7 +53,7 @@ async def trim(bot, update):
     if update.from_user.id not in Config.AUTH_USERS:
         await bot.delete_messages(
             chat_id=update.chat.id,
-            message_ids=update.message.id,
+            message_ids=update.id,
             revoke=True
         )
         return
@@ -62,7 +62,7 @@ async def trim(bot, update):
         a = await bot.send_message(
             chat_id=update.chat.id,
             text=Translation.DOWNLOAD_START,
-            reply_to_message_id=update.message.id
+            reply_to_message_id=update.id
         )
         commands = update.command
         if len(commands) == 3:
@@ -74,7 +74,7 @@ async def trim(bot, update):
                 await bot.edit_message_text(
                     chat_id=update.chat.id,
                     text=Translation.UPLOAD_START,
-                    message_id=a.message.id
+                    message_id=a.id
                 )
                 metadata = extractMetadata(createParser(o))
                 print("metedata ::", metadata, "::Metadata")
@@ -101,7 +101,7 @@ async def trim(bot, update):
                     supports_streaming=True,
                     # reply_markup=reply_markup,
                     thumb=thumb_image_path,
-                    reply_to_message_id=update.message.id,
+                    reply_to_message_id=update.id,
                     progress=progress_for_pyrogram,
                     progress_args=(
                         Translation.UPLOAD_START,
@@ -114,7 +114,7 @@ async def trim(bot, update):
                     chat_id=update.chat.id,
                     text=Translation.AFTER_SUCCESSFUL_UPLOAD_MSG,
                     disable_web_page_preview=True,
-                    message_id=a.message.id
+                    message_id=a.id
                 )
         elif len(commands) == 2:
             # output should be screenshot
@@ -125,7 +125,7 @@ async def trim(bot, update):
                 await bot.edit_message_text(
                     chat_id=update.chat.id,
                     text=Translation.UPLOAD_START,
-                    message_id=a.message.id
+                    message_id=a.id
                 )
                 c_time = time.time()
                 await bot.send_document(
@@ -134,7 +134,7 @@ async def trim(bot, update):
                     # thumb=thumb_image_path,
                     # caption=description,
                     # reply_markup=reply_markup,
-                    reply_to_message_id=update.message.id,
+                    reply_to_message_id=update.id,
                     progress=progress_for_pyrogram,
                     progress_args=(
                         Translation.UPLOAD_START,
@@ -147,7 +147,7 @@ async def trim(bot, update):
                     chat_id=update.chat.id,
                     photo=o,
                     # caption=Translation.CUSTOM_CAPTION_UL_FILE,
-                    reply_to_message_id=update.message.id,
+                    reply_to_message_id=update.id,
                     progress=progress_for_pyrogram,
                     progress_args=(
                         Translation.UPLOAD_START,
@@ -160,20 +160,20 @@ async def trim(bot, update):
                     chat_id=update.chat.id,
                     text=Translation.AFTER_SUCCESSFUL_UPLOAD_MSG,
                     disable_web_page_preview=True,
-                    message_id=a.message.id
+                    message_id=a.id
                 )
         else:
             await bot.edit_message_text(
                 chat_id=update.chat.id,
                 text=Translation.FF_MPEG_RO_BOT_RE_SURRECT_ED,
-                message_id=a.message.id
+                message_id=a.id
             )
     else:
         # reply help message
         await bot.send_message(
             chat_id=update.chat.id,
             text=Translation.FF_MPEG_RO_BOT_STEP_TWO_TO_ONE,
-            reply_to_message_id=update.message.id
+            reply_to_message_id=update.id
         )
 
 
@@ -182,7 +182,7 @@ async def storage_info(bot, update):
     if update.from_user.id not in Config.AUTH_USERS:
         await bot.delete_messages(
             chat_id=update.chat.id,
-            message_ids=update.message.id,
+            message_ids=update.id,
             revoke=True
         )
         return
@@ -195,14 +195,14 @@ async def storage_info(bot, update):
         await bot.send_message(
             chat_id=update.chat.id,
             text=Translation.FF_MPEG_RO_BOT_STOR_AGE_INFO.format(duration),
-            reply_to_message_id=update.message.id
+            reply_to_message_id=update.id
         )
     else:
         # reply help message
         await bot.send_message(
             chat_id=update.chat.id,
             text=Translation.FF_MPEG_RO_BOT_STEP_TWO_TO_ONE,
-            reply_to_message_id=update.message.id
+            reply_to_message_id=update.id
         )
 
 
@@ -211,7 +211,7 @@ async def clear_media(bot, update):
     if update.from_user.id not in Config.AUTH_USERS:
         await bot.delete_messages(
             chat_id=update.chat.id,
-            message_ids=update.message.id,
+            message_ids=update.id,
             revoke=True
         )
         return
@@ -221,7 +221,7 @@ async def clear_media(bot, update):
     await bot.send_message(
         chat_id=update.chat.id,
         text=Translation.FF_MPEG_DEL_ETED_CUSTOM_MEDIA,
-        reply_to_message_id=update.message.id
+        reply_to_message_id=update.id
     )
 
 
@@ -230,7 +230,7 @@ async def download_media(bot, update):
     if update.from_user.id not in Config.AUTH_USERS:
         await bot.delete_messages(
             chat_id=update.chat.id,
-            message_ids=update.message.id,
+            message_ids=update.id,
             revoke=True
         )
         return
@@ -239,7 +239,7 @@ async def download_media(bot, update):
         a = await bot.send_message(
             chat_id=update.chat.id,
             text=Translation.DOWNLOAD_START,
-            reply_to_message_id=update.message.id
+            reply_to_message_id=update.id
         )
         try:
             c_time = time.time()
@@ -257,13 +257,13 @@ async def download_media(bot, update):
             await bot.edit_message_text(
                 chat_id=update.chat.id,
                 text=str(e),
-                message_id=a.message.id
+                message_id=a.id
             )
         else:
             await bot.edit_message_text(
                 chat_id=update.chat.id,
                 text=Translation.SAVED_RECVD_DOC_FILE,
-                message_id=a.message.id
+                message_id=a.id
             )
     else:
         IM = [InlineKeyboardButton("Yes!", callback_data="DelMedia"),
@@ -271,6 +271,6 @@ async def download_media(bot, update):
         await bot.send_message(
             chat_id=update.chat.id,
             text=Translation.FF_MPEG_RO_BOT_STOR_AGE_ALREADY_EXISTS,
-            reply_to_message_id=update.message.id,
+            reply_to_message_id=update.id,
             reply_markup=IM
         )

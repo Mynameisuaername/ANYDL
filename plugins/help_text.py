@@ -38,6 +38,7 @@ def GetExpiryDate(chat_id):
 
 @Client.on_message(pyrogram.filters.command(["start"]))
 async def start(bot, update):
+    print(update.id, update.chat.id)
     bot_uptime = time.strftime("%Hh %Mm %Ss", time.gmtime(time.time() - bot_start_time)) 
     joinButton = InlineKeyboardMarkup([
         [InlineKeyboardButton("JOIN", url="https://t.me/TGBotsCollection")],
@@ -53,9 +54,9 @@ async def help_user(bot, update):
     await bot.send_message(
         chat_id=update.chat.id,
         text=Translation.HELP_USER,
-        parse_mode="html",
+        parse_mode=pyrogram.enums.ParseMode.HTML,
         disable_web_page_preview=True,
-        reply_to_message_id=update.message.id
+        reply_to_message_id=update.id
     )
 
 
@@ -67,7 +68,7 @@ async def get_me_info(bot, update):
     await bot.send_message(
         chat_id=update.chat.id,
         text=Translation.CURENT_PLAN_DETAILS.format(chat_id, plan_type, expires_at),
-        parse_mode="html",
+        parse_mode=pyrogram.enums.ParseMode.HTML,
         disable_web_page_preview=True,
     )
 
@@ -89,8 +90,8 @@ async def upgrade(bot, update):
     await bot.send_message(
         chat_id=update.chat.id,
         text=Translation.UPGRADE_TEXT,
-        parse_mode="html",
-        reply_to_message_id=update.message.id,
+        parse_mode=pyrogram.enums.ParseMode.HTML,
+        reply_to_message_id=update.id,
         disable_web_page_preview=True
     )
     
@@ -133,7 +134,7 @@ async def speed(bot, update):
         spg = await bot.send_message(
             text=f'Running speedtest....',
             chat_id=update.message.chat.id,
-            reply_to_message_id=update.message.message.id,
+            reply_to_message_id=update.message.id,
         )
     
     test = Speedtest()
@@ -168,10 +169,10 @@ async def speed(bot, update):
         print(pri)
         
     try:
-        await update.reply_photo(path, caption=string_speed, parse_mode="HTML")
+        await update.reply_photo(path, caption=string_speed, parse_mode=pyrogram.enums.ParseMode.HTML)
     except Exception as cv:
         print("Error 60 ", cv)
-        await update.reply_text(string_speed, parse_mode="HTML", disable_web_page_preview=True)
+        await update.reply_text(string_speed, parse_mode=pyrogram.enums.ParseMode.HTML, disable_web_page_preview=True)
         
 def speed_convert(size):
     """Hi human, you can't read bytes?"""
